@@ -151,7 +151,7 @@ export default function JungleStorySequence() {
           className="pointer-events-none absolute inset-x-0 bottom-0 z-10 mx-auto flex h-[85%] w-full max-w-275 items-end justify-center will-change-transform">
           <div className="relative h-full w-full">
             <Image
-              src="/about-us/cannabis.webp"
+              src="/abt/cannabis.webp"
               alt=""
               fill
               priority
@@ -166,7 +166,7 @@ export default function JungleStorySequence() {
           className="pointer-events-none absolute inset-x-0 bottom-0 z-20 w-full will-change-[opacity]">
           <div className="relative h-[55vh] w-full sm:h-[60vh]">
             <Image
-              src="/about-us/sky_line_with_sea_1_5x.webp"
+              src="/abt/sky_line_with_sea_1_5x.webp"
               alt=""
               fill
               priority
@@ -183,7 +183,7 @@ export default function JungleStorySequence() {
         <div className="relative aspect-square w-[clamp(260px,38vw,460px)]">
           <div ref={ringRef} className="absolute inset-0 will-change-transform">
             <Image
-              src="/about-us/Ring.svg"
+              src="/abt/Ring.svg"
               alt=""
               fill
               priority
@@ -196,7 +196,7 @@ export default function JungleStorySequence() {
             ref={logoRef}
             className="absolute inset-[12%] will-change-transform">
             <Image
-              src="/about-us/Logo without ring.svg"
+              src="/abt/Logo%20without%20ring.svg"
               alt="JD's Jungle logo"
               fill
               priority
@@ -217,7 +217,7 @@ export default function JungleStorySequence() {
         ref={exteriorSceneRef}
         className="absolute inset-0 z-30 will-change-transform">
         <Image
-          src="/about-us/exterior_1_5x.webp"
+          src="/abt/exterior_1_5x.webp"
           alt="JD's Jungle exterior"
           fill
           priority
@@ -230,7 +230,7 @@ export default function JungleStorySequence() {
         ref={interiorSceneRef}
         className="absolute inset-0 z-40 will-change-[opacity]">
         <Image
-          src="/about-us/interior_1_5x.webp"
+          src="/abt/interior_1_5x.webp"
           alt="JD's Jungle interior"
           fill
           priority
@@ -246,7 +246,7 @@ export default function JungleStorySequence() {
           ref={groupImageRef}
           className="relative aspect-square w-[clamp(280px,55vw,720px)] will-change-transform">
           <Image
-            src="/about-us/group_1321322168_1_5x.webp"
+            src="/abt/group_1321322168_1_5x.webp"
             alt=""
             fill
             priority
