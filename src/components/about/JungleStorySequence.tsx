@@ -8,126 +8,70 @@ import { useGSAP } from "@gsap/react";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
+// Fraction of the timeline (and of scroll progress) used by the city/overlay
+// reveal. The remainder is the cannabis growth. Kept in one place so the snap
+// points and the tween positions stay in sync.
+const REVEAL = 0.4;
+
+// How far (in % of their own height) the city and cannabis settle up from the
+// bottom once revealed.
+const LIFT = -30;
+
 export default function JungleStorySequence() {
   const sectionRef = useRef<HTMLElement | null>(null);
-
-  const builtSceneRef = useRef<HTMLDivElement | null>(null);
-  const headingRef = useRef<HTMLHeadingElement | null>(null);
   const skylineRef = useRef<HTMLDivElement | null>(null);
+  const curveRef = useRef<HTMLDivElement | null>(null);
   const cannabisRef = useRef<HTMLDivElement | null>(null);
-
-  const logoSceneRef = useRef<HTMLDivElement | null>(null);
-  const ringRef = useRef<HTMLDivElement | null>(null);
-  const logoRef = useRef<HTMLDivElement | null>(null);
-  const captionRef = useRef<HTMLParagraphElement | null>(null);
-
-  const exteriorSceneRef = useRef<HTMLDivElement | null>(null);
-  const interiorSceneRef = useRef<HTMLDivElement | null>(null);
-
-  const groupSceneRef = useRef<HTMLDivElement | null>(null);
-  const groupImageRef = useRef<HTMLDivElement | null>(null);
 
   useGSAP(
     () => {
       const section = sectionRef.current;
-      const builtScene = builtSceneRef.current;
-      const heading = headingRef.current;
       const skyline = skylineRef.current;
+      const curve = curveRef.current;
       const cannabis = cannabisRef.current;
-      const logoScene = logoSceneRef.current;
-      const ring = ringRef.current;
-      const logo = logoRef.current;
-      const caption = captionRef.current;
-      const exteriorScene = exteriorSceneRef.current;
-      const interiorScene = interiorSceneRef.current;
-      const groupScene = groupSceneRef.current;
-      const groupImage = groupImageRef.current;
-      if (
-        !section ||
-        !builtScene ||
-        !heading ||
-        !skyline ||
-        !cannabis ||
-        !logoScene ||
-        !ring ||
-        !logo ||
-        !caption ||
-        !exteriorScene ||
-        !interiorScene ||
-        !groupScene ||
-        !groupImage
-      )
-        return;
+      if (!section || !skyline || !curve || !cannabis) return;
 
-      gsap.set(builtScene, { opacity: 1 });
-      gsap.set(heading, { opacity: 0, y: -80, filter: "blur(8px)" });
-      gsap.set(skyline, { opacity: 0, y: 40 });
-      gsap.set(cannabis, { opacity: 0, y: 80, scale: 0.92 });
-
-      gsap.set(logoScene, { opacity: 0 });
-      gsap.set([logo, caption], { opacity: 0, y: 24 });
-      gsap.set(ring, { opacity: 0, rotation: 0, transformOrigin: "50% 50%" });
-
-      gsap.set(exteriorScene, { opacity: 1, yPercent: 100 });
-      gsap.set(interiorScene, { opacity: 0 });
-
-      gsap.set(groupScene, { opacity: 0 });
-      gsap.set(groupImage, {
-        opacity: 0,
-        scale: 0.2,
-        transformOrigin: "50% 50%",
-      });
+      // Image and overlay start just below the viewport, fully opaque — they
+      // are revealed by sliding up, not by fading.
+      gsap.set([skyline, curve], { yPercent: 100 });
+      gsap.set(cannabis, { opacity: 0, scale: 0.16, transformOrigin: "50% 100%" });
 
       const tl = gsap.timeline({
         defaults: { ease: "none" },
         scrollTrigger: {
           trigger: section,
           start: "top top",
-          end: "+=850%",
+          end: "+=180%",
           pin: true,
           pinSpacing: true,
           scrub: 1,
           anticipatePin: 1,
+          invalidateOnRefresh: true,
+          // Two snap stops: one scroll commits the city + overlay reveal, the
+          // very next scroll commits the cannabis growth.
+          snap: {
+            snapTo: [0, REVEAL, 1],
+            duration: { min: 0.15, max: 0.5 },
+            ease: "power2.out",
+          },
         },
       });
 
-      tl.to(heading, { opacity: 1, y: 0, filter: "blur(0px)", duration: 1 }, 0)
-        .to(skyline, { opacity: 1, y: 0, duration: 1 }, 0.15)
-        .to(cannabis, { opacity: 1, y: 0, scale: 1, duration: 1 }, 1.05)
+      // Reveal — the city image leads and lifts up, the white overlay trails a
+      // touch behind (slower) and settles at the bottom for a parallax feel.
+      // Total timeline duration is 1 so timeline time maps directly onto
+      // ScrollTrigger progress (and the snap points).
+      tl.to(skyline, { yPercent: LIFT, duration: 0.18, ease: "power2.out" }, 0)
+        .to(curve, { yPercent: 0, duration: REVEAL, ease: "power2.out" }, 0)
 
-        .to({}, { duration: 0.4 })
-
-        .to(cannabis, { y: -220, scale: 1.08, duration: 2 }, ">")
-
-        .to({}, { duration: 0.3 })
-
-        .to(builtScene, { opacity: 0, duration: 1.2 }, ">")
-        .to(logoScene, { opacity: 1, duration: 1.2 }, "<")
-        .to(logo, { opacity: 1, y: 0, duration: 1.0 }, "<+0.1")
-        .to(ring, { opacity: 1, duration: 1.0 }, "<+0.1")
-        .to(caption, { opacity: 1, y: 0, duration: 1.0 }, "<+0.2")
-
-        .to({}, { duration: 0.3 })
-
-        .to(ring, { rotation: 10, duration: 2.0 }, ">")
-
-        .to({}, { duration: 0.4 })
-
-        .to(exteriorScene, { yPercent: 0, duration: 1.5 }, ">")
-        .set(logoScene, { opacity: 0 })
-
-        .to({}, { duration: 0.6 })
-
-        .to(exteriorScene, { opacity: 0, duration: 2.4 }, ">")
-        .to(interiorScene, { opacity: 1, duration: 2.4 }, "<")
-
-        .to({}, { duration: 0.6 })
-
-        .to(interiorScene, { opacity: 0, duration: 2.4 }, ">")
-        .to(groupScene, { opacity: 1, duration: 2.4 }, "<")
-        .to(groupImage, { opacity: 1, scale: 1, duration: 2.0 }, "<+0.3")
-
-        .to({}, { duration: 0.4 });
+        // Cannabis appears and grows quickly from its base, lifting up with the
+        // city, on the next scroll.
+        .to(cannabis, { opacity: 1, duration: 0.05 }, REVEAL)
+        .to(
+          cannabis,
+          { scale: 1.04, yPercent: LIFT, duration: 1 - REVEAL, ease: "power2.out" },
+          REVEAL,
+        );
     },
     { scope: sectionRef },
   );
@@ -135,125 +79,55 @@ export default function JungleStorySequence() {
   return (
     <section
       ref={sectionRef}
-      className="relative h-screen w-full overflow-hidden bg-[#fafaf7]"
-      aria-label="So we built JD's Jungle">
+      className="relative h-screen w-full overflow-hidden bg-[#fffff8]"
+      aria-label="JD's Jungle skyline">
       <div
-        ref={builtSceneRef}
-        className="absolute inset-0 z-10 will-change-[opacity]">
-        <h2
-          ref={headingRef}
-          className="font-serif absolute left-1/2 top-[18%] z-30 -translate-x-1/2 px-6 text-center font-bold leading-[1.1] tracking-tight text-[clamp(2rem,6vw,4rem)] bg-linear-to-b from-[#45739D] to-[#182837] bg-clip-text text-transparent filter-[drop-shadow(0_2px_30px_rgba(24,40,55,0.18))] will-change-transform">
-          So we built JD&rsquo;s Jungle
-        </h2>
-
-        <div
-          ref={cannabisRef}
-          className="pointer-events-none absolute inset-x-0 bottom-0 z-10 mx-auto flex h-[85%] w-full max-w-275 items-end justify-center will-change-transform">
-          <div className="relative h-full w-full">
-            <Image
-              src="/abt/cannabis.webp"
-              alt=""
-              fill
-              priority
-              sizes="(max-width: 768px) 100vw, 1100px"
-              className="select-none object-contain object-bottom"
-            />
-          </div>
-        </div>
-
-        <div
-          ref={skylineRef}
-          className="pointer-events-none absolute inset-x-0 bottom-0 z-20 w-full will-change-[opacity]">
-          <div className="relative h-[55vh] w-full sm:h-[60vh]">
-            <Image
-              src="/abt/sky_line_with_sea_1_5x.webp"
-              alt=""
-              fill
-              priority
-              sizes="100vw"
-              className="select-none object-cover object-bottom"
-            />
-          </div>
-        </div>
-      </div>
-
-      <div
-        ref={logoSceneRef}
-        className="absolute inset-0 z-20 flex flex-col items-center justify-center px-6 will-change-[opacity]">
-        <div className="relative aspect-square w-[clamp(260px,38vw,460px)]">
-          <div ref={ringRef} className="absolute inset-0 will-change-transform">
-            <Image
-              src="/abt/Ring.svg"
-              alt=""
-              fill
-              priority
-              sizes="(max-width: 768px) 80vw, 460px"
-              className="select-none object-contain"
-            />
-          </div>
-
-          <div
-            ref={logoRef}
-            className="absolute inset-[12%] will-change-transform">
-            <Image
-              src="/abt/Logo%20without%20ring.svg"
-              alt="JD's Jungle logo"
-              fill
-              priority
-              sizes="(max-width: 768px) 64vw, 360px"
-              className="select-none object-contain"
-            />
-          </div>
-        </div>
-
-        <p
-          ref={captionRef}
-          className="mt-10 text-center text-base font-medium tracking-wide text-[#182837]/70 will-change-transform">
-          NYC skyline x Abstract leaf
-        </p>
-      </div>
-
-      <div
-        ref={exteriorSceneRef}
-        className="absolute inset-0 z-30 will-change-transform">
-        <Image
-          src="/abt/exterior_1_5x.webp"
-          alt="JD's Jungle exterior"
-          fill
-          priority
-          sizes="100vw"
-          className="select-none object-cover"
-        />
-      </div>
-
-      <div
-        ref={interiorSceneRef}
-        className="absolute inset-0 z-40 will-change-[opacity]">
-        <Image
-          src="/abt/interior_1_5x.webp"
-          alt="JD's Jungle interior"
-          fill
-          priority
-          sizes="100vw"
-          className="select-none object-cover"
-        />
-      </div>
-
-      <div
-        ref={groupSceneRef}
-        className="absolute inset-0 z-50 flex items-center justify-center bg-white will-change-[opacity]">
-        <div
-          ref={groupImageRef}
-          className="relative aspect-square w-[clamp(280px,55vw,720px)] will-change-transform">
+        ref={cannabisRef}
+        className="pointer-events-none absolute inset-x-0 bottom-0 z-10 mx-auto flex h-[85%] w-full max-w-275 items-end justify-center will-change-transform">
+        <div className="relative h-full w-full">
           <Image
-            src="/abt/group_1321322168_1_5x.webp"
+            src="/abt/cannabis.webp"
             alt=""
             fill
             priority
-            sizes="(max-width: 768px) 80vw, 720px"
-            className="select-none object-contain"
+            sizes="(max-width: 768px) 100vw, 1100px"
+            className="select-none object-contain object-bottom"
           />
         </div>
+      </div>
+
+      <div
+        ref={skylineRef}
+        className="pointer-events-none absolute inset-x-0 bottom-0 z-20 w-full will-change-transform">
+        <div className="relative h-[55vh] w-full sm:h-[60vh]">
+          <Image
+            src="/abt/sky_line_with_sea_1_5x.webp"
+            alt=""
+            fill
+            priority
+            sizes="100vw"
+            className="select-none object-cover object-bottom"
+          />
+        </div>
+      </div>
+
+      {/* Smooth white curve — touches the left/right edges and the bottom,
+          no shadow. Stretched edge-to-edge with preserveAspectRatio="none". */}
+      <div
+        ref={curveRef}
+        className="pointer-events-none absolute inset-x-0 bottom-0 z-30 h-[42vh] w-full will-change-transform">
+        <svg
+          preserveAspectRatio="none"
+          viewBox="16.5 0 1764.5 446.505"
+          fill="none"
+          className="block h-full w-full"
+          xmlns="http://www.w3.org/2000/svg"
+          aria-hidden="true">
+          <path
+            d="M269.5 106.401C177.105 14.0047 53.5 21.0041 16.5 37.5045V446.505H1781V148.005C1749.5 181.505 1721.33 199.275 1702 210.108C1473 322.4 1154 312.505 1027.5 186.4C916.76 76.005 716.5 106.401 643.5 153.401C570.5 200.401 409.045 245.948 269.5 106.401Z"
+            fill="#FFFEF8"
+          />
+        </svg>
       </div>
     </section>
   );
