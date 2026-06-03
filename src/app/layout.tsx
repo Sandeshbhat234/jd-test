@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono, Source_Serif_4 } from "next/font/google";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import AgeGate from "@/components/AgeGate";
+import CookieBanner from "@/components/CookieBanner";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -39,6 +41,8 @@ export default function RootLayout({
         <Navbar />
         {children}
         <Footer />
+        <CookieBanner />
+        <AgeGate />
       </body>
     </html>
   );

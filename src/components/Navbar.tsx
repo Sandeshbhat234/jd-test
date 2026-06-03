@@ -3,14 +3,24 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useState } from "react";
+import StoreSelector from "@/components/StoreSelector";
 
-type NavItem = { label: string; href: string };
+type NavItem = { label: string; href: string; children?: NavItem[] };
 
 const NAV_ITEMS: NavItem[] = [
   { label: "Home", href: "/" },
   { label: "Shop", href: "/shop" },
   { label: "About", href: "/about" },
-  { label: "Explore", href: "/explore" },
+  {
+    label: "Explore",
+    href: "/explore",
+    children: [
+      { label: "Loyalty Program", href: "/loyalty" },
+      { label: "Blogs", href: "/blogs" },
+      { label: "Locations", href: "/locations" },
+    ],
+  },
   { label: "Contact", href: "/contact" },
 ];
 
@@ -24,8 +34,11 @@ export default function Navbar({ activeHref, theme }: NavbarProps) {
   const pathname = usePathname();
   const active = activeHref ?? matchActiveNavItem(pathname);
 
-  // "dark" = dark foreground (for use over light backgrounds, e.g. /about).
-  const resolvedTheme = theme ?? (pathname.startsWith("/about") ? "dark" : "light");
+  // "dark" = dark foreground (for use over light backgrounds, e.g. /about, /loyalty).
+  const LIGHT_BG_ROUTES = ["/about", "/loyalty", "/blogs", "/locations", "/contact"];
+  const resolvedTheme =
+    theme ??
+    (LIGHT_BG_ROUTES.some((route) => pathname.startsWith(route)) ? "dark" : "light");
   const dark = resolvedTheme === "dark";
 
   const textColor = dark ? "text-[#1e1e1e]" : "text-white";
@@ -67,6 +80,18 @@ export default function Navbar({ activeHref, theme }: NavbarProps) {
         <ul className="hidden items-center gap-6 md:flex">
           {NAV_ITEMS.map((item) => {
             const isActive = item.href === active;
+            if (item.children) {
+              return (
+                <NavDropdown
+                  key={item.href}
+                  item={item}
+                  isActive={isActive}
+                  pathname={pathname}
+                  textColor={textColor}
+                  underlineColor={underlineColor}
+                />
+              );
+            }
             return (
               <li key={item.href} className="relative">
                 <Link
@@ -88,8 +113,10 @@ export default function Navbar({ activeHref, theme }: NavbarProps) {
       </div>
 
       <div className="flex items-center gap-[clamp(16px,2vw,32px)]">
+        <StoreSelector dark={dark} />
+
         <label
-          className={`hidden h-[36px] w-[190px] items-center gap-2 rounded-full border px-4 py-2 md:flex ${borderColor} ${dark ? "text-[#1e1e1e]/90" : "text-white/90"}`}
+          className={`hidden h-[36px] w-[190px] items-center gap-2 rounded-full border px-4 py-2 lg:flex ${borderColor} ${dark ? "text-[#1e1e1e]/90" : "text-white/90"}`}
         >
           <Image
             src="/home/Icons/search.svg"
@@ -143,7 +170,98 @@ export default function Navbar({ activeHref, theme }: NavbarProps) {
 function matchActiveNavItem(pathname: string): string {
   if (pathname === "/") return "/";
   const match = NAV_ITEMS.find(
-    (item) => item.href !== "/" && pathname.startsWith(item.href),
+    (item) =>
+      (item.href !== "/" && pathname.startsWith(item.href)) ||
+      item.children?.some((child) => pathname.startsWith(child.href)),
   );
   return match?.href ?? "/";
+}
+
+function NavDropdown({
+  item,
+  isActive,
+  pathname,
+  textColor,
+  underlineColor,
+}: {
+  item: NavItem;
+  isActive: boolean;
+  pathname: string;
+  textColor: string;
+  underlineColor: string;
+}) {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <li
+      className="relative"
+      onMouseEnter={() => setOpen(true)}
+      onMouseLeave={() => setOpen(false)}
+      onBlur={(e) => {
+        if (!e.currentTarget.contains(e.relatedTarget as Node | null)) {
+          setOpen(false);
+        }
+      }}
+    >
+      <button
+        type="button"
+        aria-haspopup="menu"
+        aria-expanded={open}
+        onClick={() => setOpen((o) => !o)}
+        onKeyDown={(e) => e.key === "Escape" && setOpen(false)}
+        className={`flex items-center gap-1 font-[var(--font-cy-grotesk)] text-[16px] font-medium leading-[17.293px] transition-opacity hover:opacity-80 ${textColor}`}
+      >
+        {item.label}
+        <svg
+          aria-hidden
+          viewBox="0 0 24 24"
+          fill="none"
+          className={`size-3 transition-transform duration-200 ${open ? "rotate-180" : ""}`}
+        >
+          <path
+            d="M6 9l6 6 6-6"
+            stroke="currentColor"
+            strokeWidth="2.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      </button>
+
+      {isActive ? (
+        <span
+          aria-hidden
+          className={`absolute -bottom-[27px] left-0 h-[6px] w-full rounded-t-[5px] ${underlineColor}`}
+        />
+      ) : null}
+
+      {open ? (
+        <div className="absolute left-1/2 top-full z-50 -translate-x-1/2 pt-4">
+          <ul
+            role="menu"
+            className="flex min-w-[210px] flex-col rounded-2xl border border-black/10 bg-[#fffef8] p-2 shadow-[0px_10px_30px_rgba(0,0,0,0.15)]"
+          >
+            {item.children!.map((child) => {
+              const childActive = pathname.startsWith(child.href);
+              return (
+                <li key={child.href} role="none">
+                  <Link
+                    href={child.href}
+                    role="menuitem"
+                    aria-current={childActive ? "page" : undefined}
+                    onClick={() => setOpen(false)}
+                    className={`block rounded-xl px-4 py-2.5 font-[var(--font-cy-grotesk)] text-[15px] leading-tight text-[#1e1e1e] transition-colors hover:bg-black/5 ${
+                      childActive ? "bg-black/5 font-medium" : ""
+                    }`}
+                  >
+                    {child.label}
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      ) : null}
+    </li>
+  );
 }

@@ -3,6 +3,8 @@ import WhatMakesUsDifferent from "@/components/about/WhatMakesUsDifferent";
 import WhatWeStandFor from "@/components/about/WhatWeStandFor";
 import JungleStorySequence from "@/components/about/JungleStorySequence";
 import JungleLocations from "@/components/about/JungleLocations";
+import TheLineup from "@/components/about/TheLineup";
+import FinalCTA from "@/components/about/FinalCTA";
 
 export default function AboutPage() {
   return (
@@ -16,6 +18,10 @@ export default function AboutPage() {
       <JungleStorySequence />
 
       <JungleLocations />
+
+      <TheLineup />
+
+      <FinalCTA />
     </main>
   );
 }
