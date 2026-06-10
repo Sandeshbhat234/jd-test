@@ -24,6 +24,16 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+body.hide-footer > footer {
+  display: none;
+}
+
+/* When age consent was previously given, hide the gate before first paint
+   (a blocking script in the layout sets this attribute) to avoid a flash. */
+html[data-age-verified="1"] [data-age-gate] {
+  display: none !important;
+}
+
 @utility no-scrollbar {
   scrollbar-width: none;
   -ms-overflow-style: none;

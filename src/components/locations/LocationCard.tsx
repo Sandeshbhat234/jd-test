@@ -26,23 +26,23 @@ export default function LocationCard({ location }: { location: Location }) {
       <div className="absolute inset-0 bg-gradient-to-t from-[rgba(34,25,20,0.92)] via-[rgba(34,25,20,0.45)] to-transparent" />
 
       <div className="relative flex flex-col gap-2 text-white">
-        <h3 className="font-[var(--font-cy-grotesk)] text-[clamp(20px,1.8vw,24px)] font-medium leading-tight">
+        <h3 className="font-cy text-[clamp(20px,1.8vw,24px)] font-medium leading-tight">
           {location.name}
         </h3>
-        <p className="font-[var(--font-cy-grotesk)] text-[clamp(14px,1.1vw,16px)] leading-snug">
+        <p className="font-cy text-[clamp(14px,1.1vw,16px)] leading-snug">
           {location.phone}
         </p>
-        <p className="font-[var(--font-cy-grotesk)] text-[clamp(14px,1.1vw,16px)] leading-snug">
+        <p className="font-cy text-[clamp(14px,1.1vw,16px)] leading-snug">
           {location.address.join(", ")}
         </p>
         <div className="mt-1 flex items-center gap-2" suppressHydrationWarning>
           {openState && (
             <>
-              <span className="rounded-full bg-[#d7cbb1] px-2 py-0.5 font-[var(--font-cy-grotesk)] text-[clamp(13px,1vw,16px)] text-[#1e1e1e]">
+              <span className="rounded-full bg-[#d7cbb1] px-2 py-0.5 font-cy text-[clamp(13px,1vw,16px)] text-[#1e1e1e]">
                 {openState.open ? "Open" : "Closed"}
               </span>
               {openState.open && openState.closesAt && (
-                <span className="font-[var(--font-cy-grotesk)] text-[clamp(13px,1vw,16px)]">
+                <span className="font-cy text-[clamp(13px,1vw,16px)]">
                   until {openState.closesAt}
                 </span>
               )}

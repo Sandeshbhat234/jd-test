@@ -38,7 +38,7 @@ export default function LocationsExplorer() {
 
       <div className="order-3 flex flex-col gap-6 lg:order-none lg:min-h-0 lg:overflow-y-auto lg:pr-2 lg:[grid-area:list]">
         {filtered.length === 0 ? (
-          <p className="py-8 text-center font-[var(--font-cy-grotesk)] text-[clamp(15px,1.5vw,18px)] text-[rgba(30,30,30,0.6)]">
+          <p className="py-8 text-center font-cy text-[clamp(15px,1.5vw,18px)] text-[rgba(30,30,30,0.6)]">
             No locations match your search.
           </p>
         ) : (

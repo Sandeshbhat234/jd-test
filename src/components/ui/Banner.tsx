@@ -21,23 +21,25 @@ const DefaultSeparator = (
   />
 );
 
-export default function Banner({
+function Track({
   message,
-  separator = DefaultSeparator,
-  durationSec = 28,
-  repeat = 6,
-  className,
-}: BannerProps) {
-  const segments = Array.from({ length: repeat });
-
-  const Track = ({ ariaHidden = false }: { ariaHidden?: boolean }) => (
+  separator,
+  repeat,
+  ariaHidden = false,
+}: {
+  message: string;
+  separator: ReactNode;
+  repeat: number;
+  ariaHidden?: boolean;
+}) {
+  return (
     <div
       aria-hidden={ariaHidden || undefined}
       className="flex shrink-0 items-center gap-6 pr-6"
     >
-      {segments.map((_, i) => (
+      {Array.from({ length: repeat }).map((_, i) => (
         <div key={i} className="flex items-center gap-6">
-          <span className="font-[var(--font-cy-grotesk)] text-[16px] leading-6 tracking-[0.2px] text-[#1e1e1e] whitespace-nowrap">
+          <span className="font-cy text-[16px] leading-6 tracking-[0.2px] text-[#1e1e1e] whitespace-nowrap">
             {message}
           </span>
           {separator}
@@ -45,7 +47,15 @@ export default function Banner({
       ))}
     </div>
   );
+}
 
+export default function Banner({
+  message,
+  separator = DefaultSeparator,
+  durationSec = 28,
+  repeat = 6,
+  className,
+}: BannerProps) {
   return (
     <div
       role="marquee"
@@ -59,8 +69,8 @@ export default function Banner({
         className="flex w-max animate-marquee hover:[animation-play-state:paused] motion-reduce:animate-none"
         style={{ ["--marquee-duration" as string]: `${durationSec}s` }}
       >
-        <Track />
-        <Track ariaHidden />
+        <Track message={message} separator={separator} repeat={repeat} />
+        <Track message={message} separator={separator} repeat={repeat} ariaHidden />
       </div>
     </div>
   );

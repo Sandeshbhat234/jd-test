@@ -236,7 +236,7 @@ export default function JungleLocations() {
             <h3 className="font-[family-name:var(--font-cy-grotesk)] font-semibold capitalize leading-tight text-[clamp(20px,2.2vw,32px)]">
               {loc.city}
             </h3>
-            <p className="font-[var(--font-cy-grotesk)] capitalize leading-snug text-[clamp(14px,1.5vw,22px)]">
+            <p className="font-cy capitalize leading-snug text-[clamp(14px,1.5vw,22px)]">
               {loc.address.map((line) => (
                 <span key={line} className="block">
                   {line}

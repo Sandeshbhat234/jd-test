@@ -85,15 +85,15 @@ export default function LocationsMapInner({
           icon={markerIcon(loc.shortName, loc.slug === activeSlug)}
         >
           <Popup>
-            <span className="block font-[var(--font-cy-grotesk)] text-[15px] font-medium text-[#1e1e1e]">
+            <span className="block font-cy text-[15px] font-medium text-[#1e1e1e]">
               {loc.name}
             </span>
-            <span className="mt-1 block font-[var(--font-cy-grotesk)] text-[13px] text-[#555]">
+            <span className="mt-1 block font-cy text-[13px] text-[#555]">
               {loc.address.join(", ")}
             </span>
             <Link
               href={`/locations/${loc.slug}`}
-              className="mt-2 inline-block font-[var(--font-cy-grotesk)] text-[13px] font-medium text-[#0c1e46] underline"
+              className="mt-2 inline-block font-cy text-[13px] font-medium text-[#0c1e46] underline"
             >
               View location
             </Link>

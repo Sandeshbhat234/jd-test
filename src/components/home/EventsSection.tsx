@@ -38,7 +38,7 @@ export default function EventsSection() {
           <h2 className="font-serif font-light text-[clamp(36px,5vw,64px)] leading-[1.5] tracking-[0.2px]">
             Upcoming Events
           </h2>
-          <p className="font-[var(--font-cy-grotesk)] text-[clamp(16px,1.6vw,22px)] leading-[1.5] tracking-[0.2px]">
+          <p className="font-cy text-[clamp(16px,1.6vw,22px)] leading-[1.5] tracking-[0.2px]">
             Learn, connect, and experience cannabis culture – right here in NYC.
           </p>
         </header>
@@ -71,12 +71,12 @@ function EventCard({
             <h3 className="font-serif text-[clamp(24px,2.4vw,32px)] leading-[1.1] capitalize text-black">
               {title}
             </h3>
-            <p className="font-[var(--font-cy-grotesk)] text-[clamp(14px,1.4vw,18px)] leading-[1.5] tracking-[0.2px] text-black">
+            <p className="font-cy text-[clamp(14px,1.4vw,18px)] leading-[1.5] tracking-[0.2px] text-black">
               {description}
             </p>
           </div>
 
-          <div className="flex flex-col gap-2 font-[var(--font-cy-grotesk)] tracking-[0.2px] text-black">
+          <div className="flex flex-col gap-2 font-cy tracking-[0.2px] text-black">
             <div className="flex items-end gap-2">
               <span className="text-[clamp(36px,4vw,48px)] leading-none">
                 {day}

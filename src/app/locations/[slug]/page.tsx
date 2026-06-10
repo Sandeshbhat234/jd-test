@@ -20,7 +20,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
 }
 
 const heading = "font-serif text-[clamp(24px,2.6vw,32px)] leading-tight text-[#1e1e1e]";
-const rowText = "font-[var(--font-cy-grotesk)] text-[clamp(15px,1.2vw,18px)] leading-relaxed text-[#1e1e1e]";
+const rowText = "font-cy text-[clamp(15px,1.2vw,18px)] leading-relaxed text-[#1e1e1e]";
 
 function Socials({
   email,
@@ -69,7 +69,7 @@ export default async function LocationDetailPage({ params }: Params) {
           <h1 className="font-serif text-[clamp(30px,5vw,52px)] leading-tight text-[rgba(1,1,1,0.8)]">
             {location.name}
           </h1>
-          <p className="font-[var(--font-cy-grotesk)] text-[clamp(15px,1.5vw,20px)] leading-relaxed text-[#1e1e1e]/70">
+          <p className="font-cy text-[clamp(15px,1.5vw,20px)] leading-relaxed text-[#1e1e1e]/70">
             {location.subtitle}
           </p>
         </div>

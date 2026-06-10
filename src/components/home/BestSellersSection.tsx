@@ -73,7 +73,7 @@ function ProductCard({ name, price, image, href, tags }: Product) {
           <span className="truncate">{name}</span>
           <span className="shrink-0">{price}</span>
         </div>
-        <ul className="flex flex-wrap items-start gap-x-4 gap-y-1 font-[var(--font-cy-grotesk)] text-[clamp(13px,1vw,16px)] leading-[27px] text-black">
+        <ul className="flex flex-wrap items-start gap-x-4 gap-y-1 font-cy text-[clamp(13px,1vw,16px)] leading-[27px] text-black">
           {tags.map((tag) => (
             <li key={tag}>{tag}</li>
           ))}

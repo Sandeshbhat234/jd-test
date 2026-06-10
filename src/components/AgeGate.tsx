@@ -8,7 +8,7 @@ const STORAGE_KEY = "jd-age-verified";
 
 const pillBase =
   "flex h-[50px] items-center justify-center rounded-full border " +
-  "font-[var(--font-cy-grotesk)] whitespace-nowrap " +
+  "font-cy whitespace-nowrap " +
   "transition-[filter,background-color] duration-200 ease-out " +
   "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0c1e46]/60 focus-visible:ring-offset-2 focus-visible:ring-offset-[#fffef8]";
 
@@ -47,6 +47,7 @@ export default function AgeGate() {
       role="dialog"
       aria-modal="true"
       aria-label="Age verification"
+      data-age-gate=""
       className="fixed inset-0 z-[100] flex items-center justify-center p-4"
     >
       <Image
@@ -72,7 +73,7 @@ export default function AgeGate() {
               <h2 className="font-serif text-[clamp(26px,3vw,32px)] leading-[1.5] text-black">
                 {denied ? "Come back when you're 21." : "Are you 21 or older?"}
               </h2>
-              <p className="font-[var(--font-cy-grotesk)] text-[clamp(15px,1.2vw,18px)] leading-[1.5] text-[rgba(30,30,30,0.5)]">
+              <p className="font-cy text-[clamp(15px,1.2vw,18px)] leading-[1.5] text-[rgba(30,30,30,0.5)]">
                 {denied
                   ? "You must be of legal age to enter this site."
                   : 'By clicking "Yes", you agree to our Terms & Conditions and Privacy Policy.'}

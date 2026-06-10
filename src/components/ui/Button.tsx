@@ -29,7 +29,7 @@ export type ButtonProps = AsButton | AsLink;
 
 const base =
   "inline-flex items-center justify-center rounded-full whitespace-nowrap " +
-  "font-[var(--font-cy-grotesk)] uppercase tracking-wide " +
+  "font-cy uppercase tracking-wide " +
   "transition-colors duration-200 ease-out " +
   "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent " +
   "disabled:opacity-50 disabled:pointer-events-none";

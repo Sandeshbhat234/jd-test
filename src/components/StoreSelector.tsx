@@ -41,7 +41,7 @@ export default function StoreSelector({ dark }: { dark: boolean }) {
         aria-label={`Selected store: ${store.name}. Change store`}
         onClick={() => setOpen((o) => !o)}
         onKeyDown={(e) => e.key === "Escape" && setOpen(false)}
-        className={`flex h-[36px] items-center gap-2 rounded-full border px-3 font-[var(--font-cy-grotesk)] text-[14px] font-medium leading-none transition-opacity hover:opacity-80 ${text} ${border}`}
+        className={`flex h-[36px] items-center gap-2 rounded-full border px-3 font-cy text-[14px] font-medium leading-none transition-opacity hover:opacity-80 ${text} ${border}`}
       >
         <PinIcon className="size-[16px] shrink-0" />
         <span className="whitespace-nowrap">{store.shortName}</span>
@@ -79,7 +79,7 @@ export default function StoreSelector({ dark }: { dark: boolean }) {
                       setStore(s.slug);
                       setOpen(false);
                     }}
-                    className={`flex w-full items-start gap-2 rounded-xl px-3 py-2.5 text-left font-[var(--font-cy-grotesk)] text-[#1e1e1e] transition-colors hover:bg-black/5 ${
+                    className={`flex w-full items-start gap-2 rounded-xl px-3 py-2.5 text-left font-cy text-[#1e1e1e] transition-colors hover:bg-black/5 ${
                       active ? "bg-black/5" : ""
                     }`}
                   >

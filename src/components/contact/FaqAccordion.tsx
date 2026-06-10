@@ -13,7 +13,7 @@ function FaqRow({ question, answer }: { question: string; answer: string }) {
         onClick={() => setOpen((o) => !o)}
         className="flex w-full items-center gap-8 p-5 text-left"
       >
-        <span className="flex-1 font-[var(--font-cy-grotesk)] text-[clamp(16px,1.4vw,22px)] font-medium leading-snug tracking-[0.5px] text-[#1e1e1e]">
+        <span className="flex-1 font-cy text-[clamp(16px,1.4vw,22px)] font-medium leading-snug tracking-[0.5px] text-[#1e1e1e]">
           {question}
         </span>
         <svg
@@ -40,7 +40,7 @@ function FaqRow({ question, answer }: { question: string; answer: string }) {
       >
         <div className="overflow-hidden">
           <p
-            className={`px-5 pb-5 font-[var(--font-cy-grotesk)] text-[clamp(14px,1.2vw,18px)] leading-relaxed tracking-[0.3px] text-[#1e1e1e]/80 transition-opacity duration-300 ${
+            className={`px-5 pb-5 font-cy text-[clamp(14px,1.2vw,18px)] leading-relaxed tracking-[0.3px] text-[#1e1e1e]/80 transition-opacity duration-300 ${
               open ? "opacity-100" : "opacity-0"
             }`}
           >
@@ -57,7 +57,7 @@ export default function FaqAccordion({ groups }: { groups: FaqGroup[] }) {
     <div className="flex flex-col gap-12">
       {groups.map((group) => (
         <div key={group.title} className="flex flex-col gap-4">
-          <h3 className="font-[var(--font-cy-grotesk)] text-[clamp(18px,1.8vw,26px)] font-medium text-[#1e1e1e]">
+          <h3 className="font-cy text-[clamp(18px,1.8vw,26px)] font-medium text-[#1e1e1e]">
             {group.title}
           </h3>
           <div className="flex flex-col gap-3">

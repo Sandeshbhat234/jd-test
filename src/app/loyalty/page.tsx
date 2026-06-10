@@ -68,7 +68,7 @@ export default function LoyaltyPage() {
           <h1 className="font-serif text-[clamp(30px,5vw,48px)] leading-tight text-[rgba(1,1,1,0.8)]">
             Loyalty Program
           </h1>
-          <p className="max-w-[900px] font-[var(--font-cy-grotesk)] text-[clamp(14px,1.4vw,18px)] leading-[1.6] text-black/75">
+          <p className="max-w-[900px] font-cy text-[clamp(14px,1.4vw,18px)] leading-[1.6] text-black/75">
             We started JD&apos;s Jungle because we believe loyalty should be
             rewarded – not ignored. But we noticed something – most dispensary
             loyalty programs feel complicated or forgettable. So we created our
@@ -84,7 +84,7 @@ export default function LoyaltyPage() {
             {/* How It Works */}
             <div className="flex flex-col gap-6">
               <SectionHeading>How It Works</SectionHeading>
-              <ol className="flex flex-col gap-4 font-[var(--font-cy-grotesk)] text-[clamp(14px,1.4vw,18px)] leading-[1.6]">
+              <ol className="flex flex-col gap-4 font-cy text-[clamp(14px,1.4vw,18px)] leading-[1.6]">
                 {STEPS.map((step, i) => (
                   <li key={step.title} className="flex flex-col gap-2">
                     <span className="font-medium">
@@ -99,7 +99,7 @@ export default function LoyaltyPage() {
             {/* Reward Tiers */}
             <div className="flex flex-col gap-6">
               <SectionHeading>Reward Tiers</SectionHeading>
-              <ul className="flex flex-col font-[var(--font-cy-grotesk)] text-[clamp(14px,1.4vw,18px)] leading-[1.6]">
+              <ul className="flex flex-col font-cy text-[clamp(14px,1.4vw,18px)] leading-[1.6]">
                 {TIERS.map((tier, i) => (
                   <li
                     key={tier}
@@ -117,7 +117,7 @@ export default function LoyaltyPage() {
             {/* Member Perks */}
             <div className="flex flex-col gap-6">
               <SectionHeading>Member Perks</SectionHeading>
-              <ul className="flex flex-col gap-4 font-[var(--font-cy-grotesk)] text-[clamp(14px,1.4vw,18px)] leading-[1.6]">
+              <ul className="flex flex-col gap-4 font-cy text-[clamp(14px,1.4vw,18px)] leading-[1.6]">
                 {PERKS.map((perk) => (
                   <li key={perk} className="flex items-center gap-2">
                     <CheckIcon />
@@ -127,7 +127,7 @@ export default function LoyaltyPage() {
               </ul>
             </div>
 
-            <p className="font-[var(--font-cy-grotesk)] text-[clamp(14px,1.4vw,18px)] leading-[1.6]">
+            <p className="font-cy text-[clamp(14px,1.4vw,18px)] leading-[1.6]">
               Points never expire as long as you shop with us. Valid online and
               in-store at JD&apos;s Jungle Manhattan location.
             </p>

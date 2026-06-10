@@ -15,7 +15,9 @@
       "TodoRead",
       "TodoWrite",
       "WebSearch",
-      "mcp__figma"
+      "mcp__figma",
+      "PowerShell(\"ok\")",
+      "PowerShell(npm install lottie-react 2>&1)"
     ]
   }
 }

@@ -5,9 +5,9 @@ import LocationsMap from "@/components/locations/LocationsMap";
 
 const iconWrap = "flex size-12 items-center justify-center text-[#1e1e1e]";
 const label =
-  "font-[var(--font-cy-grotesk)] text-[clamp(20px,1.8vw,28px)] font-medium text-[#1e1e1e]";
+  "font-cy text-[clamp(20px,1.8vw,28px)] font-medium text-[#1e1e1e]";
 const value =
-  "font-[var(--font-cy-grotesk)] text-[clamp(15px,1.2vw,18px)] leading-relaxed text-[#1e1e1e]";
+  "font-cy text-[clamp(15px,1.2vw,18px)] leading-relaxed text-[#1e1e1e]";
 
 function InfoBlock({
   icon,

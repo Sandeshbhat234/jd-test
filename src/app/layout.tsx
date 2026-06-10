@@ -35,9 +35,18 @@ export default function RootLayout({
   return (
     <html
       lang="en"
+      suppressHydrationWarning
       className={`${geistSans.variable} ${geistMono.variable} ${sourceSerif.variable} h-full antialiased`}
     >
       <body className="relative min-h-full flex flex-col">
+        {/* Runs before first paint: if age consent was already given, mark the
+            document so CSS hides the age gate immediately (no flash on reload). */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "try{if(localStorage.getItem('jd-age-verified')==='true'){document.documentElement.setAttribute('data-age-verified','1')}}catch(e){}",
+          }}
+        />
         <Navbar />
         {children}
         <Footer />

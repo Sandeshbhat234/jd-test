@@ -63,7 +63,7 @@ export default function SearchBar({
         onKeyDown={(e) => e.key === "Escape" && onClose?.()}
         placeholder={placeholder}
         aria-label={ariaLabel}
-        className="w-full bg-transparent font-[var(--font-cy-grotesk)] text-[14px] tracking-[0.3px] text-[#1e1e1e] placeholder:text-[#888] focus:outline-none [&::-webkit-search-cancel-button]:hidden"
+        className="w-full bg-transparent font-cy text-[14px] tracking-[0.3px] text-[#1e1e1e] placeholder:text-[#888] focus:outline-none [&::-webkit-search-cancel-button]:hidden"
       />
       {onClose && (
         <button

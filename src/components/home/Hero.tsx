@@ -25,7 +25,7 @@ export default function Hero() {
               Navigate The Highs
             </h1>
             <p
-              className="font-[var(--font-cy-grotesk)] text-white/70 text-[clamp(1rem,2.4vw,36px)] leading-[1.33] [text-shadow:3px_6px_12.8px_rgba(0,0,0,0.2)]"
+              className="font-cy text-white/70 text-[clamp(1rem,2.4vw,36px)] leading-[1.33] [text-shadow:3px_6px_12.8px_rgba(0,0,0,0.2)]"
             >
               Premium cannabis for every moment
             </p>

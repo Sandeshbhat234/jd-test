@@ -23,7 +23,7 @@ function SectionHeader({
       <h2 className="flex-1 font-serif text-[clamp(30px,5vw,52px)] leading-tight text-[rgba(1,1,1,0.8)]">
         {heading}
       </h2>
-      <p className="flex-1 font-[var(--font-cy-grotesk)] text-[clamp(15px,1.4vw,20px)] leading-relaxed text-[#1e1e1e]/70">
+      <p className="flex-1 font-cy text-[clamp(15px,1.4vw,20px)] leading-relaxed text-[#1e1e1e]/70">
         {subtitle}
       </p>
     </div>
@@ -61,7 +61,7 @@ export default function ContactPage() {
             <h2 className="font-serif text-[clamp(34px,6vw,64px)] leading-tight text-[rgba(1,1,1,0.8)]">
               {CONTACT_COPY.faqHeading}
             </h2>
-            <p className="font-[var(--font-cy-grotesk)] text-[clamp(15px,1.4vw,20px)] leading-relaxed text-[#1e1e1e]/70">
+            <p className="font-cy text-[clamp(15px,1.4vw,20px)] leading-relaxed text-[#1e1e1e]/70">
               {CONTACT_COPY.faqSubtitle}
             </p>
           </div>

@@ -1,16 +1,25 @@
 "use client";
 
 import Image from "next/image";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+import dynamic from "next/dynamic";
+import type { LottieRefCurrentProps } from "lottie-react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
+// lottie-react pulls in lottie-web, which touches `window`, so keep it client-only.
+const Lottie = dynamic(() => import("lottie-react"), { ssr: false });
+
 const HERO_IMAGE = "/About%20page/hero/hero.webp";
 const BG_GRADIENT = "/About%20page/hero/Bg%20gradient/Frame%201.svg";
 const LOGO_MARK = "/About%20page/hero/Coloured%20logo.svg";
+const LOGO_FORMATION = "/About%20page/Logo%20formation.json";
+// Frame count of Logo formation.json (op - ip); used as a fallback before the
+// animation has reported its own duration.
+const LOGO_FORMATION_FRAMES = 480;
 
 // Shared gradient fill for the display words (from the Figma design).
 const WORD_GRADIENT =
@@ -37,8 +46,27 @@ export default function AboutHero() {
 
   // Final text screen (revealed when the image scrolls up).
   const textScreenRef = useRef<HTMLDivElement | null>(null);
+  const textGroupRef = useRef<HTMLDivElement | null>(null);
   const textHeadingRef = useRef<HTMLHeadingElement | null>(null);
   const textSubRef = useRef<HTMLParagraphElement | null>(null);
+
+  // Scroll-driven logo formation Lottie that plays after the text reveal.
+  const lottieRef = useRef<LottieRefCurrentProps | null>(null);
+  const lottieBoxRef = useRef<HTMLDivElement | null>(null);
+  const [logoFormation, setLogoFormation] = useState<unknown>(null);
+
+  useEffect(() => {
+    let active = true;
+    fetch(LOGO_FORMATION)
+      .then((res) => res.json())
+      .then((data) => {
+        if (active) setLogoFormation(data);
+      })
+      .catch(() => {});
+    return () => {
+      active = false;
+    };
+  }, []);
 
   useGSAP(
     () => {
@@ -54,8 +82,10 @@ export default function AboutHero() {
       const logo = logoRef.current;
       const whiteFade = whiteFadeRef.current;
       const textScreen = textScreenRef.current;
+      const textGroup = textGroupRef.current;
       const textHeading = textHeadingRef.current;
       const textSub = textSubRef.current;
+      const lottieBox = lottieBoxRef.current;
       if (
         !section ||
         !bg ||
@@ -69,8 +99,10 @@ export default function AboutHero() {
         !logo ||
         !whiteFade ||
         !textScreen ||
+        !textGroup ||
         !textHeading ||
-        !textSub
+        !textSub ||
+        !lottieBox
       )
         return;
 
@@ -106,6 +138,13 @@ export default function AboutHero() {
       gsap.set(textScreen, { autoAlpha: 0 });
       gsap.set(textHeading, { yPercent: 110 });
       gsap.set(textSub, { autoAlpha: 0, y: 24 });
+      // Logo formation Lottie sits below the text, hidden until its turn.
+      gsap.set(lottieBox, { autoAlpha: 0, y: 28 });
+
+      // Proxy GSAP scrubs to drive the Lottie playhead frame-by-frame.
+      const lottieProxy = { frame: 0 };
+      const lastFrame = () =>
+        (lottieRef.current?.getDuration(true) ?? LOGO_FORMATION_FRAMES) - 1;
 
       // --- intro reveal (plays on load): only the display words + bg ---
       const intro = gsap.timeline({ delay: 0.15 });
@@ -124,7 +163,7 @@ export default function AboutHero() {
         scrollTrigger: {
           trigger: section,
           start: "top top",
-          end: "+=480%",
+          end: "+=640%",
           pin: true,
           pinSpacing: true,
           scrub: 1,
@@ -186,12 +225,29 @@ export default function AboutHero() {
 
         .to({}, { duration: 0.3 })
 
-        // Phase E — the text vanishes, then the section unpins into the next
-        // (second) section.
+        // Phase E — the text nudges up to make room, and the logo formation
+        // Lottie plays below it, scrubbed frame-by-frame with the scroll.
+        // When it finishes the section unpins into the next section.
         .to(
-          [textHeading, textSub],
-          { autoAlpha: 0, y: -24, duration: 0.7 },
+          textGroup,
+          { y: () => -window.innerHeight * 0.07, duration: 0.7, ease: "power2.out" },
           ">",
+        )
+        .to(
+          lottieBox,
+          { autoAlpha: 1, y: 0, duration: 0.6, ease: "power2.out" },
+          "<",
+        )
+        .to(
+          lottieProxy,
+          {
+            frame: lastFrame,
+            duration: 2.4,
+            ease: "none",
+            onUpdate: () =>
+              lottieRef.current?.goToAndStop(lottieProxy.frame, true),
+          },
+          ">-0.2",
         );
     },
     { scope: sectionRef },
@@ -218,9 +274,12 @@ export default function AboutHero() {
       {/* final text screen — sits behind the image until it scrolls up */}
       <div
         ref={textScreenRef}
-        className="absolute inset-0 z-[5] flex flex-col items-center justify-center bg-[#fffff8] px-6 text-center"
+        className="absolute inset-0 z-[5] flex flex-col items-center justify-center gap-[clamp(24px,5vh,72px)] bg-[#fffff8] px-6 text-center"
       >
-        <div className="mx-auto flex w-full max-w-[1322px] flex-col items-center gap-4">
+        <div
+          ref={textGroupRef}
+          className="mx-auto flex w-full max-w-[1322px] flex-col items-center gap-4 will-change-transform"
+        >
           <div className="overflow-hidden">
             <h2
               ref={textHeadingRef}
@@ -233,12 +292,28 @@ export default function AboutHero() {
           </div>
           <p
             ref={textSubRef}
-            className="font-[var(--font-cy-grotesk)] font-light leading-[1.5] text-[rgba(30,30,30,0.5)] text-[clamp(16px,2.4vw,32px)] will-change-transform"
+            className="font-cy font-light leading-[1.5] text-[rgba(30,30,30,0.5)] text-[clamp(16px,2.4vw,32px)] will-change-transform"
           >
             We bring together quality, community, and honest guidance. JD&rsquo;s
             Jungle is a space where every customer, from the curious first-timer
             to the seasoned connoisseur, feels at home.
           </p>
+        </div>
+
+        {/* logo formation — plays frame-by-frame as you scroll past the text */}
+        <div
+          ref={lottieBoxRef}
+          className="aspect-[640/360] w-[clamp(240px,40vw,560px)] will-change-transform"
+        >
+          {logoFormation ? (
+            <Lottie
+              lottieRef={lottieRef}
+              animationData={logoFormation}
+              autoplay={false}
+              loop={false}
+              className="h-full w-full"
+            />
+          ) : null}
         </div>
       </div>
 
@@ -292,7 +367,7 @@ export default function AboutHero() {
         ref={captionRef}
         className="absolute bottom-[clamp(24px,5vh,56px)] left-[clamp(24px,4vw,58px)] right-[clamp(96px,9vw,160px)] z-10 flex items-center gap-[clamp(16px,2vw,32px)]"
       >
-        <p className="whitespace-nowrap font-[var(--font-cy-grotesk)] text-[clamp(15px,1.8vw,32px)] leading-[1.5] text-[rgba(30,30,30,0.9)] [text-shadow:0px_0px_50px_rgba(0,0,0,0.05)]">
+        <p className="whitespace-nowrap font-cy text-[clamp(15px,1.8vw,32px)] leading-[1.5] text-[rgba(30,30,30,0.9)] [text-shadow:0px_0px_50px_rgba(0,0,0,0.05)]">
           Rooted in New York. Rising for everyone.
         </p>
         <span ref={lineRef} className="h-px flex-1 bg-[rgba(30,30,30,0.3)]" />

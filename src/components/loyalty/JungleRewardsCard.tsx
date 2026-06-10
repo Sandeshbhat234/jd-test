@@ -26,7 +26,7 @@ export default function JungleRewardsCard() {
           <hr className="border-0 border-t border-black/40" />
 
           <div className="flex flex-col gap-8">
-            <div className="flex flex-col gap-2 font-[var(--font-cy-grotesk)]">
+            <div className="flex flex-col gap-2 font-cy">
               <p className="text-[clamp(14px,1.4vw,18px)] leading-[1.6] text-[#1e1e1e]">
                 Join our loyalty program and start earning 10% cashback on every
                 purchase.
@@ -39,7 +39,7 @@ export default function JungleRewardsCard() {
             <div className="flex flex-wrap items-center gap-x-6 gap-y-4">
               <Link
                 href="/signup"
-                className={`flex h-11 items-center justify-center whitespace-nowrap rounded-full border border-[#0c1e46] px-[clamp(24px,2.5vw,40px)] py-2.5 font-[var(--font-cy-grotesk)] text-[clamp(13px,1.1vw,16px)] font-medium text-white transition-[filter] duration-200 hover:brightness-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0c1e46]/60 focus-visible:ring-offset-2 ${joinGradient}`}
+                className={`flex h-11 items-center justify-center whitespace-nowrap rounded-full border border-[#0c1e46] px-[clamp(24px,2.5vw,40px)] py-2.5 font-cy text-[clamp(13px,1.1vw,16px)] font-medium text-white transition-[filter] duration-200 hover:brightness-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0c1e46]/60 focus-visible:ring-offset-2 ${joinGradient}`}
               >
                 JOIN FOR FREE
               </Link>

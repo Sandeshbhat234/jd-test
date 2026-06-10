@@ -6,7 +6,7 @@ import { useContactForm } from "@/lib/useContactForm";
 import { useSelectedStore } from "@/lib/useSelectedStore";
 
 const field =
-  "w-full rounded-[5px] border border-black bg-transparent p-4 font-[var(--font-cy-grotesk)] text-[clamp(15px,1.1vw,18px)] tracking-[0.5px] text-black/80 placeholder:text-black/80 focus:outline-none focus:ring-2 focus:ring-[#0c1e46]/40 disabled:opacity-60";
+  "w-full rounded-[5px] border border-black bg-transparent p-4 font-cy text-[clamp(15px,1.1vw,18px)] tracking-[0.5px] text-black/80 placeholder:text-black/80 focus:outline-none focus:ring-2 focus:ring-[#0c1e46]/40 disabled:opacity-60";
 
 const EMPTY = { name: "", email: "", phone: "", subject: "", message: "" };
 
@@ -120,12 +120,12 @@ export default function ContactPageForm() {
       <button
         type="submit"
         disabled={submitting || status === "success"}
-        className="flex h-[47px] w-fit items-center justify-center whitespace-nowrap rounded-full border border-[#0c1e46] bg-[linear-gradient(179deg,#173067_9%,#06122F_48%,#05102A_86%)] px-[clamp(28px,3vw,50px)] py-2.5 font-[var(--font-cy-grotesk)] text-[clamp(16px,1.4vw,26px)] font-medium text-white transition-[filter] duration-200 hover:brightness-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0c1e46]/60 focus-visible:ring-offset-2 disabled:opacity-70"
+        className="flex h-[47px] w-fit items-center justify-center whitespace-nowrap rounded-full border border-[#0c1e46] bg-[linear-gradient(179deg,#173067_9%,#06122F_48%,#05102A_86%)] px-[clamp(28px,3vw,50px)] py-2.5 font-cy text-[clamp(16px,1.4vw,26px)] font-medium text-white transition-[filter] duration-200 hover:brightness-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0c1e46]/60 focus-visible:ring-offset-2 disabled:opacity-70"
       >
         {status === "success" ? "Message sent ✓" : submitting ? "Sending…" : "SUBMIT"}
       </button>
 
-      <div aria-live="polite" className="font-[var(--font-cy-grotesk)] text-[15px]">
+      <div aria-live="polite" className="font-cy text-[15px]">
         {status === "success" && (
           <p className="text-[#1e7a3c]">
             Thanks for reaching out — {store.name} will be in touch shortly.

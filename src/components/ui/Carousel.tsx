@@ -88,14 +88,14 @@ export default function Carousel({
       ].join(" ")}
     >
       <header
-        className="mb-[clamp(40px,7vw,125px)] flex flex-col gap-6 md:flex-row md:items-center md:justify-between"
+        className="mb-[clamp(40px,7vw,125px)] flex flex-col items-center gap-6 text-center lg:flex-row lg:items-center lg:justify-between lg:text-left"
         style={{ paddingInline: edgePadding }}
       >
         <h2 className="font-serif font-light text-black text-[clamp(32px,4.5vw,64px)] leading-[1.2]">
           {title}
         </h2>
 
-        <div className="flex items-center justify-between gap-6 md:gap-8">
+        <div className="flex flex-col items-center gap-6 lg:flex-row lg:items-center lg:gap-8">
           {description ? (
             <p className="font-serif text-[clamp(14px,1.4vw,22px)] leading-[1.36] text-black/50 max-w-[710px]">
               {description}

@@ -108,22 +108,11 @@ export default function WhatMakesUsDifferent() {
         autoAlpha: 0,
       });
 
-      // --- intro on enter ---
-      const enter = gsap.timeline({
-        scrollTrigger: { trigger: section, start: "top 75%", once: true },
-      });
-      enter
-        .from(heading, {
-          autoAlpha: 0,
-          y: 40,
-          duration: 0.9,
-          ease: "power3.out",
-        })
-        .from(
-          cardStack,
-          { autoAlpha: 0, y: 60, duration: 1, ease: "power3.out" },
-          0.1,
-        );
+      // Hidden until the section pins. This section sits one viewport higher
+      // than normal (negative margin below) so it is tucked directly behind
+      // the hero's white end screen; the moment the hero unpins and the white
+      // is "covering", this section is already at the top and reveals in place.
+      gsap.set([heading, cardStack], { autoAlpha: 0, scale: 0.94 });
 
       // --- pinned scroll sequence ---
       const tl = gsap.timeline({
@@ -131,7 +120,7 @@ export default function WhatMakesUsDifferent() {
         scrollTrigger: {
           trigger: section,
           start: "top top",
-          end: "+=720%",
+          end: "+=760%",
           pin: true,
           pinSpacing: true,
           scrub: 1,
@@ -141,13 +130,23 @@ export default function WhatMakesUsDifferent() {
       });
 
       tl
+        // reveal in place — first thing that happens once the section pins,
+        // i.e. right as the hero's white cover lifts. No slide-up hand-off.
+        .to(
+          [heading, cardStack],
+          { autoAlpha: 1, scale: 1, duration: 0.6, ease: "power2.out" },
+          0,
+        )
+        .to({}, { duration: 0.25 })
+        .addLabel("cards")
+
         // card 0 -> 1: front card flies out, the rest straighten one step,
         // and the left text swaps to card 1.
-        .to(cards[0], { ...exitVars }, 0)
-        .to(cards[1], { rotate: 0, duration: 1, ease: "power2.out" }, 0)
-        .to(cards[2], { rotate: -10, duration: 1, ease: "power2.out" }, 0)
-        .to(texts[0], { autoAlpha: 0, y: -20, duration: 0.5 }, 0)
-        .to(texts[1], { autoAlpha: 1, y: 0, duration: 0.6 }, 0.35)
+        .to(cards[0], { ...exitVars }, "cards")
+        .to(cards[1], { rotate: 0, duration: 1, ease: "power2.out" }, "cards")
+        .to(cards[2], { rotate: -10, duration: 1, ease: "power2.out" }, "cards")
+        .to(texts[0], { autoAlpha: 0, y: -20, duration: 0.5 }, "cards")
+        .to(texts[1], { autoAlpha: 1, y: 0, duration: 0.6 }, "cards+=0.35")
 
         .to({}, { duration: 0.2 })
 
@@ -211,7 +210,7 @@ export default function WhatMakesUsDifferent() {
     <section
       ref={sectionRef}
       aria-label="What Makes Us Different"
-      className="relative h-screen w-full overflow-hidden bg-[#fffef8]"
+      className="relative -mt-[100vh] h-screen w-full overflow-hidden bg-[#fffef8]"
     >
       {/* left column: section heading + swapping card copy */}
       <div ref={leftColumnRef} className="pointer-events-none absolute inset-0 z-10">
@@ -222,7 +221,7 @@ export default function WhatMakesUsDifferent() {
           <h2 className="font-serif font-light leading-[1.1] text-[#1e1e1e] text-[clamp(34px,4.6vw,64px)] [text-shadow:0px_0px_50px_rgba(0,0,0,0.05)]">
             What Makes Us Different
           </h2>
-          <p className="mt-2 font-[var(--font-cy-grotesk)] font-light leading-[1.5] text-[#1e1e1e] text-[clamp(14px,1.3vw,18px)]">
+          <p className="mt-2 font-cy font-light leading-[1.5] text-[#1e1e1e] text-[clamp(14px,1.3vw,18px)]">
             Three reasons New Yorkers keep coming back – no guesswork, no hype.
           </p>
         </div>
@@ -235,10 +234,10 @@ export default function WhatMakesUsDifferent() {
             }}
             className="absolute left-[clamp(24px,8vw,132px)] top-[clamp(420px,60vh,620px)] w-[clamp(300px,42vw,620px)] will-change-transform"
           >
-            <h3 className="font-[var(--font-cy-grotesk)] leading-[1.2] text-[#1e1e1e] text-[clamp(24px,3vw,36px)] [text-shadow:0px_0px_50px_rgba(0,0,0,0.05)]">
+            <h3 className="font-cy leading-[1.2] text-[#1e1e1e] text-[clamp(24px,3vw,36px)] [text-shadow:0px_0px_50px_rgba(0,0,0,0.05)]">
               {card.title}
             </h3>
-            <p className="mt-4 font-[var(--font-cy-grotesk)] font-light leading-[1.5] text-[#1e1e1e] text-[clamp(15px,1.6vw,26px)]">
+            <p className="mt-4 font-cy font-light leading-[1.5] text-[#1e1e1e] text-[clamp(15px,1.6vw,26px)]">
               {card.sub}
             </p>
           </div>

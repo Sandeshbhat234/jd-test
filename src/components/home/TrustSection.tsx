@@ -58,7 +58,7 @@ export default function TrustSection() {
                 height={65}
                 className="size-[clamp(40px,5vw,65px)] shrink-0 select-none"
               />
-              <div className="flex flex-col items-start font-[var(--font-cy-grotesk)] text-white">
+              <div className="flex flex-col items-start font-cy text-white">
                 <span className="text-[clamp(18px,2vw,28px)] uppercase leading-[1.4]">
                   {badge.title}
                 </span>

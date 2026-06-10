@@ -14,13 +14,13 @@ export default function ReadyToEarn() {
           <h2 className="font-serif text-[clamp(24px,3.5vw,38px)] leading-tight">
             Ready to start earning?
           </h2>
-          <p className="font-[var(--font-cy-grotesk)] text-[clamp(14px,1.4vw,18px)] leading-[1.6]">
+          <p className="font-cy text-[clamp(14px,1.4vw,18px)] leading-[1.6]">
             Join in seconds. Start earning today. No catch. Just rewards.
           </p>
         </div>
         <Link
           href="/signup"
-          className="flex h-11 items-center justify-center whitespace-nowrap rounded-full border border-[rgba(1,31,69,0.3)] bg-[#fffef8] px-[clamp(24px,2.5vw,40px)] py-2.5 font-[var(--font-cy-grotesk)] text-[clamp(13px,1.1vw,16px)] font-medium text-[#0c1e46] transition-colors duration-200 hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
+          className="flex h-11 items-center justify-center whitespace-nowrap rounded-full border border-[rgba(1,31,69,0.3)] bg-[#fffef8] px-[clamp(24px,2.5vw,40px)] py-2.5 font-cy text-[clamp(13px,1.1vw,16px)] font-medium text-[#0c1e46] transition-colors duration-200 hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
         >
           JOIN FOR FREE
         </Link>

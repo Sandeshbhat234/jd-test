@@ -13,7 +13,7 @@ type Consent = "all" | "essentials" | "rejected";
 // Shared button base — matches the pill buttons in the Figma design.
 const pillBase =
   "flex h-9 items-center justify-center rounded-full border px-4 py-2 " +
-  "font-[var(--font-cy-grotesk)] text-[14px] leading-none whitespace-nowrap " +
+  "font-cy text-[14px] leading-none whitespace-nowrap " +
   "transition-[filter,background-color] duration-200 ease-out " +
   "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0c1e46]/60 focus-visible:ring-offset-2 focus-visible:ring-offset-[#fffef8]";
 
@@ -73,7 +73,7 @@ export default function CookieBanner() {
             </div>
             <p
               id="cookie-banner-desc"
-              className="font-[var(--font-cy-grotesk)] text-[14px] leading-relaxed text-black"
+              className="font-cy text-[14px] leading-relaxed text-black"
             >
               We use cookies to enhance your browsing experience and analyze our
               traffic. Read our{" "}

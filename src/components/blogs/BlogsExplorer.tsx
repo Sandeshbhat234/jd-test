@@ -40,7 +40,7 @@ export default function BlogsExplorer() {
       </div>
 
       {filtered.length === 0 ? (
-        <p className="py-12 text-center font-[var(--font-cy-grotesk)] text-[clamp(15px,1.5vw,20px)] text-[rgba(30,30,30,0.6)]">
+        <p className="py-12 text-center font-cy text-[clamp(15px,1.5vw,20px)] text-[rgba(30,30,30,0.6)]">
           No articles found. Try a different category or search term.
         </p>
       ) : (

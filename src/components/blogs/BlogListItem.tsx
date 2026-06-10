@@ -4,7 +4,7 @@ import type { BlogPost } from "@/data/blogs";
 import ArrowButton from "./ArrowButton";
 
 const metaText =
-  "font-[var(--font-cy-grotesk)] text-[clamp(13px,1vw,16px)] leading-tight tracking-[0.4px] text-[#1e1e1e]";
+  "font-cy text-[clamp(13px,1vw,16px)] leading-tight tracking-[0.4px] text-[#1e1e1e]";
 
 function Meta({ post }: { post: BlogPost }) {
   return (
@@ -51,17 +51,17 @@ export default function BlogListItem({
       <div className="flex flex-col justify-between gap-6 lg:h-[clamp(240px,22vw,320px)]">
         <div className="flex flex-col gap-4">
           <div className="flex items-start justify-between gap-4">
-            <span className="font-[var(--font-cy-grotesk)] text-[clamp(14px,1vw,18px)] font-medium leading-tight text-[#1e1e1e]">
+            <span className="font-cy text-[clamp(14px,1vw,18px)] font-medium leading-tight text-[#1e1e1e]">
               {number}
             </span>
-            <span className="rounded-full border border-[#1e1e1e] bg-[rgba(234,233,228,0.2)] px-4 py-1.5 font-[var(--font-cy-grotesk)] text-[clamp(13px,1vw,15px)] leading-tight text-[rgba(30,30,30,0.5)]">
+            <span className="rounded-full border border-[#1e1e1e] bg-[rgba(234,233,228,0.2)] px-4 py-1.5 font-cy text-[clamp(13px,1vw,15px)] leading-tight text-[rgba(30,30,30,0.5)]">
               {post.category}
             </span>
           </div>
           <h3 className="font-serif text-[clamp(26px,3.2vw,44px)] leading-[1.2] tracking-[1px] text-[#1e1e1e]">
             {post.title}
           </h3>
-          <p className="font-[var(--font-cy-grotesk)] text-[clamp(15px,1.5vw,20px)] leading-[1.5] tracking-[0.5px] text-[#1e1e1e]">
+          <p className="font-cy text-[clamp(15px,1.5vw,20px)] leading-[1.5] tracking-[0.5px] text-[#1e1e1e]">
             {post.excerpt}
           </p>
         </div>

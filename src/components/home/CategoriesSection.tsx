@@ -49,7 +49,7 @@ function CategoryCard({ label, image, href }: Category) {
         />
       </div>
       <div className="flex w-full items-center justify-center px-4 py-2">
-        <span className="font-[var(--font-cy-grotesk)] text-[clamp(20px,2.2vw,36px)] uppercase leading-tight text-black">
+        <span className="font-cy text-[clamp(20px,2.2vw,36px)] uppercase leading-tight text-black">
           {label}
         </span>
       </div>

@@ -104,7 +104,7 @@ function SolidCard({
         <h3 className="font-serif text-[clamp(22px,2.4vw,32px)] capitalize leading-[1.2] text-black">
           {title}
         </h3>
-        <p className="font-[var(--font-cy-grotesk)] text-[clamp(15px,1.6vw,22px)] leading-[1.5] text-black">
+        <p className="font-cy text-[clamp(15px,1.6vw,22px)] leading-[1.5] text-black">
           {description}
         </p>
       </div>
@@ -122,7 +122,7 @@ function SolidCard({
       <div className="flex flex-col gap-4">
         <span aria-hidden className="h-px w-full bg-black/15" />
         <div className="flex items-center justify-between">
-          <span className="font-[var(--font-cy-grotesk)] text-[clamp(14px,1.4vw,18px)] uppercase leading-[27px] text-black">
+          <span className="font-cy text-[clamp(14px,1.4vw,18px)] uppercase leading-[27px] text-black">
             {cta}
           </span>
           <Image

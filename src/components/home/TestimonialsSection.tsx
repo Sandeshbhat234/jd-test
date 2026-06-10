@@ -84,7 +84,7 @@ export default function TestimonialsSection() {
           <h2 className="font-serif text-[clamp(24px,2.6vw,32px)] leading-[1.5] tracking-[0.2px]">
             From Our Community
           </h2>
-          <p className="font-[var(--font-cy-grotesk)] text-[clamp(16px,1.6vw,22px)] leading-[1.5] tracking-[0.2px]">
+          <p className="font-cy text-[clamp(16px,1.6vw,22px)] leading-[1.5] tracking-[0.2px]">
             Feedback from New Yorkers – no filters, just honest experiences
           </p>
         </header>
@@ -111,7 +111,7 @@ export default function TestimonialsSection() {
                   {t.quote}
                 </p>
                 <span className="h-px w-full bg-black/15" aria-hidden />
-                <p className="font-[var(--font-cy-grotesk)] text-[clamp(16px,1.8vw,26px)] leading-[1.5] text-black/75">
+                <p className="font-cy text-[clamp(16px,1.8vw,26px)] leading-[1.5] text-black/75">
                   {t.body}
                 </p>
                 <div className="mt-2 flex flex-wrap items-center justify-between gap-4">
@@ -123,7 +123,7 @@ export default function TestimonialsSection() {
                       height={100}
                       className="size-[clamp(56px,6vw,100px)] shrink-0 rounded-full object-cover"
                     />
-                    <div className="flex flex-col gap-2 font-[var(--font-cy-grotesk)] text-black">
+                    <div className="flex flex-col gap-2 font-cy text-black">
                       <Stars rating={t.rating} />
                       <span className="text-[clamp(14px,1.2vw,18px)] leading-[27px] opacity-75">
                         {t.name}

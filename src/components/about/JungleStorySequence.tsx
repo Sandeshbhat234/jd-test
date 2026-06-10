@@ -15,7 +15,7 @@ const REVEAL = 0.4;
 
 // How far (in % of their own height) the city and cannabis settle up from the
 // bottom once revealed.
-const LIFT = -30;
+const LIFT = -20;
 
 export default function JungleStorySequence() {
   const sectionRef = useRef<HTMLElement | null>(null);
@@ -124,7 +124,7 @@ export default function JungleStorySequence() {
           xmlns="http://www.w3.org/2000/svg"
           aria-hidden="true">
           <path
-            d="M269.5 106.401C177.105 14.0047 53.5 21.0041 16.5 37.5045V446.505H1781V148.005C1749.5 181.505 1721.33 199.275 1702 210.108C1473 322.4 1154 312.505 1027.5 186.4C916.76 76.005 716.5 106.401 643.5 153.401C570.5 200.401 409.045 245.948 269.5 106.401Z"
+            d="M269.5 122.481C177.105 57.803 53.5 62.703 16.5 74.253L16.5 446.505L1781 446.505L1781 151.603C1749.5 175.053 1721.33 187.493 1702 195.076C1473 273.68 1154 266.753 1027.5 178.48C916.76 101.203 716.5 122.481 643.5 155.381C570.5 188.281 409.045 220.164 269.5 122.481Z"
             fill="#FFFEF8"
           />
         </svg>

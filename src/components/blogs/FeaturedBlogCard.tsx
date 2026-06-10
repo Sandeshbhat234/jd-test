@@ -4,7 +4,7 @@ import type { BlogPost } from "@/data/blogs";
 import ArrowButton from "./ArrowButton";
 
 const metaText =
-  "font-[var(--font-cy-grotesk)] text-[clamp(13px,1vw,15px)] leading-tight tracking-[0.4px] text-[#1e1e1e]";
+  "font-cy text-[clamp(13px,1vw,15px)] leading-tight tracking-[0.4px] text-[#1e1e1e]";
 
 export default function FeaturedBlogCard({ post }: { post: BlogPost }) {
   return (
@@ -27,7 +27,7 @@ export default function FeaturedBlogCard({ post }: { post: BlogPost }) {
       <div className="flex flex-col gap-6">
         {/* Category + meta */}
         <div className="flex items-center justify-between gap-4">
-          <span className="rounded-full border border-[#1e1e1e] bg-[rgba(234,233,228,0.2)] px-4 py-1.5 font-[var(--font-cy-grotesk)] text-[clamp(13px,1vw,15px)] leading-tight text-[rgba(30,30,30,0.7)]">
+          <span className="rounded-full border border-[#1e1e1e] bg-[rgba(234,233,228,0.2)] px-4 py-1.5 font-cy text-[clamp(13px,1vw,15px)] leading-tight text-[rgba(30,30,30,0.7)]">
             {post.category}
           </span>
           <div className="flex items-center gap-3">
@@ -45,7 +45,7 @@ export default function FeaturedBlogCard({ post }: { post: BlogPost }) {
             {post.title}
           </h3>
           <div className="flex items-end justify-between gap-4">
-            <p className="font-[var(--font-cy-grotesk)] text-[clamp(14px,1.4vw,18px)] leading-[1.5] tracking-[0.4px] text-[#1e1e1e]">
+            <p className="font-cy text-[clamp(14px,1.4vw,18px)] leading-[1.5] tracking-[0.4px] text-[#1e1e1e]">
               {post.excerpt}
             </p>
             <ArrowButton className="size-[clamp(38px,3.5vw,50px)] group-hover:bg-[#1e1e1e] group-hover:text-white" />

@@ -5,7 +5,7 @@ import { BLOG_CATEGORIES } from "@/data/blogs";
 import SearchBar from "@/components/ui/SearchBar";
 
 const chip =
-  "flex shrink-0 items-start gap-1 rounded-full border border-[#1e1e1e] px-5 py-2 font-[var(--font-cy-grotesk)] transition-colors";
+  "flex shrink-0 items-start gap-1 rounded-full border border-[#1e1e1e] px-5 py-2 font-cy transition-colors";
 
 export interface BlogFilterBarProps {
   selected: string;

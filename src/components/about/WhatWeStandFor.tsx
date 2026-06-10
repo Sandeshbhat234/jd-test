@@ -187,7 +187,7 @@ export default function WhatWeStandFor() {
         </h2>
         <p
           ref={subtitleRef}
-          className="mt-2 font-[var(--font-cy-grotesk)] font-light leading-[1.5] text-[#1e1e1e] text-[clamp(15px,1.5vw,22px)]"
+          className="mt-2 font-cy font-light leading-[1.5] text-[#1e1e1e] text-[clamp(15px,1.5vw,22px)]"
         >
           The values that guide every product and every conversation
         </p>
@@ -217,10 +217,10 @@ export default function WhatWeStandFor() {
           }`}
         >
           <div className="flex flex-1 flex-col gap-2">
-            <h3 className="font-[var(--font-cy-grotesk)] capitalize leading-[1.3] text-black text-[clamp(22px,2.4vw,32px)]">
+            <h3 className="font-cy capitalize leading-[1.3] text-black text-[clamp(22px,2.4vw,32px)]">
               {value.title}
             </h3>
-            <p className="font-[var(--font-cy-grotesk)] leading-[1.45] text-[rgba(0,0,0,0.7)] text-[clamp(15px,1.7vw,26px)]">
+            <p className="font-cy leading-[1.45] text-[rgba(0,0,0,0.7)] text-[clamp(15px,1.7vw,26px)]">
               {value.sub}
             </p>
           </div>

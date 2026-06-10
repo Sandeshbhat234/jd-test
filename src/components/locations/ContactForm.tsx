@@ -6,9 +6,9 @@ import { useContactForm } from "@/lib/useContactForm";
 // Border-radius is applied per field (pill inputs, rounded textarea), so it is
 // deliberately NOT part of the shared base.
 const fieldBase =
-  "w-full border border-[#251915] bg-[#fffff8] px-4 py-2 font-[var(--font-cy-grotesk)] text-[16px] text-[#1e1e1e] placeholder:text-[#888] focus:outline-none focus:ring-2 focus:ring-[#0c1e46]/40 disabled:opacity-60";
+  "w-full border border-[#251915] bg-[#fffff8] px-4 py-2 font-cy text-[16px] text-[#1e1e1e] placeholder:text-[#888] focus:outline-none focus:ring-2 focus:ring-[#0c1e46]/40 disabled:opacity-60";
 const labelBase =
-  "font-[var(--font-cy-grotesk)] text-[clamp(15px,1.2vw,18px)] text-[#1e1e1e]";
+  "font-cy text-[clamp(15px,1.2vw,18px)] text-[#1e1e1e]";
 
 export default function ContactForm({
   locationName,
@@ -93,7 +93,7 @@ export default function ContactForm({
       <button
         type="submit"
         disabled={submitting || status === "success"}
-        className="flex h-[50px] w-fit items-center justify-center whitespace-nowrap rounded-full border border-[#0c1e46] bg-[linear-gradient(179deg,#173067_9%,#06122F_48%,#05102A_86%)] px-[clamp(28px,3vw,50px)] py-2.5 font-[var(--font-cy-grotesk)] text-[clamp(16px,1.4vw,26px)] font-medium text-white transition-[filter] duration-200 hover:brightness-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0c1e46]/60 focus-visible:ring-offset-2 disabled:opacity-70"
+        className="flex h-[50px] w-fit items-center justify-center whitespace-nowrap rounded-full border border-[#0c1e46] bg-[linear-gradient(179deg,#173067_9%,#06122F_48%,#05102A_86%)] px-[clamp(28px,3vw,50px)] py-2.5 font-cy text-[clamp(16px,1.4vw,26px)] font-medium text-white transition-[filter] duration-200 hover:brightness-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0c1e46]/60 focus-visible:ring-offset-2 disabled:opacity-70"
       >
         {status === "success"
           ? "Message sent ✓"
@@ -102,7 +102,7 @@ export default function ContactForm({
             : "SEND MESSAGE"}
       </button>
 
-      <div aria-live="polite" className="font-[var(--font-cy-grotesk)] text-[15px]">
+      <div aria-live="polite" className="font-cy text-[15px]">
         {status === "success" && (
           <p className="text-[#1e7a3c]">
             Thanks for reaching out — we&apos;ll be in touch shortly.
