@@ -85,7 +85,7 @@ export default function TestimonialsSection() {
           </p>
         </header>
 
-        <div className="flex min-w-0 flex-1 flex-col">
+        <div className="flex min-w-0 md:py-20 flex-1 flex-col">
           <div
             ref={trackRef}
             className="no-scrollbar flex w-full overflow-x-auto snap-x snap-mandatory overscroll-x-contain touch-pan-x">
@@ -100,14 +100,7 @@ export default function TestimonialsSection() {
                     alt=""
                     width={95}
                     height={103}
-                    className="h-[clamp(56px,7vw,103px)] w-fit select-none"
-                  />{" "}
-                  <Image
-                    src="/home/Icons/quote.svg"
-                    alt=""
-                    width={95}
-                    height={103}
-                    className="h-[clamp(56px,7vw,103px)] w-fit select-none"
+                    className="h-[clamp(56px,7vw,103px)]  w-fit select-none"
                   />{" "}
                 </div>
                 <p className="font-serif font-light text-black text-[clamp(28px,3.5vw,48px)] leading-[1.18]">
@@ -124,7 +117,7 @@ export default function TestimonialsSection() {
                       alt={t.name}
                       width={100}
                       height={100}
-                      className="size-[clamp(56px,6vw,100px)] shrink-0 rounded-full object-cover"
+                      className="size-[clamp(56px,6vw,100px)] shrink-0  rounded-full object-cover"
                     />
                     <div className="flex flex-col gap-2 font-cy text-black">
                       <Stars rating={t.rating} />

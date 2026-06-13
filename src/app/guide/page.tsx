@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import ScrollScaleImage from "@/components/guide/ScrollScaleImage";
 import Reveal from "@/components/Reveal";
 import Button from "@/components/ui/Button";
@@ -11,6 +12,7 @@ export const metadata: Metadata = {
 
 // Assets live in /public/Beginner_s Guide (spaces and & are URL-encoded).
 const IMG = {
+  hero: "/Beginner_s%20Guide/Beginners_Guide.webp",
   leaves: "/Beginner_s%20Guide/01)%20Indica,%20Sativa,%20Hybrid.webp",
   cannabis: "/Beginner_s%20Guide/02)%20Cannabis.webp",
   retail: "/Beginner_s%20Guide/03)%20Retail%20Destination%20%26%20Rules.webp",
@@ -238,14 +240,26 @@ export default function BeginnersGuidePage() {
           <h1 className="max-w-[20ch] font-serif text-[clamp(34px,5.4vw,64px)] leading-[1.18] text-[#1e1e1e]">
             The Beginner&rsquo;s Guide to Navigate the Highs
           </h1>
-          <p className={`${BODY} lg:max-w-[778px] lg:self-end`}>
-            At JD&rsquo;s Jungle, we replace confusion with complete
-            transparency. You don&rsquo;t need to be an expert to find the right
-            product—you just need a clear starting point. This handbook strips
-            away the industry jargon to break down the essentials of
-            cannabinoids, product formats, and dosing. Consider it your
-            straightforward blueprint for a confident first visit.
-          </p>
+          <div className="flex flex-col items-end gap-[clamp(20px,3vw,48px)] lg:flex-row lg:items-center lg:justify-end">
+            <p className={`${BODY} lg:max-w-[778px]`}>
+              At JD&rsquo;s Jungle, we replace confusion with complete
+              transparency. You don&rsquo;t need to be an expert to find the
+              right product—you just need a clear starting point. This handbook
+              strips away the industry jargon to break down the essentials of
+              cannabinoids, product formats, and dosing. Consider it your
+              straightforward blueprint for a confident first visit.
+            </p>
+            <div className="relative aspect-[158/209] w-[clamp(120px,13vw,158px)] shrink-0 overflow-hidden rounded-[6px]">
+              <Image
+                src={IMG.hero}
+                alt=""
+                fill
+                priority
+                sizes="158px"
+                className="select-none object-cover"
+              />
+            </div>
+          </div>
         </Reveal>
 
         {/* (01) Understanding the Plant Baseline */}
