@@ -7,7 +7,7 @@ import WhatMakesUsDifferent from "@/components/about/WhatMakesUsDifferent";
 
 export default function AboutPage() {
   return (
-    <main className="flex w-full flex-col border-b border-black bg-white text-[#182837]">
+    <main className="flex w-full flex-col border-b border-black bg-[#FFFFF8] text-[#182837]">
       <AboutHero />
 
       <WhatMakesUsDifferent />

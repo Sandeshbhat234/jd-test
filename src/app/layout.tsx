@@ -6,6 +6,8 @@ import Footer from "@/components/Footer";
 import AgeGate from "@/components/AgeGate";
 import CookieBanner from "@/components/CookieBanner";
 import SmoothScroll from "@/components/SmoothScroll";
+import ScrollToTop from "@/components/ScrollToTop";
+import ScrollToTopButton from "@/components/ScrollToTopButton";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -80,11 +82,13 @@ export default function RootLayout({
           }}
         />
         <SmoothScroll />
+        <ScrollToTop />
         <Navbar />
         {children}
         <Footer />
         <CookieBanner />
         <AgeGate />
+        <ScrollToTopButton />
       </body>
     </html>
   );
