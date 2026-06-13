@@ -49,18 +49,24 @@ export default function AgeGate() {
       aria-modal="true"
       aria-label="Age verification"
       data-age-gate=""
-      className="fixed inset-0 z-[100] flex items-center justify-center p-4"
+      className="fixed inset-0 z-[100] overflow-y-auto"
     >
-      <Image
-        src="/Age Gate/Age gate.webp"
-        alt=""
-        fill
-        priority
-        sizes="100vw"
-        className="object-cover"
-      />
+      {/* Background sits behind and never intercepts taps (key on mobile). */}
+      <div aria-hidden className="pointer-events-none fixed inset-0">
+        <Image
+          src="/Age Gate/Age gate.webp"
+          alt=""
+          fill
+          preload
+          sizes="100vw"
+          className="object-cover"
+        />
+      </div>
+      {/* Centering wrapper that can scroll when the card is taller than a short
+          (mobile) viewport, so the Yes/No buttons are always reachable. */}
+      <div className="relative flex min-h-full items-center justify-center p-4">
       {/* Glass frame */}
-      <div className="relative flex w-full max-w-[621px] flex-col items-center justify-center rounded-[20px] bg-white/[0.17] p-4 backdrop-blur-[52px]">
+      <div className="relative z-10 flex w-full max-w-[621px] flex-col items-center justify-center rounded-[20px] bg-white/[0.17] p-4 backdrop-blur-[52px]">
         <div className="flex w-full flex-col items-center justify-center rounded-[20px] border border-[rgba(30,30,30,0.5)] bg-[#fffef8] p-[clamp(24px,4vw,40px)] drop-shadow-[0px_6px_15px_rgba(0,0,0,0.1)]">
           <div className="flex w-full flex-col items-center gap-6">
             <Image
@@ -108,6 +114,7 @@ export default function AgeGate() {
             )}
           </div>
         </div>
+      </div>
       </div>
     </div>
   );

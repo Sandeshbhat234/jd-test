@@ -26,7 +26,7 @@ export default function FinalSection() {
         fill
         sizes="100vw"
         className="select-none object-cover object-center"
-        priority={false}
+        preload={false}
       />
 
       {/* Hover layers crossfade in over the base. */}
@@ -41,7 +41,7 @@ export default function FinalSection() {
           className={`select-none object-cover object-center transition-opacity duration-700 ease-out ${
             activeBg === src ? "opacity-100" : "opacity-0"
           }`}
-          priority={false}
+          preload={false}
         />
       ))}
 

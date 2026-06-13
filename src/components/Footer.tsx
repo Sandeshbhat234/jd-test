@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import Button from "@/components/ui/Button";
+import NewsletterForm from "@/components/NewsletterForm";
 import { SHOP_URL } from "@/lib/links";
 import { SOCIAL_LINKS, SITE_CONTACT } from "@/data/site";
 
@@ -44,22 +44,7 @@ export default function Footer() {
               Join the list for early drops, private tastings and the occasional
               dispatch from our cultivators.
             </p>
-            <form className="flex flex-col gap-4 sm:flex-row sm:items-end">
-              <label className="flex flex-1 flex-col gap-2">
-                <input
-                  type="email"
-                  required
-                  placeholder="Email"
-                  className="w-full border-b border-black bg-transparent pb-2 font-cy text-[clamp(15px,1.4vw,17.293px)] text-black focus:outline-none"
-                />
-              </label>
-              <Button
-                type="submit"
-                variant="primary"
-                className="w-full sm:w-auto">
-                Subscribe
-              </Button>
-            </form>
+            <NewsletterForm />
           </div>
 
           <div className="flex flex-col gap-12 md:flex-row md:justify-between md:gap-16 lg:contents">

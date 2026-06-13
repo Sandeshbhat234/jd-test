@@ -63,7 +63,7 @@ export default function BlogHero({
             src={image}
             alt={imageAlt}
             fill
-            priority
+            preload
             sizes="(min-width: 1601px) 1568px, 92vw"
             className="object-cover"
           />

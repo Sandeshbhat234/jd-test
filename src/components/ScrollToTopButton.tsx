@@ -33,15 +33,35 @@ export default function ScrollToTopButton() {
     const tick = () => {
       const lenis = getLenis();
       const target = Math.min(1, Math.max(0, (lenis ? lenis.progress : fromWindow()) || 0));
-      // Ease toward the live position; snap when close enough to settle.
+      // Ease toward the live position; once close enough, snap and stop the loop
+      // so it doesn't spin every frame for the page's whole lifetime. It restarts
+      // on the next scroll/resize (see `wake`).
+      if (Math.abs(target - current) < 0.0005) {
+        current = target;
+        setProgress(current);
+        raf = 0;
+        return;
+      }
       current += (target - current) * 0.12;
-      if (Math.abs(target - current) < 0.0005) current = target;
       setProgress(current);
       raf = requestAnimationFrame(tick);
     };
-    raf = requestAnimationFrame(tick);
 
-    return () => cancelAnimationFrame(raf);
+    // Kick the loop only when it isn't already running. Lenis drives the native
+    // scroll position, so a plain `scroll` listener fires during smooth scrolling
+    // too — no separate Lenis subscription needed.
+    const wake = () => {
+      if (!raf) raf = requestAnimationFrame(tick);
+    };
+    wake();
+    window.addEventListener("scroll", wake, { passive: true });
+    window.addEventListener("resize", wake, { passive: true });
+
+    return () => {
+      if (raf) cancelAnimationFrame(raf);
+      window.removeEventListener("scroll", wake);
+      window.removeEventListener("resize", wake);
+    };
   }, []);
 
   function scrollToTop() {

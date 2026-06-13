@@ -18,7 +18,7 @@ export default function ContactForm({
   storeSlug?: string;
 }) {
   const { status, error, submit } = useContactForm();
-  const [form, setForm] = useState({ name: "", email: "", message: "" });
+  const [form, setForm] = useState({ name: "", email: "", message: "", company: "" });
 
   const submitting = status === "submitting";
 
@@ -34,6 +34,20 @@ export default function ContactForm({
 
   return (
     <form onSubmit={onSubmit} className="flex flex-col gap-4" noValidate>
+      {/* Honeypot: hidden from users + assistive tech; bots that fill it are dropped. */}
+      <div aria-hidden className="hidden">
+        <label>
+          Company
+          <input
+            type="text"
+            tabIndex={-1}
+            autoComplete="off"
+            value={form.company}
+            onChange={set("company")}
+          />
+        </label>
+      </div>
+
       <h2 className="font-serif text-[clamp(24px,2.4vw,32px)] leading-tight text-[#1e1e1e]">
         Contact Us
       </h2>

@@ -9,7 +9,7 @@ import Button from "@/components/ui/Button";
 const field =
   "w-full rounded-[5px] border border-black bg-transparent p-4 font-cy text-[clamp(15px,1.1vw,18px)] tracking-[0.5px] text-black/80 placeholder:text-black/80 focus:outline-none focus:ring-2 focus:ring-[#0c1e46]/40 disabled:opacity-60";
 
-const EMPTY = { name: "", email: "", phone: "", subject: "", message: "" };
+const EMPTY = { name: "", email: "", phone: "", subject: "", message: "", company: "" };
 
 export default function ContactPageForm() {
   const { store } = useSelectedStore();
@@ -34,6 +34,19 @@ export default function ContactPageForm() {
 
   return (
     <form onSubmit={onSubmit} className="flex flex-col gap-8" noValidate>
+      {/* Honeypot: hidden from users + assistive tech; bots that fill it are dropped. */}
+      <div aria-hidden className="hidden">
+        <label>
+          Company
+          <input
+            type="text"
+            tabIndex={-1}
+            autoComplete="off"
+            value={form.company}
+            onChange={set("company")}
+          />
+        </label>
+      </div>
       <div className="flex flex-col gap-8">
         <input
           name="name"

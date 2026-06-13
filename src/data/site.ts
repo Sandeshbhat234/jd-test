@@ -8,6 +8,14 @@
  */
 
 /**
+ * Canonical production origin, used for metadataBase, Open Graph URLs, the
+ * sitemap and robots. Override per-environment with NEXT_PUBLIC_SITE_URL.
+ */
+export const SITE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") ||
+  "https://www.jdsjungle.com";
+
+/**
  * Brand social profiles (external). Edit a URL here and it updates everywhere:
  * the footer icons AND the per-store Facebook/Instagram links on the location
  * pages (see `src/data/locations.ts`).

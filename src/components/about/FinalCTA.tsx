@@ -58,7 +58,7 @@ export default function FinalCTA() {
     <section
       ref={sectionRef}
       aria-label="Ready to navigate your next high"
-      className="relative flex h-screen w-full flex-col items-center justify-center overflow-hidden bg-[#ffffff] px-6">
+      className="relative flex min-h-[100svh] w-full flex-col items-center justify-center overflow-hidden bg-[#ffffff] px-6">
       <div
         ref={leafRef}
         className="relative aspect-[1811/988] w-[min(72vw,760px)] will-change-transform">
@@ -66,7 +66,7 @@ export default function FinalCTA() {
           src={`${A6}/cannabis_leaf_green_3d_.webp`}
           alt=""
           fill
-          priority
+          preload
           sizes="(max-width: 768px) 80vw, 760px"
           className="pointer-events-none select-none object-contain"
         />

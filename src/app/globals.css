@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #ff2626;
+  --background: #fffef8;
+  --foreground: #1e1e1e;
   /* --font-cy-grotesk is provided at runtime by next/font (see layout.tsx). */
 }
 
@@ -13,9 +13,6 @@
   --font-mono: var(--font-geist-mono);
   --font-serif: var(--font-source-serif);
   --font-cy: var(--font-cy-grotesk);
-}
-
-@media (prefers-color-scheme: dark) {
 }
 
 body {

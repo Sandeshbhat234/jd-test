@@ -134,7 +134,7 @@ export default function MetricsSection() {
           src="/about-us/leaf_left_1_5x.webp"
           alt=""
           fill
-          priority
+          preload
           sizes="(max-width: 768px) 50vw, 400px"
           className="select-none object-contain"
         />

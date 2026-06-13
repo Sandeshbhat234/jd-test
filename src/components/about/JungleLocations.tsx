@@ -174,7 +174,7 @@ export default function JungleLocations() {
           src={`${A4}/interior.webp`}
           alt="JD's Jungle interior"
           fill
-          priority
+          preload
           sizes="100vw"
           className="select-none object-cover"
         />
@@ -210,7 +210,7 @@ export default function JungleLocations() {
         src={`${A4}/interior.webp`}
         alt="JD's Jungle interior"
         fill
-        priority
+        preload
         sizes="100vw"
         className="select-none object-cover max-md:hidden"
       />

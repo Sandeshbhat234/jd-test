@@ -280,7 +280,7 @@ export default function AboutHero() {
           src={BG_GRADIENT}
           alt=""
           fill
-          priority
+          preload
           sizes="100vw"
           className="select-none object-cover"
         />
@@ -347,7 +347,7 @@ export default function AboutHero() {
           src={HERO_IMAGE}
           alt="Cannabis plant against a blue sky"
           fill
-          priority
+          preload
           sizes="100vw"
           className="select-none object-cover"
         />

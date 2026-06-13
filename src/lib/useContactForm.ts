@@ -14,6 +14,8 @@ export interface ContactInput {
   location?: string;
   phone?: string;
   subject?: string;
+  /** Honeypot — must stay empty; submitted to the API for bot filtering. */
+  company?: string;
 }
 
 /**

@@ -12,7 +12,7 @@ export default function NotFound() {
         src="/404/404.webp"
         alt=""
         fill
-        priority
+        preload
         sizes="100vw"
         className="-z-10 select-none object-cover object-center"
       />

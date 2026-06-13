@@ -58,14 +58,17 @@ export default function Banner({
 }: BannerProps) {
   return (
     <div
-      role="marquee"
-      aria-label={message}
       className={[
         "relative w-full overflow-hidden border-y border-black bg-[#fffef8] py-4",
         className ?? "",
       ].join(" ")}
     >
+      {/* Announce the promo once to assistive tech; the repeated visible copies
+          below are hidden from the accessibility tree to avoid duplicate reads.
+          ("marquee" is not a valid ARIA role, so it isn't used here.) */}
+      <span className="sr-only">{message}</span>
       <div
+        aria-hidden
         className="flex w-max animate-marquee hover:[animation-play-state:paused] motion-reduce:animate-none"
         style={{ ["--marquee-duration" as string]: `${durationSec}s` }}
       >

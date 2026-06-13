@@ -1,14 +1,21 @@
+import type { Metadata } from "next";
 import Banner from "@/components/ui/Banner";
 import Hero from "@/components/home/Hero";
 import CategoriesSection from "@/components/home/CategoriesSection";
 import FeaturedBrandsSection from "@/components/home/FeaturedBrandsSection";
 import ChooseYourFeelingSection from "@/components/home/ChooseYourFeelingSection";
-import BestSellersSection from "@/components/home/BestSellersSection";
+// import BestSellersSection from "@/components/home/BestSellersSection"; // section currently disabled below
 import EventsSection from "@/components/home/EventsSection";
 import TrustSection from "@/components/home/TrustSection";
 import TestimonialsSection from "@/components/home/TestimonialsSection";
 import FinalSection from "@/components/home/FinalSection";
 import Reveal from "@/components/Reveal";
+
+export const metadata: Metadata = {
+  title: "JD's Jungle — Premium Cannabis in New York",
+  description:
+    "Navigate the highs with JD's Jungle. Premium, lab-tested cannabis — flower, pre-rolls, vapes and edibles — from a licensed New York dispensary.",
+};
 
 export default function Home() {
   return (

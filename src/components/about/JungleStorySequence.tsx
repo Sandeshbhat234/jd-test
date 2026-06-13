@@ -104,7 +104,7 @@ export default function JungleStorySequence() {
             src="/abt/cannabis.webp"
             alt=""
             fill
-            priority
+            preload
             sizes="(max-width: 768px) 100vw, 1100px"
             className="select-none object-contain object-bottom"
           />
@@ -119,7 +119,7 @@ export default function JungleStorySequence() {
             src="/abt/sky_line_with_sea_1_5x.webp"
             alt=""
             fill
-            priority
+            preload
             sizes="100vw"
             className="select-none object-cover object-bottom"
           />

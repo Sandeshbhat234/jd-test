@@ -190,7 +190,7 @@ function SectionHeader({
   img,
   imgAlt,
   aspect,
-  priority,
+  preload,
 }: {
   index: string;
   title: string;
@@ -198,7 +198,7 @@ function SectionHeader({
   img: string;
   imgAlt: string;
   aspect: string;
-  priority?: boolean;
+  preload?: boolean;
 }) {
   return (
     <div className="flex flex-col gap-[clamp(24px,3vw,48px)] lg:flex-row lg:items-center lg:gap-12">
@@ -219,7 +219,7 @@ function SectionHeader({
         src={img}
         alt={imgAlt}
         aspect={aspect}
-        priority={priority}
+        preload={preload}
       />
     </div>
   );
@@ -254,7 +254,7 @@ export default function BeginnersGuidePage() {
                 src={IMG.hero}
                 alt=""
                 fill
-                priority
+                preload
                 sizes="158px"
                 className="select-none object-cover"
               />
@@ -271,7 +271,7 @@ export default function BeginnersGuidePage() {
             img={IMG.leaves}
             imgAlt="Sativa, Indica and Hybrid cannabis leaves side by side"
             aspect="aspect-[943/480]"
-            priority
+            preload
           />
           <Reveal
             direction="up"

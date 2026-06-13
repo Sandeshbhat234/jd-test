@@ -5,6 +5,7 @@ import type {
   CSSProperties,
   ReactNode,
 } from "react";
+import { cn } from "@/lib/cn";
 
 type Variant = "primary" | "secondary";
 type Size = "sm" | "md";
@@ -74,10 +75,6 @@ const SIZES: Record<Size, string> = {
   sm: "px-5 py-2.5 text-[16px]",
 };
 
-function cx(...parts: Array<string | undefined>): string {
-  return parts.filter(Boolean).join(" ");
-}
-
 export default function Button(props: ButtonProps) {
   const {
     variant = "primary",
@@ -91,7 +88,7 @@ export default function Button(props: ButtonProps) {
   };
 
   const v = VARIANTS[variant];
-  const classes = cx(base, SIZES[size], v.shell, className);
+  const classes = cn(base, SIZES[size], v.shell, className);
   const style: CSSProperties = { background: v.background };
 
   const content = (
@@ -106,7 +103,7 @@ export default function Button(props: ButtonProps) {
         style={{ backgroundImage: v.fill }}
       />
       <span
-        className={cx(
+        className={cn(
           "relative z-10 transition-colors duration-300 ease-out motion-reduce:duration-0",
           v.hoverText,
         )}
@@ -131,7 +128,10 @@ export default function Button(props: ButtonProps) {
   }
 
   return (
+    // Default to type="button" so a Button placed inside a <form> doesn't
+    // implicitly submit it; callers can still pass type="submit".
     <button
+      type="button"
       className={classes}
       style={style}
       {...(rest as ButtonHTMLAttributes<HTMLButtonElement>)}

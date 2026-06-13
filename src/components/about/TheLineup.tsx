@@ -302,7 +302,7 @@ export default function TheLineup() {
             src={`${A5}/${p.img}`}
             alt={p.name}
             fill
-            priority={i < 3}
+            preload={i < 3}
             sizes="420px"
             className="pointer-events-none select-none object-contain"
           />

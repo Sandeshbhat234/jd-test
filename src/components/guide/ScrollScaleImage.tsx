@@ -5,7 +5,7 @@ type ScrollScaleImageProps = {
   alt: string;
   /** Tailwind aspect-ratio class, e.g. "aspect-[943/480]". */
   aspect: string;
-  priority?: boolean;
+  preload?: boolean;
 };
 
 /**
@@ -16,7 +16,7 @@ export default function ScrollScaleImage({
   src,
   alt,
   aspect,
-  priority,
+  preload,
 }: ScrollScaleImageProps) {
   return (
     <div className={`relative w-full shrink-0 lg:w-[42%] ${aspect}`}>
@@ -25,7 +25,7 @@ export default function ScrollScaleImage({
           src={src}
           alt={alt}
           fill
-          priority={priority}
+          preload={preload}
           sizes="(max-width: 1024px) 100vw, 640px"
           className="object-cover"
         />

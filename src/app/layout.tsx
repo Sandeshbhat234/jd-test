@@ -8,6 +8,7 @@ import CookieBanner from "@/components/CookieBanner";
 import SmoothScroll from "@/components/SmoothScroll";
 import ScrollToTop from "@/components/ScrollToTop";
 import ScrollToTopButton from "@/components/ScrollToTopButton";
+import { SITE_URL } from "@/data/site";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -41,17 +42,58 @@ const cyGrotesk = localFont({
     "sans-serif",
   ],
   src: [
-    { path: "../../public/Cy Grotesk Key/CyGrotesk-KeyLight.otf", weight: "300", style: "normal" },
-    { path: "../../public/Cy Grotesk Key/CyGrotesk-KeyRegular.otf", weight: "400", style: "normal" },
-    { path: "../../public/Cy Grotesk Key/CyGrotesk-KeyMedium.otf", weight: "500", style: "normal" },
-    { path: "../../public/Cy Grotesk Key/CyGrotesk-KeyDemi.otf", weight: "600", style: "normal" },
-    { path: "../../public/Cy Grotesk Key/CyGrotesk-KeyBold.otf", weight: "700", style: "normal" },
+    {
+      path: "../../public/Cy Grotesk Key/CyGrotesk-KeyLight.otf",
+      weight: "300",
+      style: "normal",
+    },
+    {
+      path: "../../public/Cy Grotesk Key/CyGrotesk-KeyRegular.otf",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../../public/Cy Grotesk Key/CyGrotesk-KeyMedium.otf",
+      weight: "500",
+      style: "normal",
+    },
+    {
+      path: "../../public/Cy Grotesk Key/CyGrotesk-KeyDemi.otf",
+      weight: "600",
+      style: "normal",
+    },
+    {
+      path: "../../public/Cy Grotesk Key/CyGrotesk-KeyBold.otf",
+      weight: "700",
+      style: "normal",
+    },
   ],
 });
 
 export const metadata: Metadata = {
-  title: "JD's Jungle",
-  description: "JD's Jungle — About Us",
+  metadataBase: new URL(SITE_URL),
+  // Pages set their own full "X — JD's Jungle" titles, so no template here
+  // (a template would double-brand those into "X — JD's Jungle — JD's Jungle").
+  title: "JD's Jungle — Premium Cannabis in New York",
+  description:
+    "Navigate the highs with JD's Jungle — premium, lab-tested cannabis from a licensed New York dispensary.",
+  applicationName: "JD's Jungle",
+  alternates: { canonical: "/" },
+  openGraph: {
+    type: "website",
+    siteName: "JD's Jungle",
+    url: SITE_URL,
+    title: "JD's Jungle — Premium Cannabis in New York",
+    description:
+      "Premium, lab-tested cannabis from a licensed New York dispensary.",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "JD's Jungle — Premium Cannabis in New York",
+    description:
+      "Premium, lab-tested cannabis from a licensed New York dispensary.",
+  },
+  robots: { index: true, follow: true },
 };
 
 export default function RootLayout({
@@ -63,8 +105,7 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${geistSans.variable} ${geistMono.variable} ${sourceSerif.variable} ${cyGrotesk.variable} h-full antialiased`}
-    >
+      className={`${geistSans.variable} ${geistMono.variable} ${sourceSerif.variable} ${cyGrotesk.variable} h-full antialiased`}>
       <body className="relative min-h-full flex flex-col">
         {/* Scroll-reveal wrappers render hidden for a clean entrance; if JS is
             unavailable, keep all content visible. */}
@@ -87,7 +128,7 @@ export default function RootLayout({
         {children}
         <Footer />
         <CookieBanner />
-        <AgeGate />
+        {/* <AgeGate /> */}
         <ScrollToTopButton />
       </body>
     </html>

@@ -21,7 +21,7 @@ export default function StatCard({
         src={bgImage}
         alt=""
         fill
-        priority
+        preload
         sizes="(max-width: 768px) 80vw, 320px"
         className="select-none object-cover"
       />
