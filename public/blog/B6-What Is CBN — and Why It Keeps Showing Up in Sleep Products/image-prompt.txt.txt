@@ -1,0 +1,22 @@
+Type: Image Concept: Cinematic, minimal nighttime scene. A dark slate or matte navy surface holds a single translucent amber gummy, a small ceramic tray, and a folded product label. Soft warm light pools in from the side. No people. No text. Mood is calm and intentional. 
+Prompt: Generate an image for a cannabis brand blog hero — a close-up, top-down editorial still life on a deep navy (#04103E) matte surface. A single translucent amber-colored gummy rests on a minimal ceramic tray beside a folded white product label. Soft gold-toned side lighting creates a warm glow on the objects. The background is dark slate blue. The composition is sparse, cinematic, and premium. No text overlays. No people. Shot in the style of luxury product photography. Brand colors: deep navy, white, gold (#FFC700). 
+size 16:9
+resolution:  4K
+format: PNG
+
+Type: Infographic Concept: A clean side-by-side origin diagram. Left panel: THC label with a downward arrow to CBN label, captioned "Forms through oxidation over time." Right panel: CBD label with a separate origin path captioned "Different biosynthetic route." Minimal, dark background, gold labels. 
+Prompt: Generate an infographic for a cannabis education blog showing the molecular origins of CBN vs CBD. Left side: a clean label reading "THC" with a gold arrow pointing downward to a label reading "CBN," with the caption "Oxidation over time" in white. Right side: a clean label reading "CBD" with a separate path captioned "Different biosynthetic route." Background is deep navy (#04103E). Typography is clean and sans-serif. Gold (#FFC700) and white accent colors. No molecular structures. No human figures. Minimal, premium editorial style. 
+
+
+Type: Image Concept: A close-up of a cannabis product label mock-up, dark background, with three fields annotated in gold: THC mg per serving, CBN mg per serving, and Terpene Profile. A folded COA lab report sits beside it on a dark surface.
+Prompt: Generate an image for a cannabis dispensary blog showing a close-up product label and Certificate of Analysis. The label is printed on white stock and placed on a deep navy (#04103E) matte surface. Three fields on the label are highlighted with a soft gold (#FFC700) glow or bracket: "THC per serving: 5mg," "CBN per serving: 10mg," and "Terpene Profile: Myrcene dominant." A folded lab report (COA) sits beside the label. Clean, editorial product photography style. No people. Soft directional lighting from the left. Premium and precise aesthetic. 
+size 16:9
+resolution:  4K
+format: PNG
+
+
+Type: Image Concept: A dark, premium flat-lay. An amber tincture bottle, two gummies, and a folded lab report on a dark slate-blue surface. Soft gold side lighting. Sparse composition. No text on image. 
+Prompt: Generate an image for a cannabis wellness blog showing a premium product flat-lay. A small amber glass tincture bottle, two translucent amber gummies, and a folded white Certificate of Analysis lab report are arranged on a deep navy (#04103E) slate surface. Soft, warm gold side lighting. The composition is minimal and editorial. No text overlays on the image. No people. Luxury product photography aesthetic. Brand colors: deep navy, white, gold (#FFC700). Shot from a slight top-down angle. 
+size 16:9
+resolution:  4K
+format: PNG

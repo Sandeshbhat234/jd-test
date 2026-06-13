@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import Carousel from "@/components/ui/Carousel";
+import { shopFeeling } from "@/lib/links";
 
 type Feeling = {
   label: string;
@@ -14,37 +15,37 @@ const FEELINGS: Feeling[] = [
     label: "Energizing",
     image: "/home/Choose your feeling/energizing_1_5x (1).webp",
     icon: "/home/Choose your feeling/icons/energizing.svg",
-    href: "/shop?feeling=energizing",
+    href: shopFeeling("energizing"),
   },
   {
     label: "Relaxing",
     image: "/home/Choose your feeling/relaxing_1_5x (1).webp",
     icon: "/home/Choose your feeling/icons/relaxing.svg",
-    href: "/shop?feeling=relaxing",
+    href: shopFeeling("relaxing"),
   },
   {
     label: "Creative",
     image: "/home/Choose your feeling/creative_1_5x (1).webp",
     icon: "/home/Choose your feeling/icons/creative.svg",
-    href: "/shop?feeling=creative",
+    href: shopFeeling("creative"),
   },
   {
     label: "Sleepy",
     image: "/home/Choose your feeling/sleepy_1_5x (1).webp",
     icon: "/home/Choose your feeling/icons/sleepy.svg",
-    href: "/shop?feeling=sleepy",
+    href: shopFeeling("sleepy"),
   },
   {
     label: "Pain Relief",
     image: "/home/Choose your feeling/pain_relief_1_5x (1).webp",
     icon: "/home/Choose your feeling/icons/pain-relief.svg",
-    href: "/shop?feeling=pain-relief",
+    href: shopFeeling("pain-relief"),
   },
   {
     label: "Uplifting",
     image: "/home/Choose your feeling/uplifting_1_5x (1).webp",
     icon: "/home/Choose your feeling/icons/uplifting.svg",
-    href: "/shop?feeling=uplifting",
+    href: shopFeeling("uplifting"),
   },
 ];
 

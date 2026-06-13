@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import JungleRewardsCard from "@/components/loyalty/JungleRewardsCard";
 import ReadyToEarn from "@/components/loyalty/ReadyToEarn";
+import Reveal from "@/components/Reveal";
 
 export const metadata: Metadata = {
   title: "Loyalty Program — JD's Jungle",
@@ -61,10 +62,10 @@ function SectionHeading({ children }: { children: React.ReactNode }) {
 
 export default function LoyaltyPage() {
   return (
-    <main className="w-full bg-[#fffef8] text-black">
+    <main className="w-full overflow-x-clip bg-[#fffef8] text-black">
       <section className="mx-auto flex w-full max-w-[1601px] flex-col gap-[clamp(40px,6vw,64px)] px-[clamp(24px,5vw,80px)] pb-[clamp(64px,8vw,100px)] pt-[clamp(120px,16vw,160px)]">
         {/* Intro */}
-        <div className="flex flex-col gap-[clamp(20px,3vw,32px)]">
+        <Reveal direction="up" className="flex flex-col gap-[clamp(20px,3vw,32px)]">
           <h1 className="font-serif text-[clamp(30px,5vw,48px)] leading-tight text-[rgba(1,1,1,0.8)]">
             Loyalty Program
           </h1>
@@ -76,11 +77,14 @@ export default function LoyaltyPage() {
             and feel valued every time you shop. That&apos;s the Jungle Rewards
             program. Simple. Honest. Yours.
           </p>
-        </div>
+        </Reveal>
 
         {/* Body: left content + rewards card */}
-        <div className="flex flex-col gap-[clamp(48px,6vw,64px)] lg:grid lg:grid-cols-[minmax(0,1fr)_minmax(0,711px)] lg:items-start lg:gap-12">
-          <div className="flex flex-col gap-[clamp(48px,6vw,64px)]">
+        <div className="flex flex-col gap-[clamp(48px,6vw,64px)] lg:grid lg:grid-cols-[minmax(0,1fr)_minmax(0,min(711px,45vw))] lg:items-start lg:gap-12">
+          <Reveal
+            direction="left"
+            className="flex flex-col gap-[clamp(48px,6vw,64px)]"
+          >
             {/* How It Works */}
             <div className="flex flex-col gap-6">
               <SectionHeading>How It Works</SectionHeading>
@@ -131,14 +135,18 @@ export default function LoyaltyPage() {
               Points never expire as long as you shop with us. Valid online and
               in-store at JD&apos;s Jungle Manhattan location.
             </p>
-          </div>
+          </Reveal>
 
-          <div className="lg:pt-16">
+          {/* Sticks to the right while the left column scrolls, until the
+              body section (the grid row) ends. */}
+          <Reveal direction="right" className="lg:sticky lg:top-25">
             <JungleRewardsCard />
-          </div>
+          </Reveal>
         </div>
 
-        <ReadyToEarn />
+        <Reveal direction="up">
+          <ReadyToEarn />
+        </Reveal>
       </section>
     </main>
   );

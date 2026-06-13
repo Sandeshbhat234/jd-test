@@ -37,12 +37,15 @@ export default function Carousel({
 }: CarouselProps) {
   const trackRef = useRef<HTMLDivElement | null>(null);
   const [canPrev, setCanPrev] = useState(false);
-  const [canNext, setCanNext] = useState(true);
+  const [canNext, setCanNext] = useState(false);
+  // Whether the track overflows at all — drives showing/hiding the arrows.
+  const [canScroll, setCanScroll] = useState(false);
 
   const updateBounds = useCallback(() => {
     const el = trackRef.current;
     if (!el) return;
     const maxScroll = el.scrollWidth - el.clientWidth;
+    setCanScroll(maxScroll > 4);
     setCanPrev(el.scrollLeft > 4);
     setCanNext(el.scrollLeft < maxScroll - 4);
   }, []);
@@ -64,9 +67,13 @@ export default function Carousel({
     const el = trackRef.current;
     if (!el) return;
     const firstCard = el.firstElementChild as HTMLElement | null;
-    const step = firstCard
+    const cardStep = firstCard
       ? firstCard.getBoundingClientRect().width + getGap(el)
       : el.clientWidth * 0.8;
+    // Page by however many whole cards are visible, so the partially-visible
+    // card on the trailing edge lands first after the move.
+    const perView = Math.max(1, Math.floor(el.clientWidth / cardStep));
+    const step = perView * cardStep;
     const maxScroll = el.scrollWidth - el.clientWidth;
     const target = Math.max(
       0,
@@ -74,9 +81,17 @@ export default function Carousel({
     );
     gsap.to(el, {
       scrollLeft: target,
-      duration: 0.65,
+      duration: 0.7,
       ease: "power3.out",
       overwrite: true,
+      // Snap fights a JS scroll tween (it re-snaps every frame), so turn it off
+      // for the animation and restore it once we've settled on the target.
+      onStart: () => {
+        el.style.scrollSnapType = "none";
+      },
+      onComplete: () => {
+        el.style.scrollSnapType = "";
+      },
     });
   }, []);
 
@@ -85,35 +100,40 @@ export default function Carousel({
       className={[
         "bg-[#fffef8] py-[clamp(60px,10vw,150px)] overflow-hidden",
         className ?? "",
-      ].join(" ")}
-    >
+      ].join(" ")}>
       <header
-        className="mb-[clamp(40px,7vw,125px)] flex flex-col items-center gap-6 text-center lg:flex-row lg:items-center lg:justify-between lg:text-left"
-        style={{ paddingInline: edgePadding }}
-      >
-        <h2 className="font-serif font-light text-black text-[clamp(32px,4.5vw,64px)] leading-[1.2]">
+        className="mb-[clamp(40px,7vw,125px)] flex flex-col items-center gap-6 text-center lg:flex-row lg:items-center lg:justify-between lg:gap-[clamp(24px,3vw,48px)] lg:text-left"
+        style={{ paddingInline: edgePadding }}>
+        <h2 className="font-serif font-light text-black text-[clamp(32px,4.5vw,64px)] leading-[1.2] lg:shrink-0 lg:whitespace-nowrap">
           {title}
         </h2>
 
-        <div className="flex flex-col items-center gap-6 lg:flex-row lg:items-center lg:gap-8">
+        {/* Description + arrows hug the right edge. The description wraps freely
+            but never grows past half the viewport. */}
+        <div className="flex max-w-1/2 flex-col items-center gap-6 lg:flex-row lg:items-center lg:gap-8">
           {description ? (
-            <p className="font-serif text-[clamp(14px,1.4vw,22px)] leading-[1.36] text-black/50 max-w-[710px]">
+            <p className="font-serif text-[clamp(14px,1.4vw,22px)] leading-[1.36] text-black/50 lg:max-w-[50vw]">
               {description}
             </p>
-          ) : (
-            <span aria-hidden />
-          )}
+          ) : null}
 
-          <div className="flex shrink-0 items-start gap-4">
+          {/* Always rendered so it reserves the same width; just hidden (but
+              still occupying its box) when there's nothing to scroll. Collapsed
+              on mobile so it doesn't leave an empty row. */}
+          <div
+            aria-hidden={!canScroll}
+            className={`shrink-0 items-start gap-4 ${
+              canScroll ? "flex" : "hidden lg:flex lg:invisible"
+            }`}>
             <ArrowButton
               direction="left"
               onClick={() => scrollByDirection(-1)}
-              disabled={!canPrev}
+              disabled={!canScroll || !canPrev}
             />
             <ArrowButton
               direction="right"
               onClick={() => scrollByDirection(1)}
-              disabled={!canNext}
+              disabled={!canScroll || !canNext}
             />
           </div>
         </div>
@@ -125,16 +145,14 @@ export default function Carousel({
         style={{
           paddingInline: edgePadding,
           scrollPaddingInline: edgePadding,
-        }}
-      >
+        }}>
         {children}
       </div>
 
       {footer ? (
         <div
           className="mt-[clamp(40px,5vw,80px)] flex justify-center"
-          style={{ paddingInline: edgePadding }}
-        >
+          style={{ paddingInline: edgePadding }}>
           {footer}
         </div>
       ) : null}
@@ -163,8 +181,7 @@ function ArrowButton({
       aria-label={direction === "left" ? "Previous" : "Next"}
       onClick={onClick}
       disabled={disabled}
-      className="inline-flex size-[50px] items-center justify-center rounded-full border border-black/15 bg-gradient-to-b from-[rgba(241,237,237,0.2)] to-[rgba(244,244,244,0.2)] shadow-[0_5px_6.8px_rgba(0,0,0,0.18)] transition-opacity hover:opacity-80 disabled:cursor-not-allowed disabled:opacity-30"
-    >
+      className="inline-flex size-[50px] items-center justify-center rounded-full border border-black/15 bg-gradient-to-b from-[rgba(241,237,237,0.2)] to-[rgba(244,244,244,0.2)] shadow-[0_5px_6.8px_rgba(0,0,0,0.18)] transition-opacity hover:opacity-80 disabled:cursor-not-allowed disabled:opacity-30">
       <Image
         src="/home/Icons/arrow-right.svg"
         alt=""

@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useStoredValue } from "@/lib/useStoredValue";
 
@@ -74,9 +75,21 @@ export default function AgeGate() {
                 {denied ? "Come back when you're 21." : "Are you 21 or older?"}
               </h2>
               <p className="font-cy text-[clamp(15px,1.2vw,18px)] leading-[1.5] text-[rgba(30,30,30,0.5)]">
-                {denied
-                  ? "You must be of legal age to enter this site."
-                  : 'By clicking "Yes", you agree to our Terms & Conditions and Privacy Policy.'}
+                {denied ? (
+                  "You must be of legal age to enter this site."
+                ) : (
+                  <>
+                    By clicking &quot;Yes&quot;, you agree to our Terms &amp;
+                    Conditions and{" "}
+                    <Link
+                      href="/privacy"
+                      className="underline transition-colors hover:text-black"
+                    >
+                      Privacy Policy
+                    </Link>
+                    .
+                  </>
+                )}
               </p>
             </div>
             {!denied && (

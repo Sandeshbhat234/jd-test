@@ -39,3 +39,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# heavy blog working files kept out of the repo (too large to host in git)
+/public/blog/Enchanced images/
+/public/blog/*.xlsx

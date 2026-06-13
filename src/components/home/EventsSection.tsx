@@ -35,7 +35,7 @@ export default function EventsSection() {
     >
       <div className="mx-auto flex w-full max-w-[1601px] flex-col gap-[clamp(32px,5vw,80px)] lg:flex-row lg:items-start lg:justify-between">
         <header className="flex max-w-[639px] flex-col gap-4 text-[#1e1e1e]">
-          <h2 className="font-serif font-light text-[clamp(36px,5vw,64px)] leading-[1.5] tracking-[0.2px]">
+          <h2 className="font-serif font-light text-[clamp(36px,5vw,64px)] leading-[1.5] tracking-[0.2px] whitespace-nowrap">
             Upcoming Events
           </h2>
           <p className="font-cy text-[clamp(16px,1.6vw,22px)] leading-[1.5] tracking-[0.2px]">
@@ -65,7 +65,7 @@ function EventCard({
 }: EventItem) {
   return (
     <article className="flex flex-col overflow-hidden rounded-2xl border border-black bg-white/90 p-4 backdrop-blur-[14px] md:flex-row md:items-stretch">
-      <div className="flex w-full shrink-0 flex-col gap-6 md:w-[425px]">
+      <div className="flex w-full flex-col gap-6 md:min-w-0 md:flex-1">
         <div className="flex flex-col gap-8">
           <div className="flex flex-col gap-2">
             <h3 className="font-serif text-[clamp(24px,2.4vw,32px)] leading-[1.1] capitalize text-black">
@@ -94,12 +94,12 @@ function EventCard({
           </div>
         </div>
 
-        <Button href={ctaHref} variant="secondary">
+        <Button href={ctaHref} variant="primary">
           Register
         </Button>
       </div>
 
-      <div className="relative mt-4 aspect-[425/313] w-full overflow-hidden rounded-2xl md:mt-0 md:ml-4 md:aspect-auto md:w-[425px] md:flex-1">
+      <div className="relative mt-4 aspect-[425/313] w-full overflow-hidden rounded-2xl md:mt-0 md:ml-4 md:aspect-auto md:min-w-0 md:flex-1">
         <Image
           src={image}
           alt=""

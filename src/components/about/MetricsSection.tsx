@@ -6,6 +6,8 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import StatCard from "./StatCard";
+import Button from "@/components/ui/Button";
+import { SHOP_URL } from "@/lib/links";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
@@ -145,16 +147,9 @@ export default function MetricsSection() {
         <h3 className="font-serif text-center font-light leading-[1.3] tracking-tight text-black text-[clamp(1.5rem,3.2vw,56px)]">
           Are you ready to navigate your next incredible high today?
         </h3>
-        <button
-          type="button"
-          className="cursor-pointer rounded-full border border-[#0c1e46] px-[clamp(28px,3vw,50px)] py-[clamp(8px,1vw,12px)] text-[clamp(0.875rem,1.4vw,1.5rem)] font-medium tracking-wider text-white transition-transform hover:scale-[1.02]"
-          style={{
-            backgroundImage:
-              "linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.2)), linear-gradient(178.98deg,#160581 9.14%,#04103E 47.57%,#011F45 85.99%)",
-          }}
-        >
+        <Button href={SHOP_URL} variant="primary">
           SHOP NOW
-        </button>
+        </Button>
       </div>
     </section>
   );

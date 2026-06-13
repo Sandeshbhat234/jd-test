@@ -7,11 +7,10 @@
  */
 
 export type BlogCategory =
-  | "JD's Jungle"
-  | "Brand Culture"
-  | "Standards"
-  | "Curated Moods"
-  | "Legal Rules";
+  | "Wellness"
+  | "Formats"
+  | "Cannabinoids"
+  | "Terpenes";
 
 export interface BlogPost {
   /** Used for the post URL: /blogs/<slug> */
@@ -35,45 +34,46 @@ export interface BlogPost {
  * so they always stay in sync — see `BLOG_CATEGORIES`.
  */
 export const BLOG_CATEGORY_ORDER: BlogCategory[] = [
-  "JD's Jungle",
-  "Brand Culture",
-  "Standards",
-  "Curated Moods",
-  "Legal Rules",
+  "Wellness",
+  "Formats",
+  "Cannabinoids",
+  "Terpenes",
 ];
 
-/** The three highlighted posts shown as cards at the top. */
+/** The highlighted posts shown as cards at the top. */
 export const FEATURED_POSTS: BlogPost[] = [
   {
-    slug: "expert-curation-made-simple",
-    title: "Expert curation made simple",
+    slug: "edibles-for-energy-and-focus",
+    title: "The Modern New Yorker's Guide to Edibles for Energy and Focus",
     excerpt:
-      "How we build community and define modern excellence behind the scenes.",
-    category: "Brand Culture",
-    readTime: "5 min read",
+      "Skip the coffee jitters — how low-dose, targeted edibles keep you sharp and locked into a smooth, productive focus.",
+    category: "Wellness",
+    readTime: "6 min read",
     date: "May 12, 2026",
-    image: "/blogs/expert-curation.webp",
-    darken: true,
+    image:
+      "/blog/B1-The Modern New Yorker_s Guide to Edibles for Energy and Focus/im0-hero.webp",
   },
   {
-    slug: "pure-quality-zero-confusion",
-    title: "Pure quality zero confusion",
-    excerpt: "Our strict process to ensure you always get top-quality products.",
-    category: "Standards",
-    readTime: "5 min read",
-    date: "May 12, 2026",
-    image: "/blogs/pure-quality.webp",
-    darken: true,
+    slug: "cannabis-for-sleep-guide",
+    title: "A New Yorker's Guide to Using Cannabis for Sleep the Right Way",
+    excerpt:
+      "Most New Yorkers pick the wrong product. Here's how to make cannabis for sleep a designed ritual, not an afterthought.",
+    category: "Wellness",
+    readTime: "7 min read",
+    date: "May 8, 2026",
+    image:
+      "/blog/B2-A New Yorker_s Guide to Using Cannabis for Sleep the Right Way/im0-blog_2_1_5x.webp",
   },
   {
-    slug: "pure-quality-vapor-selections",
-    title: "Pure Quality Vapor Selections",
+    slug: "live-resin-vs-distillate-cart",
+    title: "Live Resin vs Distillate: Which One Belongs in Your Evening Ritual",
     excerpt:
-      "Expertly vetted vape selections engineered for absolute quality and consistency.",
-    category: "Legal Rules",
-    readTime: "5 min read",
-    date: "May 12, 2026",
-    image: "/blogs/vapor-selections.webp",
+      "The real difference isn't strength — it's the experience each one is built for. Choose the right cart for your evening.",
+    category: "Formats",
+    readTime: "8 min read",
+    date: "April 28, 2026",
+    image:
+      "/blog/B3-Live Resin vs Distillate Which One Belongs in Your Evening Ritual/im0-hero-wmremd.webp",
   },
 ];
 
@@ -84,61 +84,90 @@ export const FEATURED_POSTS: BlogPost[] = [
  */
 export const LIST_POSTS: BlogPost[] = [
   {
-    slug: "beyond-the-everyday-horizon",
-    title: "Beyond The Everyday Horizon",
+    slug: "cbd-vs-thc-guide",
+    title: "CBD vs THC: What Each Cannabinoid Does and How to Choose What You Need",
     excerpt:
-      "Explore curated botanical blends crafted to expand your evening routine.",
-    category: "JD's Jungle",
-    readTime: "5 min read",
-    date: "May 12, 2026",
-    image: "/blogs/everyday-horizon.webp",
-    darken: true,
+      "THC and CBD work through completely different pathways. Know what each does and use that to choose with clarity.",
+    category: "Cannabinoids",
+    readTime: "8 min read",
+    date: "April 20, 2026",
+    image:
+      "/blog/B4-CBD vs THC What Each Cannabinoid Does and How to Choose What You Need/im0-hero-wmremd.webp",
   },
   {
-    slug: "beyond-the-fruit-profile",
-    title: "Beyond the Fruit Profile",
+    slug: "edibles-vs-smoking",
+    title: "Edibles vs. Smoking: How to Choose the Right Format",
     excerpt:
-      "Discover how curated taste combinations seamlessly elevate your modern lifestyle.",
-    category: "Curated Moods",
-    readTime: "5 min read",
-    date: "May 12, 2026",
-    image: "/blogs/fruit-profile.webp",
+      "One takes five minutes, the other ninety. Compare onset, duration, and control to find your format.",
+    category: "Formats",
+    readTime: "8 min read",
+    date: "April 12, 2026",
+    image:
+      "/blog/B5-Edibles vs. Smoking_ Which One Is Right for You/im0-hero-wmremd.webp",
   },
   {
-    slug: "staying-within-the-rules",
-    title: "Staying Within The Rules",
+    slug: "what-is-cbn-sleep-gummies",
+    title: "What Is CBN and Why Does It Keep Showing Up in Sleep Products",
     excerpt:
-      "Clear and straightforward age limits and regional guidelines made simple.",
-    category: "Legal Rules",
-    readTime: "5 min read",
-    date: "May 12, 2026",
-    image: "/blogs/within-the-rules.webp",
+      "The cannabinoid showing up in every sleep gummy across New York — what it is, what the science says, and what to look for.",
+    category: "Cannabinoids",
+    readTime: "7 min read",
+    date: "April 4, 2026",
+    image:
+      "/blog/B6-What Is CBN — and Why It Keeps Showing Up in Sleep Products/im0-hero-wmremd.webp",
   },
   {
-    slug: "the-evening-drop-routine",
-    title: "The Evening Drop Routine",
+    slug: "limonene-myrcene-linalool-terpene-effects",
+    title: "Limonene, Myrcene, Linalool: What These Terpene Effects Mean",
     excerpt:
-      "Handpicked liquid selections curated perfectly to match your evening schedule.",
-    category: "JD's Jungle",
-    readTime: "5 min read",
-    date: "May 12, 2026",
-    image: "/blogs/evening-drop.webp",
-    darken: true,
+      "Stop shopping by THC percentage. These three terpenes predict your experience far better.",
+    category: "Terpenes",
+    readTime: "9 min read",
+    date: "March 27, 2026",
+    image:
+      "/blog/B7-Limonene, Myrcene, Linalool_ The Three Terpenes Worth Knowing Before You Buy/im0-hero-wmremd.webp",
   },
   {
-    slug: "inside-the-new-showroom",
-    title: "Inside The New Showroom",
+    slug: "tincture-vs-edible-guide",
+    title: "Tinctures vs. Edibles: How to Pick the Right Format for Your Goal",
     excerpt:
-      "Discover how our physical storefront elevates your modern lifestyle daily.",
-    category: "JD's Jungle",
-    readTime: "5 min read",
-    date: "May 12, 2026",
-    image: "/blogs/new-showroom.webp",
+      "Tinctures and edibles work differently. Match the format to your timing, tolerance, and goal.",
+    category: "Formats",
+    readTime: "7 min read",
+    date: "March 18, 2026",
+    image:
+      "/blog/B8-Tincture vs. Edible_ Which One Is Right for What You_re Trying to Do/im0-hero-wmremd.webp",
+  },
+  {
+    slug: "cannabis-for-inflammation-strains-research",
+    title: "Cannabis for Inflammation: Strains, Compounds, and What to Look For",
+    excerpt:
+      "What the research actually shows about cannabis, inflammation, and the compounds and formats that matter.",
+    category: "Wellness",
+    readTime: "7 min read",
+    date: "March 10, 2026",
+    image: "/blog/Enchanced images/Blog 9/flower_bud_1_5x.webp",
+  },
+  {
+    slug: "what-is-cbg-cannabinoid-explained",
+    title: "CBG Explained: The Minor Cannabinoid That Is Showing Up Everywhere",
+    excerpt:
+      "CBG is appearing on more labels in New York. Here's what the 'mother cannabinoid' is and what it's good for.",
+    category: "Cannabinoids",
+    readTime: "7 min read",
+    date: "March 2, 2026",
+    image:
+      "/blog/B10-CBG Explained_ The Minor Cannabinoid That Is Showing Up Everywhere/im0-hero-wmremd.webp",
   },
 ];
 
 /** All posts, in display order — used for filtering and search. */
 export const ALL_POSTS: BlogPost[] = [...FEATURED_POSTS, ...LIST_POSTS];
+
+/** Look up a single card by slug (used to resolve "Related Blogs"). */
+export function getPost(slug: string): BlogPost | undefined {
+  return ALL_POSTS.find((post) => post.slug === slug);
+}
 
 /**
  * Category chips for the filter bar, with counts derived from `ALL_POSTS`.

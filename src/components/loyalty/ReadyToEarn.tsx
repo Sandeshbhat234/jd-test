@@ -1,4 +1,5 @@
-import Link from "next/link";
+import Button from "@/components/ui/Button";
+import { SIGNUP_URL } from "@/lib/links";
 
 export default function ReadyToEarn() {
   return (
@@ -18,12 +19,9 @@ export default function ReadyToEarn() {
             Join in seconds. Start earning today. No catch. Just rewards.
           </p>
         </div>
-        <Link
-          href="/signup"
-          className="flex h-11 items-center justify-center whitespace-nowrap rounded-full border border-[rgba(1,31,69,0.3)] bg-[#fffef8] px-[clamp(24px,2.5vw,40px)] py-2.5 font-cy text-[clamp(13px,1.1vw,16px)] font-medium text-[#0c1e46] transition-colors duration-200 hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
-        >
+        <Button href={SIGNUP_URL} variant="secondary">
           JOIN FOR FREE
-        </Link>
+        </Button>
       </div>
     </div>
   );

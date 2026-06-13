@@ -25,53 +25,68 @@ export default function JungleStorySequence() {
 
   useGSAP(
     () => {
-      const section = sectionRef.current;
-      const skyline = skylineRef.current;
-      const curve = curveRef.current;
-      const cannabis = cannabisRef.current;
-      if (!section || !skyline || !curve || !cannabis) return;
+      // Desktop only — on desktop this reveal is merged into the end of the
+      // What Makes Us Different pinned timeline (see WhatMakesUsDifferent). Here
+      // it runs only on mobile, where this is a standalone pinned section.
+      const mm = gsap.matchMedia();
+      mm.add("(max-width: 767px)", () => {
+        const section = sectionRef.current;
+        const skyline = skylineRef.current;
+        const curve = curveRef.current;
+        const cannabis = cannabisRef.current;
+        if (!section || !skyline || !curve || !cannabis) return;
 
-      // Image and overlay start just below the viewport, fully opaque — they
-      // are revealed by sliding up, not by fading.
-      gsap.set([skyline, curve], { yPercent: 100 });
-      gsap.set(cannabis, { opacity: 0, scale: 0.16, transformOrigin: "50% 100%" });
+        // Image and overlay start just below the viewport, fully opaque — they
+        // are revealed by sliding up, not by fading.
+        gsap.set([skyline, curve], { yPercent: 100 });
+        gsap.set(cannabis, {
+          opacity: 0,
+          scale: 0.16,
+          transformOrigin: "50% 100%",
+        });
 
-      const tl = gsap.timeline({
-        defaults: { ease: "none" },
-        scrollTrigger: {
-          trigger: section,
-          start: "top top",
-          end: "+=180%",
-          pin: true,
-          pinSpacing: true,
-          scrub: 1,
-          anticipatePin: 1,
-          invalidateOnRefresh: true,
-          // Two snap stops: one scroll commits the city + overlay reveal, the
-          // very next scroll commits the cannabis growth.
-          snap: {
-            snapTo: [0, REVEAL, 1],
-            duration: { min: 0.15, max: 0.5 },
-            ease: "power2.out",
+        const tl = gsap.timeline({
+          defaults: { ease: "none" },
+          scrollTrigger: {
+            trigger: section,
+            start: "top top",
+            end: "+=180%",
+            pin: true,
+            pinSpacing: true,
+            scrub: 1,
+            anticipatePin: 1,
+            invalidateOnRefresh: true,
+            // Two snap stops: one scroll commits the city + overlay reveal, the
+            // very next scroll commits the cannabis growth.
+            snap: {
+              snapTo: [0, REVEAL, 1],
+              duration: { min: 0.15, max: 0.5 },
+              ease: "power2.out",
+            },
           },
-        },
+        });
+
+        // Reveal — the city image leads and lifts up, the white overlay trails a
+        // touch behind (slower) and settles at the bottom for a parallax feel.
+        // Total timeline duration is 1 so timeline time maps directly onto
+        // ScrollTrigger progress (and the snap points).
+        tl.to(skyline, { yPercent: LIFT, duration: 0.18, ease: "power2.out" }, 0)
+          .to(curve, { yPercent: 0, duration: REVEAL, ease: "power2.out" }, 0)
+
+          // Cannabis appears and grows quickly from its base, lifting up with
+          // the city, on the next scroll.
+          .to(cannabis, { opacity: 1, duration: 0.05 }, REVEAL)
+          .to(
+            cannabis,
+            {
+              scale: 1.04,
+              yPercent: LIFT,
+              duration: 1 - REVEAL,
+              ease: "power2.out",
+            },
+            REVEAL,
+          );
       });
-
-      // Reveal — the city image leads and lifts up, the white overlay trails a
-      // touch behind (slower) and settles at the bottom for a parallax feel.
-      // Total timeline duration is 1 so timeline time maps directly onto
-      // ScrollTrigger progress (and the snap points).
-      tl.to(skyline, { yPercent: LIFT, duration: 0.18, ease: "power2.out" }, 0)
-        .to(curve, { yPercent: 0, duration: REVEAL, ease: "power2.out" }, 0)
-
-        // Cannabis appears and grows quickly from its base, lifting up with the
-        // city, on the next scroll.
-        .to(cannabis, { opacity: 1, duration: 0.05 }, REVEAL)
-        .to(
-          cannabis,
-          { scale: 1.04, yPercent: LIFT, duration: 1 - REVEAL, ease: "power2.out" },
-          REVEAL,
-        );
     },
     { scope: sectionRef },
   );
@@ -79,7 +94,7 @@ export default function JungleStorySequence() {
   return (
     <section
       ref={sectionRef}
-      className="relative h-screen w-full overflow-hidden bg-[#fffff8]"
+      className="relative h-screen w-full overflow-hidden bg-green-300 md:hidden"
       aria-label="JD's Jungle skyline">
       <div
         ref={cannabisRef}

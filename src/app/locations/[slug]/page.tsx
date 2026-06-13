@@ -5,6 +5,7 @@ import { LOCATIONS, getLocation } from "@/data/locations";
 import { formatRange } from "@/lib/hours";
 import LocationsMap from "@/components/locations/LocationsMap";
 import ContactForm from "@/components/locations/ContactForm";
+import Reveal from "@/components/Reveal";
 
 type Params = { params: Promise<{ slug: string }> };
 
@@ -62,25 +63,28 @@ export default async function LocationDetailPage({ params }: Params) {
   if (!location) notFound();
 
   return (
-    <main className="w-full bg-[#fffef8] text-[#1e1e1e]">
+    <main className="w-full overflow-x-clip bg-[#fffef8] text-[#1e1e1e]">
       <section className="mx-auto flex w-full max-w-[1601px] flex-col gap-[clamp(40px,6vw,64px)] px-[clamp(24px,5vw,80px)] pb-[clamp(64px,8vw,100px)] pt-[clamp(120px,16vw,160px)]">
         {/* Title */}
-        <div className="flex flex-col gap-3">
+        <Reveal direction="up" className="flex flex-col gap-3">
           <h1 className="font-serif text-[clamp(30px,5vw,52px)] leading-tight text-[rgba(1,1,1,0.8)]">
             {location.name}
           </h1>
           <p className="font-cy text-[clamp(15px,1.5vw,20px)] leading-relaxed text-[#1e1e1e]/70">
             {location.subtitle}
           </p>
-        </div>
+        </Reveal>
 
         {/* Map + Hours/Reach */}
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-16">
-          <div className="h-[clamp(340px,46vw,640px)] overflow-hidden rounded-2xl border border-[#1e1e1e]">
+          <Reveal
+            direction="left"
+            className="h-[clamp(340px,46vw,640px)] overflow-hidden rounded-2xl border border-[#1e1e1e]"
+          >
             <LocationsMap locations={[location]} singleZoom={15} className="h-full w-full" />
-          </div>
+          </Reveal>
 
-          <div className="flex flex-col gap-12">
+          <Reveal direction="right" className="flex flex-col gap-12">
             {/* Hours */}
             <div className="flex flex-col gap-6">
               <h2 className={heading}>Hours</h2>
@@ -124,12 +128,15 @@ export default async function LocationDetailPage({ params }: Params) {
                 </div>
               </div>
             </div>
-          </div>
+          </Reveal>
         </div>
 
         {/* Photo + Contact form */}
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-16">
-          <div className="relative h-[clamp(300px,40vw,522px)] overflow-hidden rounded-2xl">
+          <Reveal
+            direction="left"
+            className="relative h-[clamp(300px,40vw,522px)] overflow-hidden rounded-2xl"
+          >
             <Image
               src={location.image}
               alt={location.name}
@@ -137,8 +144,10 @@ export default async function LocationDetailPage({ params }: Params) {
               sizes="(min-width: 1024px) 50vw, 90vw"
               className="object-cover"
             />
-          </div>
-          <ContactForm locationName={location.name} storeSlug={location.slug} />
+          </Reveal>
+          <Reveal direction="right">
+            <ContactForm locationName={location.name} storeSlug={location.slug} />
+          </Reveal>
         </div>
       </section>
     </main>

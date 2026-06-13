@@ -5,6 +5,7 @@ import { useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
+import { getLocation } from "@/data/locations";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
@@ -16,23 +17,20 @@ type Location = {
   className: string;
 };
 
+// City label + addresses come from the shared locations data; only the
+// per-card position is set here (the order doubles as the card stacking order).
 const LOCATIONS: Location[] = [
-  {
-    city: "Manhattan",
-    address: ["302 West 46th Street, Unit A", "New York, NY 10036"],
-    className: "left-[clamp(16px,3vw,48px)] top-[64%]",
-  },
-  {
-    city: "Queens",
-    address: ["28-10 Steinway Street, Storefront C", "Astoria, NY 11103"],
-    className: "right-[clamp(16px,3vw,48px)] top-[46%]",
-  },
-  {
-    city: "Brooklyn",
-    address: ["234 North 7th Street, Suite B", "Brooklyn, NY 11211"],
-    className: "right-[clamp(16px,3vw,48px)] top-[74%]",
-  },
-];
+  { slug: "manhattan", className: "left-[clamp(16px,3vw,48px)] top-[64%]" },
+  { slug: "queens", className: "right-[clamp(16px,3vw,48px)] top-[46%]" },
+  { slug: "brooklyn", className: "right-[clamp(16px,3vw,48px)] top-[74%]" },
+].map(({ slug, className }) => {
+  const loc = getLocation(slug);
+  return {
+    city: loc?.shortName ?? slug,
+    address: loc?.address ?? [],
+    className,
+  };
+});
 
 // White location-pin badge (entypo:location) used inside each card.
 function LocationIcon() {
@@ -62,100 +60,105 @@ export default function JungleLocations() {
 
   useGSAP(
     () => {
-      const section = sectionRef.current;
-      const mask = maskRef.current;
-      const leaf = leafRef.current;
-      const overlay = overlayRef.current;
-      const wave = waveRef.current;
-      const cards = cardRefs.current;
-      if (
-        !section ||
-        !mask ||
-        !leaf ||
-        !overlay ||
-        !wave ||
-        cards.length < LOCATIONS.length ||
-        cards.some((c) => !c)
-      )
-        return;
+      // Desktop only — on mobile this renders as a static image banner with the
+      // location cards stacked vertically (see the `md:hidden` block below).
+      const mm = gsap.matchMedia();
+      mm.add("(min-width: 768px)", () => {
+        const section = sectionRef.current;
+        const mask = maskRef.current;
+        const leaf = leafRef.current;
+        const overlay = overlayRef.current;
+        const wave = waveRef.current;
+        const cards = cardRefs.current;
+        if (
+          !section ||
+          !mask ||
+          !leaf ||
+          !overlay ||
+          !wave ||
+          cards.length < LOCATIONS.length ||
+          cards.some((c) => !c)
+        )
+          return;
 
-      gsap.set(mask, { opacity: 1 });
-      gsap.set(overlay, { opacity: 0 });
-      gsap.set(cards, { autoAlpha: 0, y: 48 });
-      // The closing wave starts just below the viewport.
-      gsap.set(wave, { yPercent: 100 });
+        gsap.set(mask, { opacity: 1 });
+        gsap.set(overlay, { opacity: 0 });
+        gsap.set(cards, { autoAlpha: 0, y: 48 });
+        // The closing wave starts just below the viewport.
+        gsap.set(wave, { yPercent: 100 });
 
-      // The leaf hole is scaled by writing the SVG transform attribute directly
-      // (translate → scale → translate) so it always grows around the leaf's
-      // centre and stays crisp. GSAP's transform-origin can't be used here
-      // because the path lives inside <mask>, where it has no measurable box.
-      const LEAF_CX = 880.5;
-      const LEAF_CY = 540;
-      const leafState = { s: 1 };
-      const applyLeaf = () =>
-        leaf.setAttribute(
-          "transform",
-          `translate(${LEAF_CX} ${LEAF_CY}) scale(${leafState.s}) translate(${-LEAF_CX} ${-LEAF_CY})`,
-        );
-      applyLeaf();
+        // The leaf hole is scaled by writing the SVG transform attribute directly
+        // (translate → scale → translate) so it always grows around the leaf's
+        // centre and stays crisp. GSAP's transform-origin can't be used here
+        // because the path lives inside <mask>, where it has no measurable box.
+        const LEAF_CX = 880.5;
+        const LEAF_CY = 540;
+        const leafState = { s: 1 };
+        const applyLeaf = () =>
+          leaf.setAttribute(
+            "transform",
+            `translate(${LEAF_CX} ${LEAF_CY}) scale(${leafState.s}) translate(${-LEAF_CX} ${-LEAF_CY})`,
+          );
+        applyLeaf();
 
-      const tl = gsap.timeline({
-        defaults: { ease: "none" },
-        scrollTrigger: {
-          trigger: section,
-          start: "top top",
-          end: "+=460%",
-          pin: true,
-          pinSpacing: true,
-          scrub: 1,
-          anticipatePin: 1,
-          invalidateOnRefresh: true,
-        },
+        const tl = gsap.timeline({
+          defaults: { ease: "none" },
+          scrollTrigger: {
+            trigger: section,
+            start: "top top",
+            end: "+=460%",
+            pin: true,
+            pinSpacing: true,
+            scrub: 1,
+            anticipatePin: 1,
+            invalidateOnRefresh: true,
+          },
+        });
+
+        // The leaf-shaped hole grows to uncover the interior, then the white
+        // layer fades out so the wedges between the leaflets disappear and the
+        // image is fully revealed.
+        tl.to(
+          leafState,
+          { s: 16, duration: 0.58, ease: "power1.in", onUpdate: applyLeaf },
+          0,
+        )
+          .to(mask, { opacity: 0, duration: 0.16 }, 0.46)
+
+          // Darken the image for legibility, then reveal the cards in sequence.
+          .to(overlay, { opacity: 1, duration: 0.2 }, 0.5)
+          .to(
+            cards,
+            {
+              autoAlpha: 1,
+              y: 0,
+              duration: 0.3,
+              stagger: 0.14,
+              ease: "power2.out",
+            },
+            0.62,
+          )
+          .to({}, { duration: 0.2 })
+
+          // Closing transition: the cards leave, then the white wave rises to
+          // cover the bottom of the image. After this the pin releases, so the
+          // next scroll carries the whole section (and wave) up into the next
+          // section.
+          .to(
+            cards,
+            {
+              autoAlpha: 0,
+              y: -40,
+              duration: 0.25,
+              stagger: 0.08,
+              ease: "power2.in",
+            },
+            ">",
+          )
+          // Wave rises only once the cards have fully gone.
+          .to(wave, { yPercent: 0, duration: 0.4, ease: "power2.out" }, ">")
+          .to({}, { duration: 0.2 });
       });
-
-      // The leaf-shaped hole grows to uncover the interior, then the white
-      // layer fades out so the wedges between the leaflets disappear and the
-      // image is fully revealed.
-      tl.to(
-        leafState,
-        { s: 16, duration: 0.58, ease: "power1.in", onUpdate: applyLeaf },
-        0,
-      )
-        .to(mask, { opacity: 0, duration: 0.16 }, 0.46)
-
-        // Darken the image for legibility, then reveal the cards in sequence.
-        .to(overlay, { opacity: 1, duration: 0.2 }, 0.5)
-        .to(
-          cards,
-          {
-            autoAlpha: 1,
-            y: 0,
-            duration: 0.3,
-            stagger: 0.14,
-            ease: "power2.out",
-          },
-          0.62,
-        )
-        .to({}, { duration: 0.2 })
-
-        // Closing transition: the cards leave, then the white wave rises to
-        // cover the bottom of the image. After this the pin releases, so the
-        // next scroll carries the whole section (and wave) up into the next
-        // section.
-        .to(
-          cards,
-          {
-            autoAlpha: 0,
-            y: -40,
-            duration: 0.25,
-            stagger: 0.08,
-            ease: "power2.in",
-          },
-          ">",
-        )
-        // Wave rises only once the cards have fully gone.
-        .to(wave, { yPercent: 0, duration: 0.4, ease: "power2.out" }, ">")
-        .to({}, { duration: 0.2 });
     },
     { scope: sectionRef },
   );
@@ -164,7 +167,44 @@ export default function JungleLocations() {
     <section
       ref={sectionRef}
       aria-label="JD's Jungle locations"
-      className="relative h-screen w-full overflow-hidden bg-[#fffef8]">
+      className="relative h-screen w-full overflow-hidden bg-[#fffef8] max-md:h-auto max-md:overflow-visible">
+      {/* ---------- mobile: image banner + stacked location cards ---------- */}
+      <div className="relative hidden min-h-[86vh] w-full overflow-hidden max-md:block">
+        <Image
+          src={`${A4}/interior.webp`}
+          alt="JD's Jungle interior"
+          fill
+          priority
+          sizes="100vw"
+          className="select-none object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-black/25 to-black/55" />
+        <div className="relative z-10 flex min-h-[86vh] flex-col justify-end gap-3 px-4 pb-12">
+          {LOCATIONS.map((loc) => (
+            <div
+              key={loc.city}
+              className="flex items-center gap-3 rounded-[14px] bg-white/20 p-3.5 shadow-[0px_4px_20px_0px_rgba(0,0,0,0.12)] backdrop-blur-[20px]">
+              <div className="relative size-12 shrink-0">
+                <LocationIcon />
+              </div>
+              <div className="flex flex-col gap-1 text-white">
+                <h3 className="font-[family-name:var(--font-cy-grotesk)] font-semibold capitalize leading-tight text-[17px]">
+                  {loc.city}
+                </h3>
+                <p className="font-cy capitalize leading-snug text-[12px]">
+                  {loc.address.map((line) => (
+                    <span key={line} className="block">
+                      {line}
+                    </span>
+                  ))}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* ---------- desktop: leaf-reveal animation ---------- */}
       {/* interior background image */}
       <Image
         src={`${A4}/interior.webp`}
@@ -172,11 +212,14 @@ export default function JungleLocations() {
         fill
         priority
         sizes="100vw"
-        className="select-none object-cover"
+        className="select-none object-cover max-md:hidden"
       />
 
       {/* dark overlay — fades in with the cards for text legibility */}
-      <div ref={overlayRef} className="absolute inset-0 z-10 bg-black/25" />
+      <div
+        ref={overlayRef}
+        className="absolute inset-0 z-10 bg-black/25 max-md:hidden"
+      />
 
       {/* White layer with a leaf-shaped hole the interior shows through. The
           hole is an SVG mask: a huge backing rect (always covers the viewport,
@@ -184,7 +227,7 @@ export default function JungleLocations() {
           it never rasterises into seams. */}
       <div
         ref={maskRef}
-        className="pointer-events-none absolute inset-0 z-20 will-change-[opacity]">
+        className="pointer-events-none absolute inset-0 z-20 will-change-[opacity] max-md:hidden">
         <svg
           viewBox="0 0 1761 1080"
           preserveAspectRatio="xMidYMid slice"
@@ -202,7 +245,13 @@ export default function JungleLocations() {
               width="13761"
               height="13080">
               {/* white = keep (visible white), black = punch hole */}
-              <rect x="-6000" y="-6000" width="13761" height="13080" fill="white" />
+              <rect
+                x="-6000"
+                y="-6000"
+                width="13761"
+                height="13080"
+                fill="white"
+              />
               <path
                 ref={leafRef}
                 d="M712.994 834.342L625.59 921.377L748.195 907.784L835.6 820.749L712.994 834.342ZM1013.51 907.784L1136.11 921.377L1048.71 834.342L926.149 820.749L1013.51 907.784ZM477.82 712.356L646.686 818.743L844.991 796.674L676.172 690.333L477.82 712.356ZM916.741 796.674L1115.09 818.743L1283.91 712.356L1085.61 690.333L916.741 796.674ZM619.399 627.233L862.628 780.295L767.76 509.006L524.531 355.991L619.399 627.233ZM994 509.006L899.178 780.295L1142.41 627.233L1237.23 355.991L994 509.006ZM774.802 460.389L880.544 762.733L986.286 460.389L880.544 158L774.802 460.389Z"
@@ -228,15 +277,15 @@ export default function JungleLocations() {
           ref={(el) => {
             cardRefs.current[i] = el;
           }}
-          className={`absolute z-30 flex w-[clamp(300px,34vw,440px)] items-center gap-[clamp(12px,1.6vw,24px)] rounded-[16px] bg-white/20 p-4 shadow-[0px_4px_20px_0px_rgba(0,0,0,0.1)] backdrop-blur-[20px] will-change-transform ${loc.className}`}>
+          className={`absolute z-30 flex w-[clamp(300px,34vw,440px)] items-center gap-[clamp(12px,1.6vw,24px)] rounded-[16px] bg-white/20 p-4 shadow-[0px_4px_20px_0px_rgba(0,0,0,0.1)] backdrop-blur-[20px] will-change-transform max-md:hidden ${loc.className}`}>
           <div className="relative size-[clamp(64px,7vw,108px)] shrink-0">
             <LocationIcon />
           </div>
           <div className="flex flex-col gap-2 text-white">
-            <h3 className="font-[family-name:var(--font-cy-grotesk)] font-semibold capitalize leading-tight text-[clamp(20px,2.2vw,32px)]">
+            <h3 className="font-[family-name:var(--font-cy-grotesk)] font-medium capitalize leading-tight text-[clamp(20px,2.2vw,28px)]">
               {loc.city}
             </h3>
-            <p className="font-cy capitalize leading-snug text-[clamp(14px,1.5vw,22px)]">
+            <p className="font-cy capitalize leading-snug text-[clamp(14px,1.5vw,18px)]">
               {loc.address.map((line) => (
                 <span key={line} className="block">
                   {line}
@@ -251,7 +300,7 @@ export default function JungleLocations() {
           transition into the next section. Smooth curve, touches the sides. */}
       <div
         ref={waveRef}
-        className="pointer-events-none absolute inset-x-0 bottom-0 z-40 h-[28vh] w-full will-change-transform">
+        className="pointer-events-none absolute inset-x-0 bottom-0 z-40 h-[28vh] w-full will-change-transform max-md:hidden">
         <svg
           preserveAspectRatio="none"
           viewBox="16.5 0 1764.5 446.505"

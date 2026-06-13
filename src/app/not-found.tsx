@@ -1,6 +1,7 @@
 import Image from "next/image";
-import Link from "next/link";
 import HideFooter from "@/components/HideFooter";
+import Reveal from "@/components/Reveal";
+import Button from "@/components/ui/Button";
 
 export default function NotFound() {
   return (
@@ -16,7 +17,10 @@ export default function NotFound() {
         className="-z-10 select-none object-cover object-center"
       />
 
-      <div className="flex w-full max-w-[1237px] flex-col items-center gap-[clamp(4px,0.8vw,10px)] px-6 py-[clamp(40px,8vh,80px)] text-center">
+      <Reveal
+        direction="up"
+        className="flex w-full max-w-[1237px] flex-col items-center gap-[clamp(4px,0.8vw,10px)] px-6 py-[clamp(40px,8vh,80px)] text-center"
+      >
         {/* Decorative oversized status number (heading conveys the meaning) */}
         <span
           aria-hidden
@@ -40,14 +44,11 @@ export default function NotFound() {
             </p>
           </div>
 
-          <Link
-            href="/"
-            className="inline-flex items-center justify-center rounded-full bg-[rgba(255,254,248,0.87)] px-[clamp(28px,4vw,50px)] py-[10px] font-cy text-[clamp(15px,1.9vw,26px)] font-medium uppercase leading-[1.27] tracking-wide text-[#0c1e46] backdrop-blur-sm transition-transform duration-200 ease-out hover:scale-[1.03] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/80 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
-          >
+          <Button href="/" variant="secondary">
             Back to Home
-          </Link>
+          </Button>
         </div>
-      </div>
+      </Reveal>
     </main>
   );
 }

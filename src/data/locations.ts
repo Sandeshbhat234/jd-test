@@ -9,6 +9,7 @@
  */
 
 import type { DayHours } from "@/lib/hours";
+import { SOCIAL_URLS } from "@/data/site";
 
 export interface Location {
   /** URL segment: /locations/<slug> */
@@ -63,8 +64,8 @@ export const LOCATIONS: Location[] = [
     phone: "+1 (845) 869-9333",
     address: ["28-10 Steinway Street, Storefront C", "Astoria, NY 11103"],
     email: "queens@jdsjungle.com",
-    facebookUrl: "https://www.facebook.com/",
-    instagramUrl: "https://www.instagram.com/",
+    facebookUrl: SOCIAL_URLS.facebook,
+    instagramUrl: SOCIAL_URLS.instagram,
     lat: 40.7644,
     lng: -73.9235,
     image: "/locations/queens.webp",
@@ -79,8 +80,8 @@ export const LOCATIONS: Location[] = [
     phone: "+1 (845) 869-9333",
     address: ["234 North 7th Street, Suite B", "Brooklyn, NY 11211"],
     email: "brooklyn@jdsjungle.com",
-    facebookUrl: "https://www.facebook.com/",
-    instagramUrl: "https://www.instagram.com/",
+    facebookUrl: SOCIAL_URLS.facebook,
+    instagramUrl: SOCIAL_URLS.instagram,
     lat: 40.717,
     lng: -73.955,
     image: "/locations/brooklyn.webp",
@@ -95,8 +96,8 @@ export const LOCATIONS: Location[] = [
     phone: "+1 (845) 869-9333",
     address: ["302 West 46th Street, Unit A", "New York, NY 10036"],
     email: "manhattan@jdsjungle.com",
-    facebookUrl: "https://www.facebook.com/",
-    instagramUrl: "https://www.instagram.com/",
+    facebookUrl: SOCIAL_URLS.facebook,
+    instagramUrl: SOCIAL_URLS.instagram,
     lat: 40.7596,
     lng: -73.989,
     image: "/locations/manhattan.webp",

@@ -48,10 +48,7 @@ export default function TestimonialsSection() {
   const goTo = useCallback((nextIndex: number) => {
     const el = trackRef.current;
     if (!el) return;
-    const clamped = Math.max(
-      0,
-      Math.min(TESTIMONIALS.length - 1, nextIndex),
-    );
+    const clamped = Math.max(0, Math.min(TESTIMONIALS.length - 1, nextIndex));
     setIndex(clamped);
     gsap.to(el, {
       scrollLeft: el.clientWidth * clamped,
@@ -77,8 +74,7 @@ export default function TestimonialsSection() {
     <section
       aria-label="From Our Community"
       className="bg-[#fffef8] py-[clamp(56px,7vw,100px)]"
-      style={{ paddingInline: "clamp(24px,4vw,80px)" }}
-    >
+      style={{ paddingInline: "clamp(24px,4vw,80px)" }}>
       <div className="mx-auto flex w-full max-w-[1601px] flex-col gap-[clamp(32px,6vw,124px)] lg:flex-row lg:items-start">
         <header className="flex w-full max-w-[483px] shrink-0 flex-col gap-4 text-[#1e1e1e]">
           <h2 className="font-serif text-[clamp(24px,2.6vw,32px)] leading-[1.5] tracking-[0.2px]">
@@ -92,21 +88,28 @@ export default function TestimonialsSection() {
         <div className="flex min-w-0 flex-1 flex-col">
           <div
             ref={trackRef}
-            className="no-scrollbar flex w-full overflow-x-auto snap-x snap-mandatory overscroll-x-contain touch-pan-x"
-          >
+            className="no-scrollbar flex w-full overflow-x-auto snap-x snap-mandatory overscroll-x-contain touch-pan-x">
             {TESTIMONIALS.map((t, i) => (
               <article
                 key={t.name}
-                className="flex w-full shrink-0 snap-start flex-col gap-8"
-                aria-hidden={i !== index || undefined}
-              >
-                <Image
-                  src="/home/Icons/quote.svg"
-                  alt=""
-                  width={95}
-                  height={103}
-                  className="h-[clamp(56px,7vw,103px)] w-auto select-none"
-                />
+                className="flex w-full shrink-0  snap-start flex-col gap-8"
+                aria-hidden={i !== index || undefined}>
+                <div className="flex gap-3 ">
+                  <Image
+                    src="/home/Icons/quote.svg"
+                    alt=""
+                    width={95}
+                    height={103}
+                    className="h-[clamp(56px,7vw,103px)] w-fit select-none"
+                  />{" "}
+                  <Image
+                    src="/home/Icons/quote.svg"
+                    alt=""
+                    width={95}
+                    height={103}
+                    className="h-[clamp(56px,7vw,103px)] w-fit select-none"
+                  />{" "}
+                </div>
                 <p className="font-serif font-light text-black text-[clamp(28px,3.5vw,48px)] leading-[1.18]">
                   {t.quote}
                 </p>
@@ -158,12 +161,10 @@ function Stars({ rating }: { rating: number }) {
   return (
     <span
       aria-label={`${rating} out of 5`}
-      className="text-[clamp(18px,1.6vw,22px)] leading-[27px]"
-    >
+      className="text-[clamp(18px,1.6vw,22px)] leading-[27px]">
       <span className="mr-2">{rating}/5</span>
       {Array.from({ length: 5 }).map((_, i) => {
-        const opacity =
-          i < full ? 1 : i === full && hasHalf ? 0.6 : 0.3;
+        const opacity = i < full ? 1 : i === full && hasHalf ? 0.6 : 0.3;
         return (
           <span key={i} style={{ opacity }} aria-hidden>
             ★
@@ -186,11 +187,12 @@ function ArrowButton({
   return (
     <button
       type="button"
-      aria-label={direction === "left" ? "Previous testimonial" : "Next testimonial"}
+      aria-label={
+        direction === "left" ? "Previous testimonial" : "Next testimonial"
+      }
       onClick={onClick}
       disabled={disabled}
-      className="inline-flex size-[50px] items-center justify-center rounded-full border border-black/15 bg-gradient-to-b from-[rgba(241,237,237,0.2)] to-[rgba(244,244,244,0.2)] shadow-[0_5px_6.8px_rgba(0,0,0,0.18)] transition-opacity hover:opacity-80 disabled:cursor-not-allowed disabled:opacity-30"
-    >
+      className="inline-flex size-[50px] items-center justify-center rounded-full border border-black/15 bg-gradient-to-b from-[rgba(241,237,237,0.2)] to-[rgba(244,244,244,0.2)] shadow-[0_5px_6.8px_rgba(0,0,0,0.18)] transition-opacity hover:opacity-80 disabled:cursor-not-allowed disabled:opacity-30">
       <Image
         src="/home/Icons/arrow-right.svg"
         alt=""

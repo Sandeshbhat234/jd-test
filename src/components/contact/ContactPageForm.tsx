@@ -4,6 +4,7 @@ import { useState } from "react";
 import { CONTACT_SUBJECTS } from "@/data/contact";
 import { useContactForm } from "@/lib/useContactForm";
 import { useSelectedStore } from "@/lib/useSelectedStore";
+import Button from "@/components/ui/Button";
 
 const field =
   "w-full rounded-[5px] border border-black bg-transparent p-4 font-cy text-[clamp(15px,1.1vw,18px)] tracking-[0.5px] text-black/80 placeholder:text-black/80 focus:outline-none focus:ring-2 focus:ring-[#0c1e46]/40 disabled:opacity-60";
@@ -117,13 +118,14 @@ export default function ContactPageForm() {
         />
       </div>
 
-      <button
+      <Button
         type="submit"
+        variant="primary"
         disabled={submitting || status === "success"}
-        className="flex h-[47px] w-fit items-center justify-center whitespace-nowrap rounded-full border border-[#0c1e46] bg-[linear-gradient(179deg,#173067_9%,#06122F_48%,#05102A_86%)] px-[clamp(28px,3vw,50px)] py-2.5 font-cy text-[clamp(16px,1.4vw,26px)] font-medium text-white transition-[filter] duration-200 hover:brightness-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0c1e46]/60 focus-visible:ring-offset-2 disabled:opacity-70"
+        className="w-fit"
       >
         {status === "success" ? "Message sent ✓" : submitting ? "Sending…" : "SUBMIT"}
-      </button>
+      </Button>
 
       <div aria-live="polite" className="font-cy text-[15px]">
         {status === "success" && (

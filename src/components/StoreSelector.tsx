@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useSelectedStore } from "@/lib/useSelectedStore";
+import Button from "@/components/ui/Button";
 
 function PinIcon({ className }: { className?: string }) {
   return (
@@ -32,8 +33,7 @@ export default function StoreSelector({ dark }: { dark: boolean }) {
         if (!e.currentTarget.contains(e.relatedTarget as Node | null)) {
           setOpen(false);
         }
-      }}
-    >
+      }}>
       <button
         type="button"
         aria-haspopup="menu"
@@ -41,16 +41,14 @@ export default function StoreSelector({ dark }: { dark: boolean }) {
         aria-label={`Selected store: ${store.name}. Change store`}
         onClick={() => setOpen((o) => !o)}
         onKeyDown={(e) => e.key === "Escape" && setOpen(false)}
-        className={`flex h-[36px] items-center gap-2 rounded-full border px-3 font-cy text-[14px] font-medium leading-none transition-opacity hover:opacity-80 ${text} ${border}`}
-      >
+        className={`flex h-[36px] items-center gap-2 rounded-full border px-3 font-cy text-[14px] font-medium leading-none transition-opacity hover:opacity-80 ${text} ${border}`}>
         <PinIcon className="size-[16px] shrink-0" />
         <span className="whitespace-nowrap">{store.shortName}</span>
         <svg
           aria-hidden
           viewBox="0 0 24 24"
           fill="none"
-          className={`size-3 transition-transform duration-200 ${open ? "rotate-180" : ""}`}
-        >
+          className={`size-3 transition-transform duration-200 ${open ? "rotate-180" : ""}`}>
           <path
             d="M6 9l6 6 6-6"
             stroke="currentColor"
@@ -63,40 +61,47 @@ export default function StoreSelector({ dark }: { dark: boolean }) {
 
       {open ? (
         <div className="absolute right-0 top-full z-50 pt-3">
-          <ul
-            role="menu"
-            className="flex min-w-[230px] flex-col rounded-2xl border border-black/10 bg-[#fffef8] p-2 shadow-[0px_10px_30px_rgba(0,0,0,0.15)]"
-          >
-            {stores.map((s) => {
-              const active = s.slug === store.slug;
-              return (
-                <li key={s.slug} role="none">
-                  <button
-                    type="button"
-                    role="menuitemradio"
-                    aria-checked={active}
-                    onClick={() => {
-                      setStore(s.slug);
-                      setOpen(false);
-                    }}
-                    className={`flex w-full items-start gap-2 rounded-xl px-3 py-2.5 text-left font-cy text-[#1e1e1e] transition-colors hover:bg-black/5 ${
-                      active ? "bg-black/5" : ""
-                    }`}
-                  >
-                    <PinIcon className="mt-0.5 size-[16px] shrink-0 text-[#0c1e46]" />
-                    <span className="flex flex-col">
-                      <span className="text-[15px] font-medium leading-tight">
-                        {s.name}
+          <div className="flex min-w-[240px] flex-col gap-2 rounded-2xl border border-white/40 bg-[#fffef8]/35 p-2 shadow-[0px_10px_30px_rgba(0,0,0,0.18)] backdrop-blur-2xl">
+            <ul role="menu" className="flex space-y-2 flex-col">
+              {stores.map((s) => {
+                const active = s.slug === store.slug;
+                return (
+                  <li key={s.slug} role="none">
+                    <button
+                      type="button"
+                      role="menuitemradio"
+                      aria-checked={active}
+                      onClick={() => {
+                        setStore(s.slug);
+                        setOpen(false);
+                      }}
+                      className={`flex w-full items-start gap-2 rounded-xl px-3 py-2.5 text-left font-cy text-[#1e1e1e] transition-colors hover:bg-white/55 ${
+                        active ? "bg-white/25" : ""
+                      }`}>
+                      <PinIcon className="mt-0.5 size-[16px] shrink-0 text-[#0c1e46]" />
+                      <span className="flex flex-col">
+                        <span className="text-[15px] font-medium leading-tight">
+                          {s.name}
+                        </span>
+                        <span className="text-[12px] leading-snug text-[#1e1e1e]/60">
+                          {s.address[0]}
+                        </span>
                       </span>
-                      <span className="text-[12px] leading-snug text-[#1e1e1e]/60">
-                        {s.address[0]}
-                      </span>
-                    </span>
-                  </button>
-                </li>
-              );
-            })}
-          </ul>
+                    </button>
+                  </li>
+                );
+              })}
+            </ul>
+
+            <Button
+              href="/locations"
+              variant="secondary"
+              size="sm"
+              onClick={() => setOpen(false)}
+              className="w-full">
+              View all locations
+            </Button>
+          </div>
         </div>
       ) : null}
     </div>

@@ -163,10 +163,13 @@ export default function AboutHero() {
         scrollTrigger: {
           trigger: section,
           start: "top top",
-          end: "+=640%",
+          end: "+=450%",
           pin: true,
           pinSpacing: true,
-          scrub: 1,
+          // Lower scrub = the playhead tracks the scroll closely (little lag),
+          // so the logo lands on 100% right at the unpin instead of needing a
+          // long catch-up hold afterwards.
+          scrub: 0.4,
           anticipatePin: 1,
           invalidateOnRefresh: true,
         },
@@ -230,7 +233,11 @@ export default function AboutHero() {
         // When it finishes the section unpins into the next section.
         .to(
           textGroup,
-          { y: () => -window.innerHeight * 0.07, duration: 0.7, ease: "power2.out" },
+          {
+            y: () => -window.innerHeight * 0.07,
+            duration: 0.7,
+            ease: "power2.out",
+          },
           ">",
         )
         .to(
@@ -248,7 +255,12 @@ export default function AboutHero() {
               lottieRef.current?.goToAndStop(lottieProxy.frame, true),
           },
           ">-0.2",
-        );
+        )
+
+        // Short buffer so the logo settles on its final frame before the
+        // section unpins. With the lower scrub above this only needs to be
+        // brief — no long dead-scroll once the logo has formed.
+        .to({}, { duration: 0.4 });
     },
     { scope: sectionRef },
   );
@@ -257,8 +269,11 @@ export default function AboutHero() {
     <section
       ref={sectionRef}
       aria-label="JD's Jungle — Rooted in New York. Rising for everyone."
-      className="relative h-screen w-full overflow-hidden bg-[#fffef8]"
-    >
+      // `md:z-20` keeps this section (its white text screen included) above the
+      // next one, which tucks underneath via `md:-mt-[100vh]`. The next section
+      // stays hidden behind the white until this one unpins — so its content is
+      // only revealed once the screen is fully covered.
+      className="relative z-0 h-screen w-full overflow-hidden bg-[#fffef8] md:z-20">
       {/* soft gradient wash */}
       <div ref={bgRef} className="pointer-events-none absolute inset-0 z-0">
         <Image
@@ -274,17 +289,14 @@ export default function AboutHero() {
       {/* final text screen — sits behind the image until it scrolls up */}
       <div
         ref={textScreenRef}
-        className="absolute inset-0 z-[5] flex flex-col items-center justify-center gap-[clamp(24px,5vh,72px)] bg-[#fffff8] px-6 text-center"
-      >
+        className="absolute inset-0 z-[5] flex flex-col items-center justify-center gap-[clamp(24px,5vh,72px)] bg-[#ffffff] px-6 text-center">
         <div
           ref={textGroupRef}
-          className="mx-auto flex w-full max-w-[1322px] flex-col items-center gap-4 will-change-transform"
-        >
+          className="mx-auto flex w-full max-w-[1322px] flex-col items-center gap-4 will-change-transform">
           <div className="overflow-hidden">
             <h2
               ref={textHeadingRef}
-              className="font-serif font-light leading-[1.5] text-[#1e1e1e] text-[clamp(28px,4.5vw,64px)] [text-shadow:0px_0px_50px_rgba(0,0,0,0.05)] will-change-transform"
-            >
+              className="font-serif font-light leading-[1.5] text-[#1e1e1e] text-[clamp(28px,4.5vw,64px)] [text-shadow:0px_0px_50px_rgba(0,0,0,0.05)] will-change-transform">
               A licensed adult-use dispensary.
               <br aria-hidden />
               Rooted in New York, built for New Yorkers.
@@ -292,19 +304,17 @@ export default function AboutHero() {
           </div>
           <p
             ref={textSubRef}
-            className="font-cy font-light leading-[1.5] text-[rgba(30,30,30,0.5)] text-[clamp(16px,2.4vw,32px)] will-change-transform"
-          >
-            We bring together quality, community, and honest guidance. JD&rsquo;s
-            Jungle is a space where every customer, from the curious first-timer
-            to the seasoned connoisseur, feels at home.
+            className="font-cy font-light leading-[1.5] text-[rgba(30,30,30,0.5)] text-[clamp(16px,2.4vw,32px)] will-change-transform">
+            We bring together quality, community, and honest guidance.
+            JD&rsquo;s Jungle is a space where every customer, from the curious
+            first-timer to the seasoned connoisseur, feels at home.
           </p>
         </div>
 
         {/* logo formation — plays frame-by-frame as you scroll past the text */}
         <div
           ref={lottieBoxRef}
-          className="aspect-[640/360] w-[clamp(240px,40vw,560px)] will-change-transform"
-        >
+          className="aspect-[640/360] w-[clamp(240px,40vw,560px)] will-change-transform">
           {logoFormation ? (
             <Lottie
               lottieRef={lottieRef}
@@ -320,13 +330,11 @@ export default function AboutHero() {
       {/* JD's (stays anchored at the left) */}
       <div
         ref={word1OuterRef}
-        className="absolute left-[clamp(24px,4vw,58px)] z-10 overflow-hidden"
-      >
+        className="absolute left-[clamp(24px,4vw,58px)] z-10 overflow-hidden">
         <h1
           ref={word1InnerRef}
           className={wordClass}
-          style={{ backgroundImage: WORD_GRADIENT }}
-        >
+          style={{ backgroundImage: WORD_GRADIENT }}>
           JD&rsquo;s
         </h1>
       </div>
@@ -334,8 +342,7 @@ export default function AboutHero() {
       {/* the image that grows out from the middle */}
       <div
         ref={imageBoxRef}
-        className="absolute left-0 z-20 overflow-hidden will-change-[width,height,transform]"
-      >
+        className="absolute left-0 z-20 overflow-hidden will-change-[width,height,transform]">
         <Image
           src={HERO_IMAGE}
           alt="Cannabis plant against a blue sky"
@@ -356,8 +363,7 @@ export default function AboutHero() {
         <h2
           ref={word2InnerRef}
           className={wordClass}
-          style={{ backgroundImage: WORD_GRADIENT }}
-        >
+          style={{ backgroundImage: WORD_GRADIENT }}>
           JUNGLE
         </h2>
       </div>
@@ -365,8 +371,7 @@ export default function AboutHero() {
       {/* caption + rule (rise in on scroll) */}
       <div
         ref={captionRef}
-        className="absolute bottom-[clamp(24px,5vh,56px)] left-[clamp(24px,4vw,58px)] right-[clamp(96px,9vw,160px)] z-10 flex items-center gap-[clamp(16px,2vw,32px)]"
-      >
+        className="absolute bottom-[clamp(24px,5vh,56px)] left-[clamp(24px,4vw,58px)] right-[clamp(96px,9vw,160px)] z-10 flex items-center gap-[clamp(16px,2vw,32px)]">
         <p className="whitespace-nowrap font-cy text-[clamp(15px,1.8vw,32px)] leading-[1.5] text-[rgba(30,30,30,0.9)] [text-shadow:0px_0px_50px_rgba(0,0,0,0.05)]">
           Rooted in New York. Rising for everyone.
         </p>
@@ -376,8 +381,7 @@ export default function AboutHero() {
       {/* logo mark (rises in on scroll) */}
       <div
         ref={logoRef}
-        className="absolute bottom-[clamp(20px,4vh,44px)] right-[clamp(24px,3vw,58px)] z-10 size-[clamp(40px,4vw,64px)]"
-      >
+        className="absolute bottom-[clamp(20px,4vh,44px)] right-[clamp(24px,3vw,58px)] z-10 size-[clamp(40px,4vw,64px)]">
         <Image
           src={LOGO_MARK}
           alt=""
