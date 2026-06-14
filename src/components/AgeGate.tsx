@@ -2,10 +2,15 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { useStoredValue } from "@/lib/useStoredValue";
 
 const STORAGE_KEY = "jd-age-verified";
+
+// Routes reachable without age verification — chiefly the legal pages the gate
+// itself links to, so visitors can read them before clicking "Yes".
+const GATE_EXEMPT = ["/privacy"];
 
 // Brand-reveal intro that plays once before the verification card.
 const WORDMARK = "JD's Jungle";
@@ -40,28 +45,54 @@ export default function AgeGate() {
   // until we can confirm a prior verification from localStorage.
   const [verified, setVerified] = useStoredValue(STORAGE_KEY, null);
   const [denied, setDenied] = useState(false);
+  const pathname = usePathname();
+  const isExempt = GATE_EXEMPT.some(
+    (path) => pathname === path || pathname.startsWith(`${path}/`),
+  );
   const isVerified = verified === "true";
 
   // Intro animation state. `introDone` flips to true once the brand reveal has
   // played (or immediately under reduced-motion), unveiling the card.
   const [phase, setPhase] = useState<IntroPhase>("navy");
   const [introDone, setIntroDone] = useState(false);
+  // Uniform scale that shrinks the lockup to fit narrow screens while keeping
+  // it horizontally centred (1 = natural size, i.e. it already fits).
+  const [fitScale, setFitScale] = useState(1);
   const startedRef = useRef(false);
+  const logoRef = useRef<HTMLDivElement>(null);
+  const textRef = useRef<HTMLSpanElement>(null);
+
+  // Once the wordmark is revealed, measure the lockup's natural width and scale
+  // it down to fit the viewport. Re-runs on resize/orientation change.
+  const textIn = phase === "reveal" || phase === "rise";
+  useEffect(() => {
+    if (!textIn) return;
+    const measure = () => {
+      const natural =
+        (logoRef.current?.offsetWidth ?? 0) +
+        (textRef.current?.scrollWidth ?? 0);
+      if (!natural) return;
+      setFitScale(Math.min(1, (window.innerWidth * 0.92) / natural));
+    };
+    measure();
+    window.addEventListener("resize", measure);
+    return () => window.removeEventListener("resize", measure);
+  }, [textIn]);
 
   // Lock body scroll while the gate is visible.
   useEffect(() => {
-    if (isVerified) return;
+    if (isVerified || isExempt) return;
     const previous = document.body.style.overflow;
     document.body.style.overflow = "hidden";
     return () => {
       document.body.style.overflow = previous;
     };
-  }, [isVerified]);
+  }, [isVerified, isExempt]);
 
   // Drive the intro timeline. Runs once; respects reduced-motion by skipping
   // straight to the card.
   useEffect(() => {
-    if (isVerified || introDone || startedRef.current) return;
+    if (isVerified || isExempt || introDone || startedRef.current) return;
     startedRef.current = true;
 
     if (window.matchMedia?.("(prefers-reduced-motion: reduce)").matches) {
@@ -82,20 +113,26 @@ export default function AgeGate() {
     return () => {
       timeouts.forEach((id) => window.clearTimeout(id));
     };
-  }, [isVerified, introDone]);
+  }, [isVerified, isExempt, introDone]);
 
-  if (isVerified) return null;
+  if (isVerified || isExempt) return null;
 
-  const confirm = () => setVerified("true");
+  const confirm = () => {
+    // Mark the document so CSS reveals the navbar immediately (no reload),
+    // mirroring the pre-paint attribute the layout sets for return visits.
+    document.documentElement.setAttribute("data-age-verified", "1");
+    setVerified("true");
+  };
 
   // Logo: pops to 130% as the circle bursts open, then settles to its lockup
   // size. Box size (not transform) shrinks so the wordmark can sit beside it.
-  const logoSize = phase === "navy" || phase === "expand" ? 190 : 112;
+  // clamp() keeps the lockup from overflowing narrow phones.
+  const logoSize =
+    phase === "navy" || phase === "expand"
+      ? "clamp(120px, 32vw, 190px)"
+      : "clamp(60px, 15vw, 112px)";
   const logoScale = phase === "expand" ? 1.3 : 1;
   const circleScale = phase === "navy" ? 1 : 60;
-  // The wordmark slides open (0fr → 1fr) once the logo has settled, which also
-  // glides the logo left as the text claims its space.
-  const textIn = phase === "reveal" || phase === "rise";
   // The whole curtain lifts up, its curved hem sweeping the card into view.
   const riseUp = phase === "rise";
 
@@ -110,8 +147,8 @@ export default function AgeGate() {
           data-age-gate=""
           className="fixed inset-x-0 top-0 z-[110] h-[145vh] overflow-hidden bg-[#0c1e46]"
           style={{
-            borderBottomLeftRadius: "50% 180px",
-            borderBottomRightRadius: "50% 180px",
+            borderBottomLeftRadius: "50% clamp(100px, 16vh, 180px)",
+            borderBottomRightRadius: "50% clamp(100px, 16vh, 180px)",
             transform: riseUp ? "translateY(-155vh)" : "translateY(0)",
             transition: "transform 1100ms cubic-bezier(0.76, 0, 0.24, 1)",
             boxShadow: "0 24px 60px rgba(12, 30, 70, 0.22)",
@@ -120,17 +157,24 @@ export default function AgeGate() {
               screen, turning the navy backdrop white. Sized to tuck behind the
               logo's own circle so no white ring shows before it expands. */}
           <div
-            className="absolute left-1/2 top-[50vh] size-[150px] rounded-full bg-[#fffef8]"
+            className="absolute left-1/2 top-[50vh] size-[clamp(92px,26vw,150px)] rounded-full bg-[#fffef8]"
             style={{
               transform: `translate(-50%, -50%) scale(${circleScale})`,
               transition: "transform 1400ms cubic-bezier(0.65, 0, 0.35, 1)",
             }}
           />
-          {/* Logo + wordmark lockup, centred on the viewport (not the taller
-              curtain). Flex centering makes the logo glide left on its own as
-              the sliding wordmark claims horizontal space. */}
-          <div className="absolute left-1/2 top-[50vh] flex -translate-x-1/2 -translate-y-1/2 items-center justify-center">
+          {/* Logo + wordmark lockup, always centred on the viewport. Spans the
+              full width (so the wordmark is never width-constrained / clipped),
+              and scales down uniformly (fitScale) to fit narrow screens while
+              staying horizontally centred. */}
+          <div
+            className="absolute inset-x-0 top-[50vh] flex items-center justify-center"
+            style={{
+              transform: `translateY(-50%) scale(${fitScale})`,
+              transition: "transform 500ms ease",
+            }}>
             <div
+              ref={logoRef}
               className="relative shrink-0"
               style={{
                 width: logoSize,
@@ -159,7 +203,8 @@ export default function AgeGate() {
               {/* py + relaxed leading keep the "J" descender from being clipped
                   by the overflow-hidden used for the slide. */}
               <span
-                className="overflow-hidden whitespace-nowrap py-[0.12em] pl-[clamp(14px,2vw,28px)] font-serif text-[clamp(40px,7vw,76px)] leading-[1.25] text-[#0c1e46]"
+                ref={textRef}
+                className="overflow-hidden whitespace-nowrap py-[0.12em] pl-[clamp(12px,2vw,28px)] font-serif text-[clamp(36px,9vw,76px)] leading-[1.25] text-[#0c1e46]"
                 style={{
                   opacity: textIn ? 1 : 0,
                   transition: "opacity 600ms ease 150ms",

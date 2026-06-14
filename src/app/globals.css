@@ -46,6 +46,28 @@ html[data-age-verified="1"] [data-age-gate] {
   display: none !important;
 }
 
+/* Keep the navbar and footer hidden until age consent is given (set pre-paint
+   by the blocking script, or at runtime when "Yes" is clicked) — including on
+   the gate-exempt legal pages, where the gate itself doesn't render. */
+html:not([data-age-verified="1"]) [data-navbar],
+html:not([data-age-verified="1"]) [data-footer] {
+  display: none !important;
+}
+
+/* Anything clickable gets the hand cursor (Tailwind's reset drops it from
+   <button>). In @layer base so explicit `cursor-*` utilities still win.
+   Genuine card/div click targets carry the `cursor-pointer` class. */
+@layer base {
+  a[href],
+  button:not(:disabled),
+  [role="button"],
+  label[for],
+  summary,
+  select {
+    cursor: pointer;
+  }
+}
+
 @utility no-scrollbar {
   scrollbar-width: none;
   -ms-overflow-style: none;

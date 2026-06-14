@@ -136,6 +136,7 @@ export default function Navbar({ activeHref }: NavbarProps) {
     <nav
       ref={navRef}
       aria-label="Primary"
+      data-navbar=""
       className={`fixed inset-x-0 top-0 z-50 h-[77px] w-full border-b border-[#1e1e1e]/85 transition-colors duration-300 will-change-transform ${
         scrolled || menuOpen
           ? "bg-linear-to-r from-white/[0.18] to-[#eee]/20 backdrop-blur-md"
