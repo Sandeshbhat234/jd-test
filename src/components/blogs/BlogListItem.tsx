@@ -57,10 +57,10 @@ export default function BlogListItem({
               {post.category}
             </span>
           </div>
-          <h3 className="font-serif text-[clamp(20px,2.25vw,48px)] leading-[1.2] tracking-[1px] text-[#1e1e1e]">
+          <h3 className="font-serif text-[clamp(20px,2.2vw,30px)] leading-[1.25] tracking-[0.5px] text-[#1e1e1e]">
             {post.title}
           </h3>
-          <p className="font-cy text-[clamp(15px,1.5vw,22px)] leading-[1.5] tracking-[0.5px] text-[#1e1e1e]">
+          <p className="font-cy text-[clamp(14px,1.4vw,18px)] leading-[1.5] tracking-[0.4px] text-[#1e1e1e]">
             {post.excerpt}
           </p>
         </div>

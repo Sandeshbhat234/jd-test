@@ -231,7 +231,7 @@ function Divider() {
 
 export default function BeginnersGuidePage() {
   return (
-    <main className="w-full overflow-x-clip bg-[#fffef8] text-[#1e1e1e]">
+    <main className="w-full overflow-x-clip bg-[#fffff8] text-[#1e1e1e]">
       <div className="mx-auto flex w-full max-w-[1728px] flex-col gap-[clamp(48px,7vw,96px)] px-[clamp(24px,5vw,96px)] pb-[clamp(64px,8vw,100px)] pt-[clamp(120px,16vw,160px)]">
         {/* Hero */}
         <Reveal

@@ -99,7 +99,7 @@ export function MobileMenu({
   return (
     <div
       ref={panelRef}
-      className="invisible absolute inset-x-0 top-[77px] z-40 max-h-[calc(100svh-77px)] overflow-y-auto border-t border-black/10 bg-[#fffef8] px-[clamp(16px,5vw,40px)] py-6 opacity-0 shadow-[0px_12px_30px_rgba(0,0,0,0.18)] md:hidden">
+      className="invisible absolute inset-x-0 top-[77px] z-40 max-h-[calc(100svh-77px)] overflow-y-auto border-t border-black/10 bg-[#fffff8] px-[clamp(16px,5vw,40px)] py-6 opacity-0 shadow-[0px_12px_30px_rgba(0,0,0,0.18)] md:hidden">
       <nav ref={navRef} className="flex flex-col gap-1" aria-label="Mobile">
         {NAV_ITEMS.map((item) =>
           item.children ? (

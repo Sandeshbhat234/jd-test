@@ -52,7 +52,7 @@ export default function ReadingProgress({
       type="button"
       onClick={scrollToTop}
       aria-label={`Reading progress ${progress}%. Back to top.`}
-      className={`fixed bottom-5 left-5 z-40 grid size-[58px] place-items-center rounded-full border border-[#0c1e46]/15 bg-[#fffef8]/90 shadow-[0px_6px_20px_rgba(0,0,0,0.12)] backdrop-blur-sm transition-all duration-300 lg:hidden ${
+      className={`fixed bottom-5 left-5 z-40 grid size-[58px] place-items-center rounded-full border border-[#0c1e46]/15 bg-[#fffff8]/90 shadow-[0px_6px_20px_rgba(0,0,0,0.12)] backdrop-blur-sm transition-all duration-300 lg:hidden ${
         visible ? "scale-100 opacity-100" : "pointer-events-none scale-90 opacity-0"
       }`}
     >

@@ -95,7 +95,7 @@ export default function MetricsSection() {
   return (
     <section
       ref={sectionRef}
-      className="relative h-screen w-full overflow-hidden bg-[#fffef8]"
+      className="relative h-screen w-full overflow-hidden bg-[#fffff8]"
       aria-label="No noise. No guesswork."
     >
       <div className="absolute inset-0 flex flex-col items-start justify-center gap-[clamp(32px,5vw,96px)] px-[clamp(24px,5vw,80px)] py-12">

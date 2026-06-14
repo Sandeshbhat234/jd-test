@@ -110,7 +110,7 @@ export function NavDropdown({
         <div className="absolute left-1/2 top-full z-50 -translate-x-1/2 pt-4">
           <ul
             role="menu"
-            className="flex min-w-[210px] flex-col rounded-2xl border border-black/10 bg-[#fffef8] p-2 shadow-[0px_10px_30px_rgba(0,0,0,0.15)]">
+            className="flex min-w-[210px] flex-col rounded-2xl border border-black/10 bg-[#fffff8] p-2 shadow-[0px_10px_30px_rgba(0,0,0,0.15)]">
             {item.children!.map((child) => {
               const childActive = pathname.startsWith(child.href);
               return (

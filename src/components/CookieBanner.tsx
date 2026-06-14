@@ -15,7 +15,7 @@ const pillBase =
   "flex h-9 items-center justify-center rounded-full border px-4 py-2 " +
   "font-cy text-[14px] leading-none whitespace-nowrap " +
   "transition-[filter,background-color] duration-200 ease-out " +
-  "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0c1e46]/60 focus-visible:ring-offset-2 focus-visible:ring-offset-[#fffef8]";
+  "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0c1e46]/60 focus-visible:ring-offset-2 focus-visible:ring-offset-[#fffff8]";
 
 const primaryPill =
   pillBase +
@@ -24,7 +24,7 @@ const primaryPill =
 
 const ghostPill =
   pillBase +
-  " border-black bg-[#fffef8] font-medium text-black hover:bg-black/5";
+  " border-black bg-[#fffff8] font-medium text-black hover:bg-black/5";
 
 export default function CookieBanner() {
   const [consent, setConsent] = useStoredValue(STORAGE_KEY, SSR_HIDDEN);
@@ -41,7 +41,7 @@ export default function CookieBanner() {
       aria-describedby="cookie-banner-desc"
       className="fixed inset-x-4 bottom-4 z-[60] sm:inset-x-auto sm:bottom-6 sm:right-6 sm:left-auto sm:w-[360px]"
     >
-      <div className="flex flex-col items-center justify-center rounded-2xl border border-[rgba(30,30,30,0.5)] bg-[#fffef8] p-5 drop-shadow-[0px_6px_15px_rgba(0,0,0,0.1)]">
+      <div className="flex flex-col items-center justify-center rounded-2xl border border-[rgba(30,30,30,0.5)] bg-[#fffff8] p-5 drop-shadow-[0px_6px_15px_rgba(0,0,0,0.1)]">
         <div className="flex w-full flex-col gap-5">
           <div className="flex w-full flex-col gap-2">
             <div className="flex w-full items-center justify-between gap-4">

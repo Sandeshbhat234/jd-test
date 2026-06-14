@@ -59,7 +59,7 @@ export default function Banner({
   return (
     <div
       className={[
-        "relative w-full overflow-hidden border-y border-black bg-[#fffef8] py-4",
+        "relative w-full overflow-hidden border-y border-black bg-[#fffff8] py-4",
         className ?? "",
       ].join(" ")}
     >

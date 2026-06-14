@@ -61,7 +61,7 @@ export default function StoreSelector({ dark }: { dark: boolean }) {
 
       {open ? (
         <div className="absolute right-0 top-full z-50 pt-3">
-          <div className="flex min-w-[240px] flex-col gap-2 rounded-2xl border border-white/40 bg-[#fffef8]/35 p-2 shadow-[0px_10px_30px_rgba(0,0,0,0.18)] backdrop-blur-2xl">
+          <div className="flex min-w-[240px] flex-col gap-2 rounded-2xl border border-white/40 bg-[#fffff8]/35 p-2 shadow-[0px_10px_30px_rgba(0,0,0,0.18)] backdrop-blur-2xl">
             <ul role="menu" className="flex space-y-2 flex-col">
               {stores.map((s) => {
                 const active = s.slug === store.slug;

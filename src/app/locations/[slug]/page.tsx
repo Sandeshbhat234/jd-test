@@ -63,7 +63,7 @@ export default async function LocationDetailPage({ params }: Params) {
   if (!location) notFound();
 
   return (
-    <main className="w-full overflow-x-clip bg-[#fffef8] text-[#1e1e1e]">
+    <main className="w-full overflow-x-clip bg-[#fffff8] text-[#1e1e1e]">
       <section className="mx-auto flex w-full max-w-[1601px] flex-col gap-[clamp(40px,6vw,64px)] px-[clamp(24px,5vw,80px)] pb-[clamp(64px,8vw,100px)] pt-[clamp(120px,16vw,160px)]">
         {/* Title */}
         <Reveal direction="up" className="flex flex-col gap-3">

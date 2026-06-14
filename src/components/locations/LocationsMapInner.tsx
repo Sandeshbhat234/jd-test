@@ -12,7 +12,7 @@ function markerIcon(shortName: string, active: boolean) {
     className: "jd-marker",
     html: `
       <div style="position:relative">
-        <div style="width:44px;height:44px;border-radius:9999px;background:#fffef8;
+        <div style="width:44px;height:44px;border-radius:9999px;background:#fffff8;
           border:${active ? "2px" : "1px"} solid #0c1e46;display:flex;align-items:center;
           justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,.3)">
           <img src="/home/Logos/jd-jungle-mark.svg" alt="" style="width:26px;height:26px;filter:brightness(0)"/>

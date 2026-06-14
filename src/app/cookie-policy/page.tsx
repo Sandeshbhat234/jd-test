@@ -80,7 +80,7 @@ const SECTIONS: Section[] = [
 
 export default function CookiePolicyPage() {
   return (
-    <main className="w-full border-b border-black bg-[#fffef8] text-black">
+    <main className="w-full border-b border-black bg-[#fffff8] text-black">
       <div className="mx-auto flex w-full max-w-[1601px] flex-col gap-[clamp(40px,5vw,64px)] px-[clamp(24px,5vw,80px)] pb-[clamp(64px,8vw,100px)] pt-[clamp(120px,16vw,160px)]">
         <Reveal direction="up" className="flex flex-col gap-3">
           <h1 className="font-serif text-[clamp(34px,5.4vw,64px)] leading-[1.15] text-black">

@@ -102,7 +102,7 @@ export default function Carousel({
   return (
     <section
       className={[
-        "bg-[#fffef8] py-[clamp(60px,10vw,150px)] overflow-hidden",
+        "bg-[#fffff8] py-[clamp(60px,10vw,150px)] overflow-hidden",
         className ?? "",
       ].join(" ")}>
       <header

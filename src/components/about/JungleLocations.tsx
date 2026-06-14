@@ -167,14 +167,13 @@ export default function JungleLocations() {
     <section
       ref={sectionRef}
       aria-label="JD's Jungle locations"
-      className="relative h-screen w-full overflow-hidden bg-[#fffef8] max-md:h-auto max-md:overflow-visible">
+      className="relative h-screen w-full overflow-hidden bg-[#fffff8] max-md:h-auto max-md:overflow-visible">
       {/* ---------- mobile: image banner + stacked location cards ---------- */}
       <div className="relative hidden min-h-[86vh] w-full overflow-hidden max-md:block">
         <Image
           src={`${A4}/interior.webp`}
           alt="JD's Jungle interior"
           fill
-          preload
           sizes="100vw"
           className="select-none object-cover"
         />
@@ -210,7 +209,6 @@ export default function JungleLocations() {
         src={`${A4}/interior.webp`}
         alt="JD's Jungle interior"
         fill
-        preload
         sizes="100vw"
         className="select-none object-cover max-md:hidden"
       />
@@ -264,7 +262,7 @@ export default function JungleLocations() {
             y="-6000"
             width="13761"
             height="13080"
-            fill="#FFFEF8"
+            fill="#FFFFF8"
             mask="url(#jungleLeafMask)"
           />
         </svg>
@@ -310,7 +308,7 @@ export default function JungleLocations() {
           aria-hidden="true">
           <path
             d="M269.5 106.401C177.105 14.0047 53.5 21.0041 16.5 37.5045V446.505H1781V148.005C1749.5 181.505 1721.33 199.275 1702 210.108C1473 322.4 1154 312.505 1027.5 186.4C916.76 76.005 716.5 106.401 643.5 153.401C570.5 200.401 409.045 245.948 269.5 106.401Z"
-            fill="#FFFEF8"
+            fill="#FFFFF8"
           />
         </svg>
       </div>

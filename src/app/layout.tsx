@@ -128,7 +128,7 @@ export default function RootLayout({
         {children}
         <Footer />
         <CookieBanner />
-        {/* <AgeGate /> */}
+        <AgeGate />
         <ScrollToTopButton />
       </body>
     </html>

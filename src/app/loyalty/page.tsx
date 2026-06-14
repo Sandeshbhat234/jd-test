@@ -62,7 +62,7 @@ function SectionHeading({ children }: { children: React.ReactNode }) {
 
 export default function LoyaltyPage() {
   return (
-    <main className="w-full overflow-x-clip bg-[#fffef8] text-black">
+    <main className="w-full overflow-x-clip bg-[#fffff8] text-black">
       <section className="mx-auto flex w-full max-w-[1601px] flex-col gap-[clamp(40px,6vw,64px)] px-[clamp(24px,5vw,80px)] pb-[clamp(64px,8vw,100px)] pt-[clamp(120px,16vw,160px)]">
         {/* Intro */}
         <Reveal direction="up" className="flex flex-col gap-[clamp(20px,3vw,32px)]">

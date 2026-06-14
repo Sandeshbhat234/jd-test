@@ -38,6 +38,9 @@ const wordClass =
 
 export default function AboutHero() {
   const sectionRef = useRef<HTMLElement | null>(null);
+  // Wraps every animated child; hidden in the SSR markup and revealed by GSAP
+  // once the initial positions are set (see below).
+  const contentRef = useRef<HTMLDivElement | null>(null);
   const bgRef = useRef<HTMLDivElement | null>(null);
 
   const word1OuterRef = useRef<HTMLDivElement | null>(null);
@@ -78,6 +81,7 @@ export default function AboutHero() {
   useGSAP(
     () => {
       const section = sectionRef.current;
+      const content = contentRef.current;
       const bg = bgRef.current;
       const word1Outer = word1OuterRef.current;
       const word1Inner = word1InnerRef.current;
@@ -95,6 +99,7 @@ export default function AboutHero() {
       const lottieBox = lottieBoxRef.current;
       if (
         !section ||
+        !content ||
         !bg ||
         !word1Outer ||
         !word1Inner ||
@@ -122,6 +127,12 @@ export default function AboutHero() {
       const growW = () => window.innerWidth * 0.42;
 
       // --- initial state ---
+      // The content layer is server-rendered hidden (see `visibility:hidden` on
+      // the wrapper) so the un-arranged children never flash before these sets
+      // run. The section keeps its opaque background so the next section (tucked
+      // underneath via -mt) stays covered until then. Reveal now that everything
+      // is positioned.
+      gsap.set(content, { autoAlpha: 1 });
       gsap.set([word1Outer, word2Outer], { top: "50%", yPercent: -50 });
       gsap.set(imageBox, {
         top: "50%",
@@ -280,9 +291,17 @@ export default function AboutHero() {
       // next one, which tucks underneath via `md:-mt-[100vh]`. The next section
       // stays hidden behind the white until this one unpins — so its content is
       // only revealed once the screen is fully covered.
-      className="relative z-0 h-screen w-full overflow-hidden bg-[#fffef8] md:z-20">
-      {/* soft gradient wash */}
-      <div ref={bgRef} className="pointer-events-none absolute inset-0 z-0">
+      className="relative z-0 h-screen w-full overflow-hidden bg-[#fffff8] md:z-20">
+      {/* Animated content layer. Hidden in the SSR markup and revealed by GSAP
+          once the initial positions are set, so the un-arranged children never
+          flash on refresh. The section's own background stays painted, keeping
+          the next section (tucked underneath via -mt) covered until then. */}
+      <div
+        ref={contentRef}
+        className="absolute inset-0"
+        style={{ visibility: "hidden" }}>
+        {/* soft gradient wash */}
+        <div ref={bgRef} className="pointer-events-none absolute inset-0 z-0">
         <Image
           src={BG_GRADIENT}
           alt=""
@@ -296,7 +315,7 @@ export default function AboutHero() {
       {/* final text screen — sits behind the image until it scrolls up */}
       <div
         ref={textScreenRef}
-        className="absolute inset-0 z-[5] flex flex-col items-center justify-center gap-[clamp(24px,5vh,72px)] bg-[#ffffff] px-6 text-center">
+        className="absolute inset-0 z-[5] flex flex-col items-center justify-center gap-[clamp(24px,5vh,72px)] bg-[#fffff8] px-6 text-center">
         <div
           ref={textGroupRef}
           className="mx-auto flex w-full max-w-[1322px] flex-col items-center gap-4 will-change-transform">
@@ -404,6 +423,7 @@ export default function AboutHero() {
           sizes="64px"
           className="select-none object-contain"
         />
+      </div>
       </div>
     </section>
   );

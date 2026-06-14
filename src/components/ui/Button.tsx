@@ -55,7 +55,7 @@ const VARIANTS: Record<Variant, VariantStyle> = {
   // Light cream pill that fills with a navy circle on hover.
   secondary: {
     shell: "border border-[rgba(1,31,69,0.3)] text-[#0c1e46]",
-    background: "rgba(255,254,248,0.92)",
+    background: "rgba(255,255,248,0.92)",
     fill: `radial-gradient(circle at 50% 50%, #1B0A8F 0%, #04103F 55%, #011F45 100%)`,
     hoverText: "group-hover:text-white group-focus-visible:text-white",
   },

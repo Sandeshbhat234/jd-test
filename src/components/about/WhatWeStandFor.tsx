@@ -12,7 +12,7 @@ export default function WhatWeStandFor() {
   return (
     <section
       aria-label="What We Stand For"
-      className="w-full border-b-2 border-black bg-[#ffffff] px-5 py-14 md:hidden">
+      className="w-full border-b-2 border-black bg-[#fffff8] px-5 py-14 md:hidden">
       <div className="text-center">
         <h2 className="font-serif font-light leading-[1.2] text-[#1e1e1e] text-[34px]">
           What We Stand For

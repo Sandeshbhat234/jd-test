@@ -15,7 +15,7 @@ const QUICK_LINKS = [
 
 export default function Footer() {
   return (
-    <footer className="flex min-h-svh h-fit flex-col rounded-t-[clamp(40px,7vw,100px)] bg-[#fffef8] pb-[clamp(32px,4vw,56px)] pt-[clamp(48px,6vw,80px)] text-[#1e1e1e]">
+    <footer className="flex min-h-svh h-fit flex-col rounded-t-[clamp(40px,7vw,100px)] bg-[#fffff8] pb-[clamp(32px,4vw,56px)] pt-[clamp(48px,6vw,80px)] text-[#1e1e1e]">
       <div
         className="mx-auto flex w-full max-w-[1601px] flex-1 flex-col justify-between gap-[clamp(64px,10vw,160px)]"
         style={{ paddingInline: "clamp(24px,4vw,80px)" }}>

@@ -188,7 +188,7 @@ export default function BlogFilterBar({
               role="listbox"
               aria-label="Filter blogs by category"
               style={{ transformOrigin: "top" }}
-              className="invisible absolute left-0 top-[calc(100%+8px)] z-20 min-w-60 overflow-hidden rounded-2xl border border-[#1e1e1e] bg-[#fffef8] py-2 opacity-0 shadow-[0_12px_32px_rgba(1,1,1,0.12)]"
+              className="invisible absolute left-0 top-[calc(100%+8px)] z-20 min-w-60 overflow-hidden rounded-2xl border border-[#1e1e1e] bg-[#fffff8] py-2 opacity-0 shadow-[0_12px_32px_rgba(1,1,1,0.12)]"
             >
               {BLOG_CATEGORIES.map((cat) => {
                 const active = cat.label === selected;
@@ -207,7 +207,7 @@ export default function BlogFilterBar({
                       }}
                       className={`flex w-full items-center gap-3 px-4 py-2.5 text-left font-cy transition-colors ${
                         active
-                          ? "bg-[#1e1e1e] text-[#fffef8]"
+                          ? "bg-[#1e1e1e] text-[#fffff8]"
                           : "text-[#1e1e1e] hover:bg-[rgba(234,233,228,0.6)]"
                       }`}
                     >
@@ -241,7 +241,7 @@ export default function BlogFilterBar({
                 onClick={() => onSelect(cat.label)}
                 className={`flex items-center gap-2 rounded-full border border-[#1e1e1e] px-4 py-2 font-cy transition-colors ${
                   active
-                    ? "bg-[#1e1e1e] text-[#fffef8]"
+                    ? "bg-[#1e1e1e] text-[#fffff8]"
                     : "bg-[rgba(234,233,228,0.2)] text-[#1e1e1e] hover:bg-[rgba(234,233,228,0.6)]"
                 }`}
               >

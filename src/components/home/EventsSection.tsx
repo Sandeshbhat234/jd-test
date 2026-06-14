@@ -30,7 +30,7 @@ export default function EventsSection() {
   return (
     <section
       aria-label="Upcoming Events"
-      className="bg-[#fffef8] py-[clamp(60px,8vw,100px)]"
+      className="bg-[#fffff8] py-[clamp(60px,8vw,100px)]"
     >
       <div className="mx-auto flex w-full max-w-[1601px] flex-col gap-[clamp(32px,5vw,80px)] px-[clamp(24px,5vw,80px)] lg:flex-row lg:items-start lg:justify-between">
         <header className="flex max-w-[639px] flex-col gap-4 text-[#1e1e1e]">

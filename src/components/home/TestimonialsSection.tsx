@@ -73,7 +73,7 @@ export default function TestimonialsSection() {
   return (
     <section
       aria-label="From Our Community"
-      className="bg-[#fffef8] py-[clamp(56px,7vw,100px)]">
+      className="bg-[#fffff8] py-[clamp(56px,7vw,100px)]">
       <div className="mx-auto flex w-full max-w-[1601px] flex-col gap-[clamp(32px,6vw,124px)] px-[clamp(24px,5vw,80px)] lg:flex-row lg:items-start">
         <header className="flex w-full max-w-[483px] shrink-0 flex-col gap-4 text-[#1e1e1e]">
           <h2 className="font-serif text-[clamp(24px,2.6vw,32px)] leading-[1.5] tracking-[0.2px]">

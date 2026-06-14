@@ -200,7 +200,7 @@ export default function TheLineup() {
     <section
       ref={sectionRef}
       aria-label="The Lineup"
-      className="relative h-screen w-full overflow-hidden bg-[#ffffff] max-md:h-auto max-md:overflow-visible">
+      className="relative h-screen w-full overflow-hidden bg-[#fffff8] max-md:h-auto max-md:overflow-visible">
       {/* ---------- mobile: simple swipeable carousel, no arrows ---------- */}
       <div className="hidden flex-col items-center px-5 py-14 max-md:flex">
         <div className="text-center">

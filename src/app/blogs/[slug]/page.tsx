@@ -51,7 +51,7 @@ export default async function BlogArticlePage({ params }: Params) {
     .filter((p): p is NonNullable<typeof p> => Boolean(p));
 
   return (
-    <main className="w-full overflow-x-clip bg-[#fffef8] text-[#1e1e1e]">
+    <main className="w-full overflow-x-clip bg-[#fffff8] text-[#1e1e1e]">
       <section className="mx-auto flex w-full max-w-[1601px] flex-col gap-[clamp(56px,8vw,128px)] px-[clamp(24px,5vw,80px)] pb-[clamp(64px,8vw,100px)] pt-[clamp(120px,16vw,160px)]">
         <Reveal direction="up">
           <BlogHero

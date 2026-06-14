@@ -121,7 +121,7 @@ export function MegaMenu({
       role="menu"
       onMouseEnter={onEnter}
       onMouseLeave={onLeave}
-      className="invisible fixed inset-x-0 bottom-0 top-[77px] z-40 overflow-y-auto border-t border-black/10 bg-[#fffef8] text-[#1e1e1e] opacity-0 shadow-[0px_12px_30px_rgba(0,0,0,0.18)]">
+      className="invisible fixed inset-x-0 bottom-0 top-[77px] z-40 overflow-y-auto border-t border-black/10 bg-[#fffff8] text-[#1e1e1e] opacity-0 shadow-[0px_12px_30px_rgba(0,0,0,0.18)]">
       <div
         ref={innerRef}
         className="mx-auto flex w-full max-w-[1601px] flex-col gap-[clamp(20px,2.5vw,32px)] py-[clamp(16px,2vw,28px)] lg:flex-row lg:items-stretch"

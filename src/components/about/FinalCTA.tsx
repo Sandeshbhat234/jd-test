@@ -58,7 +58,7 @@ export default function FinalCTA() {
     <section
       ref={sectionRef}
       aria-label="Ready to navigate your next high"
-      className="relative flex min-h-[100svh] w-full flex-col items-center justify-center overflow-hidden bg-[#ffffff] px-6 py-[clamp(48px,8vh,96px)]">
+      className="relative flex min-h-[100svh] w-full flex-col items-center justify-center overflow-hidden bg-[#fffff8] px-6 py-[clamp(48px,8vh,96px)]">
       <div
         ref={leafRef}
         className="relative aspect-[1811/988] w-[min(72vw,70vh,760px)] will-change-transform">
