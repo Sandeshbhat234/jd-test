@@ -1,0 +1,221 @@
+- generic [active] [ref=e1]:
+  - navigation "Primary" [ref=e2]:
+    - generic [ref=e3]:
+      - generic [ref=e4]:
+        - link "JD's Jungle home" [ref=e5] [cursor=pointer]:
+          - /url: /
+          - img "JD's Jungle" [ref=e6]
+        - list [ref=e7]:
+          - listitem [ref=e8]:
+            - link "Home" [ref=e9] [cursor=pointer]:
+              - /url: /
+          - listitem [ref=e10]:
+            - link "About" [ref=e11] [cursor=pointer]:
+              - /url: /about
+          - listitem [ref=e12]:
+            - button "Shop" [ref=e13]:
+              - text: Shop
+              - img [ref=e14]
+          - listitem [ref=e16]:
+            - button "Explore" [ref=e17]:
+              - text: Explore
+              - img [ref=e18]
+      - generic [ref=e20]:
+        - 'button "Selected store: JD''s Jungle Queens. Change store" [ref=e22]':
+          - img [ref=e23]
+          - generic [ref=e26]: Queens
+          - img [ref=e27]
+        - link "Contact" [ref=e29] [cursor=pointer]:
+          - /url: /contact
+          - generic [ref=e30]: Contact
+  - main [ref=e31]:
+    - region "JD's Jungle — Rooted in New York. Rising for everyone." [ref=e32]:
+      - generic [ref=e34]:
+        - heading "A licensed adult-use dispensary. Rooted in New York, built for New Yorkers." [level=2] [ref=e36]
+        - paragraph [ref=e37]: We bring together quality, community, and honest guidance. JD’s Jungle is a space where every customer, from the curious first-timer to the seasoned connoisseur, feels at home.
+      - heading "JD’s" [level=1] [ref=e40]
+      - generic:
+        - img "Cannabis plant against a blue sky"
+      - heading "JUNGLE" [level=2] [ref=e42]
+      - paragraph [ref=e44]: Rooted in New York. Rising for everyone.
+    - region "What Makes Us Different" [ref=e47]:
+      - generic:
+        - generic:
+          - heading "What Makes Us Different" [level=2]
+          - paragraph: Three reasons New Yorkers keep coming back – no guesswork, no hype.
+        - generic:
+          - heading "Licensed by NY State" [level=3]
+          - paragraph: Proudly licensed by the New York Office of Cannabis Management.
+        - generic:
+          - heading "State-Mandated Lab Testing" [level=3]
+          - paragraph: Every product passes required lab testing before it reaches you.
+        - generic:
+          - heading "Knowledgeable Team" [level=3]
+          - paragraph: We cut through the noise and help you find what works.
+      - generic [ref=e48]:
+        - img "Cannabis leaf against a blue sky" [ref=e50]
+        - img "Cannabis oil being dropped onto a leaf in a petri dish" [ref=e52]
+        - img "Silhouettes of the JD's Jungle team" [ref=e54]
+      - generic [ref=e58]:
+        - generic [ref=e59]:
+          - heading "What We Stand For" [level=2] [ref=e60]
+          - paragraph [ref=e61]: The values that guide every product and every conversation
+        - generic [ref=e65]:
+          - heading "Legitimacy" [level=3] [ref=e66]
+          - paragraph [ref=e67]: Proudly licensed by the New York Office of Cannabis Management.
+        - generic [ref=e70]:
+          - heading "Quality" [level=3] [ref=e71]
+          - paragraph [ref=e72]: Every product meets our standard – lab tested and hand-selected.
+        - generic [ref=e75]:
+          - heading "Community" [level=3] [ref=e76]
+          - paragraph [ref=e77]: We exist at the intersection of cannabis culture and New York.
+        - generic [ref=e80]:
+          - heading "Clarity" [level=3] [ref=e81]
+          - paragraph [ref=e82]: We cut through the noise so you feel confident every time.
+      - generic:
+        - img
+    - region "JD's Jungle locations" [ref=e84]:
+      - img "JD's Jungle interior" [ref=e85]
+      - generic:
+        - img
+      - generic [ref=e87]:
+        - img [ref=e89]
+        - generic [ref=e92]:
+          - heading "Manhattan" [level=3] [ref=e93]
+          - paragraph [ref=e94]:
+            - generic [ref=e95]: 302 West 46th Street, Unit A
+            - generic [ref=e96]: New York, NY 10036
+      - generic [ref=e97]:
+        - img [ref=e99]
+        - generic [ref=e102]:
+          - heading "Queens" [level=3] [ref=e103]
+          - paragraph [ref=e104]:
+            - generic [ref=e105]: 28-10 Steinway Street, Storefront C
+            - generic [ref=e106]: Astoria, NY 11103
+      - generic [ref=e107]:
+        - img [ref=e109]
+        - generic [ref=e112]:
+          - heading "Brooklyn" [level=3] [ref=e113]
+          - paragraph [ref=e114]:
+            - generic [ref=e115]: 234 North 7th Street, Suite B
+            - generic [ref=e116]: Brooklyn, NY 11211
+      - generic:
+        - img
+    - region "The Lineup" [ref=e117]:
+      - generic [ref=e118]:
+        - heading "The Lineup" [level=2] [ref=e119]
+        - paragraph [ref=e120]: From morning energy to midnight relaxation – find yours.
+      - generic [ref=e121]:
+        - button "Flower" [ref=e122] [cursor=pointer]
+        - button "Pre-Rolls" [ref=e123] [cursor=pointer]
+        - button "Vapes" [ref=e124] [cursor=pointer]
+        - button "Edibles" [ref=e125] [cursor=pointer]
+        - button "Concentrates" [ref=e126] [cursor=pointer]
+        - button "Tinctures" [ref=e127] [cursor=pointer]
+        - button "Oils" [ref=e128] [cursor=pointer]
+        - button "Topicals" [ref=e129] [cursor=pointer]
+        - button "Accessories" [ref=e130] [cursor=pointer]
+      - button "Flower" [ref=e131]:
+        - img "Flower"
+      - button "Pre-Rolls" [ref=e132]:
+        - img "Pre-Rolls"
+      - button "Vapes" [ref=e133]:
+        - img "Vapes"
+      - button "Edibles" [ref=e134]:
+        - img "Edibles"
+      - button "Concentrates" [ref=e135]:
+        - img "Concentrates"
+      - button "Tinctures" [ref=e136]:
+        - img "Tinctures"
+      - button "Oils" [ref=e137]:
+        - img "Oils"
+      - button "Topicals" [ref=e138]:
+        - img "Topicals"
+      - button "Accessories" [ref=e139]:
+        - img "Accessories"
+      - generic [ref=e150]:
+        - button "Previous product" [ref=e151] [cursor=pointer]
+        - button "Next product" [ref=e152] [cursor=pointer]
+    - region "Ready to navigate your next high" [ref=e153]:
+      - heading "Are you ready to navigate your next incredible high today?" [level=2] [ref=e155]
+      - link "Shop Now" [ref=e157] [cursor=pointer]:
+        - /url: /shop
+        - generic [ref=e158]: Shop Now
+  - contentinfo [ref=e159]:
+    - generic [ref=e160]:
+      - generic [ref=e161]:
+        - generic [ref=e162]:
+          - link "JD's Jungle home" [ref=e163] [cursor=pointer]:
+            - /url: /
+            - img "JD's Jungle" [ref=e164]
+          - paragraph [ref=e165]: Join the list for early drops, private tastings and the occasional dispatch from our cultivators.
+          - generic [ref=e166]:
+            - generic [ref=e167]:
+              - generic [ref=e168]: Email address
+              - textbox "Email address" [ref=e169]:
+                - /placeholder: Email
+            - button "Subscribe" [ref=e170]:
+              - generic [ref=e171]: Subscribe
+        - generic [ref=e172]:
+          - navigation "Quick links" [ref=e173]:
+            - heading "Quick Links" [level=3] [ref=e174]
+            - list [ref=e175]:
+              - listitem [ref=e176]:
+                - link "Shop All" [ref=e177] [cursor=pointer]:
+                  - /url: /shop
+              - listitem [ref=e178]:
+                - link "About" [ref=e179] [cursor=pointer]:
+                  - /url: /about
+              - listitem [ref=e180]:
+                - link "Loyalty Program" [ref=e181] [cursor=pointer]:
+                  - /url: /loyalty
+              - listitem [ref=e182]:
+                - link "Blogs" [ref=e183] [cursor=pointer]:
+                  - /url: /blogs
+              - listitem [ref=e184]:
+                - link "Locations" [ref=e185] [cursor=pointer]:
+                  - /url: /locations
+              - listitem [ref=e186]:
+                - link "Contact" [ref=e187] [cursor=pointer]:
+                  - /url: /contact
+          - generic [ref=e188]:
+            - generic [ref=e189]:
+              - heading "Reach Us" [level=3] [ref=e190]
+              - link "contact@jdsjungle.com" [ref=e191] [cursor=pointer]:
+                - /url: mailto:contact@jdsjungle.com
+              - generic [ref=e193]:
+                - text: 302 West 46th Street, Unit A
+                - generic [ref=e194]: New York, NY 10036
+            - generic [ref=e195]:
+              - heading "Open Hours" [level=3] [ref=e196]
+              - paragraph [ref=e197]:
+                - text: "Monday – Saturday: 10am – 8pm EST"
+                - generic [ref=e198]: "Sunday: Closed"
+      - generic [ref=e199]:
+        - generic [ref=e200]:
+          - paragraph [ref=e201]: © 2026 JD's Jungle. All rights reserved.
+          - list [ref=e202]:
+            - listitem [ref=e203]:
+              - link "LinkedIn" [ref=e204] [cursor=pointer]:
+                - /url: https://www.linkedin.com/
+            - listitem [ref=e205]:
+              - link "Instagram" [ref=e206] [cursor=pointer]:
+                - /url: https://www.instagram.com/
+            - listitem [ref=e207]:
+              - link "Facebook" [ref=e208] [cursor=pointer]:
+                - /url: https://www.facebook.com/
+          - link "Privacy Policy" [ref=e209] [cursor=pointer]:
+            - /url: /privacy
+        - paragraph [ref=e210]:
+          - text: For use only by adults 21 years of age and older. Keep out of reach of children and pets. In case of accidental ingestion or overconsumption, contact the National Poison Control Center hotline
+          - link "1-800-222-1222" [ref=e211] [cursor=pointer]:
+            - /url: tel:1-800-222-1222
+          - text: or call
+          - link "9-1-1" [ref=e212] [cursor=pointer]:
+            - /url: tel:911
+          - text: . Cannabis can be addictive. Cannabis is not recommended for use by persons who are pregnant or nursing or other warnings as determined by the Office. For help and hope 24/7, call 1-877-8-HOPENY (467369) or text HOPENY (467369).
+  - button "Back to top":
+    - img
+    - img
+  - button "Open Next.js Dev Tools" [ref=e218] [cursor=pointer]:
+    - img [ref=e219]

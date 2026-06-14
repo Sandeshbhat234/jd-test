@@ -28,8 +28,7 @@ export default function BlogListItem({
   return (
     <Link
       href={`/blogs/${post.slug}`}
-      className="group flex flex-col gap-6 border-t border-black/15 pt-8 focus-visible:outline-none lg:grid lg:grid-cols-[minmax(140px,176px)_minmax(0,1fr)_minmax(0,1fr)] lg:items-start lg:gap-9"
-    >
+      className="group flex flex-col gap-6 border-t border-black/15 pt-8 focus-visible:outline-none lg:grid lg:grid-cols-[minmax(140px,176px)_minmax(0,1fr)_minmax(0,1fr)] lg:items-start lg:gap-9">
       {/* Meta — top on mobile, left column on desktop */}
       <div className="lg:pt-1">
         <Meta post={post} />
@@ -48,7 +47,7 @@ export default function BlogListItem({
       </div>
 
       {/* Content */}
-      <div className="flex flex-col justify-between gap-6 lg:h-[clamp(240px,22vw,320px)]">
+      <div className="flex flex-col justify-between gap-6 lg:min-h-[clamp(240px,22vw,320px)]">
         <div className="flex flex-col gap-4">
           <div className="flex items-start justify-between gap-4">
             <span className="font-cy text-[clamp(14px,1vw,18px)] font-medium leading-tight text-[#1e1e1e]">
@@ -58,10 +57,10 @@ export default function BlogListItem({
               {post.category}
             </span>
           </div>
-          <h3 className="font-serif text-[clamp(26px,3.2vw,44px)] leading-[1.2] tracking-[1px] text-[#1e1e1e]">
+          <h3 className="font-serif text-[clamp(20px,2.25vw,48px)] leading-[1.2] tracking-[1px] text-[#1e1e1e]">
             {post.title}
           </h3>
-          <p className="font-cy text-[clamp(15px,1.5vw,20px)] leading-[1.5] tracking-[0.5px] text-[#1e1e1e]">
+          <p className="font-cy text-[clamp(15px,1.5vw,22px)] leading-[1.5] tracking-[0.5px] text-[#1e1e1e]">
             {post.excerpt}
           </p>
         </div>

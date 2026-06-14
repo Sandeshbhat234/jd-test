@@ -25,7 +25,11 @@ export interface CarouselProps {
   footer?: ReactNode;
 }
 
-const EDGE_PADDING = "clamp(24px,4vw,80px)";
+// Aligns the carousel's left/right edges with the site's centered 1601px content
+// container (same inset as the navbar and other page sections) so headings and
+// cards line up with the rest of the page on wide screens.
+const EDGE_PADDING =
+  "calc(max(0px, (100vw - 1601px) / 2) + clamp(24px, 5vw, 80px))";
 
 export default function Carousel({
   title,
@@ -112,7 +116,7 @@ export default function Carousel({
             but never grows past half the viewport. */}
         <div className="flex max-w-1/2 flex-col items-center gap-6 lg:flex-row lg:items-center lg:gap-8">
           {description ? (
-            <p className="font-serif text-[clamp(14px,1.4vw,22px)] leading-[1.36] text-black/50 lg:max-w-[50vw]">
+            <p className="text-[clamp(14px,1.4vw,22px)] leading-[1.36] text-black/50 lg:max-w-[50vw]">
               {description}
             </p>
           ) : null}

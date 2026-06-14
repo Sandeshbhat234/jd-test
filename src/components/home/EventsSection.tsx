@@ -31,9 +31,8 @@ export default function EventsSection() {
     <section
       aria-label="Upcoming Events"
       className="bg-[#fffef8] py-[clamp(60px,8vw,100px)]"
-      style={{ paddingInline: "clamp(24px,4vw,80px)" }}
     >
-      <div className="mx-auto flex w-full max-w-[1601px] flex-col gap-[clamp(32px,5vw,80px)] lg:flex-row lg:items-start lg:justify-between">
+      <div className="mx-auto flex w-full max-w-[1601px] flex-col gap-[clamp(32px,5vw,80px)] px-[clamp(24px,5vw,80px)] lg:flex-row lg:items-start lg:justify-between">
         <header className="flex max-w-[639px] flex-col gap-4 text-[#1e1e1e]">
           <h2 className="font-serif font-light text-[clamp(36px,5vw,64px)] leading-[1.5] tracking-[0.2px] whitespace-nowrap">
             Upcoming Events

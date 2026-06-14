@@ -19,6 +19,21 @@ body {
   font-family: var(--font-cy-grotesk), Arial, Helvetica, sans-serif;
 }
 
+/* Global type system: every heading is Source Serif, every paragraph is
+   Cy Grotesk Key — regardless of per-component utility classes. */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-source-serif), Georgia, "Times New Roman", serif;
+}
+
+p {
+  font-family: var(--font-cy-grotesk), Arial, Helvetica, sans-serif;
+}
+
 body.hide-footer > footer {
   display: none;
 }

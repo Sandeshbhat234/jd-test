@@ -26,7 +26,7 @@ export default function LocationCard({ location }: { location: Location }) {
       <div className="absolute inset-0 bg-gradient-to-t from-[rgba(34,25,20,0.92)] via-[rgba(34,25,20,0.45)] to-transparent" />
 
       <div className="relative flex flex-col gap-2 text-white">
-        <h3 className="font-cy text-[clamp(20px,1.8vw,24px)] font-medium leading-tight">
+        <h3 className="text-[clamp(20px,1.8vw,24px)] font-medium leading-tight">
           {location.name}
         </h3>
         <p className="font-cy text-[clamp(14px,1.1vw,16px)] leading-snug">

@@ -224,7 +224,7 @@ export default function TheLineup() {
               <div
                 key={p.name}
                 className="flex w-full shrink-0 flex-col items-center">
-                <div className="relative h-[300px] w-full">
+                <div className="relative h-[clamp(220px,70vw,300px)] w-full">
                   <Image
                     src={`${A5}/${p.img}`}
                     alt={p.name}
@@ -233,7 +233,7 @@ export default function TheLineup() {
                     className="pointer-events-none select-none object-contain"
                   />
                 </div>
-                <p className="mt-3 font-[family-name:var(--font-cy-grotesk)] font-medium capitalize text-[#1e1e1e] text-[24px]">
+                <p className="mt-3 font-[family-name:var(--font-cy-grotesk)] font-medium capitalize text-[#1e1e1e] text-[clamp(18px,0.5vh,24px)]">
                   {p.name}
                 </p>
               </div>
@@ -281,7 +281,7 @@ export default function TheLineup() {
               listRefs.current[i] = el;
             }}
             onClick={() => goTo(i)}
-            className="w-fit cursor-pointer font-[family-name:var(--font-cy-grotesk)] capitalize leading-[1.2] text-[clamp(20px,2.4vw,32px)] text-[rgba(30,30,30,0.4)] text-left transition-transform duration-300 hover:translate-x-1">
+            className="w-fit cursor-pointer font-[family-name:var(--font-cy-grotesk)] capitalize leading-[1.2] text-[clamp(20px,3.8vh,32px)] text-[rgba(30,30,30,0.4)] text-left transition-transform duration-300 hover:translate-x-1">
             {p.name}
           </button>
         ))}
@@ -297,7 +297,7 @@ export default function TheLineup() {
           }}
           onClick={() => goTo(i)}
           aria-label={p.name}
-          className="absolute left-1/2 top-1/2 h-[clamp(240px,44vh,460px)] w-[clamp(220px,26vw,420px)] will-change-transform max-md:hidden">
+          className="absolute left-1/2 top-1/2 h-[clamp(240px,64vh,660px)] w-[clamp(220px,26vw,420px)] will-change-transform max-md:hidden">
           <Image
             src={`${A5}/${p.img}`}
             alt={p.name}
@@ -310,7 +310,7 @@ export default function TheLineup() {
       ))}
 
       {/* pagination dots */}
-      <div className="absolute bottom-[clamp(40px,9vh,105px)] left-1/2 z-20 flex -translate-x-1/2 items-center gap-[clamp(8px,1.3vw,19px)] max-md:hidden">
+      <div className="absolute bottom-5 left-1/2 z-20 flex -translate-x-1/2 items-center gap-[clamp(8px,1.3vw,19px)] max-md:hidden">
         {PRODUCTS.map((p, i) => (
           <span
             key={p.name}

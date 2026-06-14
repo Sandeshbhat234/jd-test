@@ -25,8 +25,15 @@ const LOGO_FORMATION_FRAMES = 480;
 const WORD_GRADIENT =
   "linear-gradient(172.8deg, rgba(17,83,142,0.5) 23.66%, rgba(104,152,222,0.5) 55.57%, rgba(170,220,233,0.5) 85.88%, rgba(255,255,255,0.5) 120.18%, rgba(255,255,255,0.5) 168.04%)";
 
+// `pl-…` matters: the gradient is painted with `background-clip:text`, whose
+// background box is this element's padding box. The bold serif "J" overhangs to
+// the left of its glyph origin, and without left padding that overhang falls
+// outside the background box and renders transparent (looks cut off). The
+// padding extends the gradient far enough left to cover it. The outer wrappers
+// pull `left` back by the same amount so the words stay put.
 const wordClass =
   "font-serif font-semibold leading-[1.05] whitespace-nowrap text-transparent bg-clip-text " +
+  "pl-[clamp(10px,1.2vw,30px)] " +
   "text-[clamp(56px,15vw,300px)] [text-shadow:0px_4px_5px_rgba(0,0,0,0.1)] will-change-transform";
 
 export default function AboutHero() {
@@ -327,10 +334,15 @@ export default function AboutHero() {
         </div>
       </div>
 
-      {/* JD's (stays anchored at the left) */}
+      {/* JD's (stays anchored at the left). `left` is pulled back by the same
+          amount as the word's left padding (see wordClass) so the glyph and the
+          box's right edge stay exactly where they were. */}
       <div
         ref={word1OuterRef}
-        className="absolute left-[clamp(24px,4vw,58px)] z-10 overflow-hidden">
+        className="absolute z-10 overflow-hidden"
+        style={{
+          left: "calc(clamp(24px,4vw,58px) - clamp(10px,1.2vw,30px))",
+        }}>
         <h1
           ref={word1InnerRef}
           className={wordClass}
@@ -358,8 +370,11 @@ export default function AboutHero() {
         />
       </div>
 
-      {/* JUNGLE (pushed off the right edge as the image grows) */}
-      <div ref={word2OuterRef} className="absolute z-10 overflow-hidden">
+      {/* JUNGLE (pushed off the right edge as the image grows). The word's own
+          left padding (wordClass) keeps its serif "J" from rendering cut off. */}
+      <div
+        ref={word2OuterRef}
+        className="absolute z-10 overflow-hidden">
         <h2
           ref={word2InnerRef}
           className={wordClass}

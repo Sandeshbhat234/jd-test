@@ -57,7 +57,7 @@ export default function FaqAccordion({ groups }: { groups: FaqGroup[] }) {
     <div className="flex flex-col gap-12">
       {groups.map((group) => (
         <div key={group.title} className="flex flex-col gap-4">
-          <h3 className="font-cy text-[clamp(18px,1.8vw,26px)] font-medium text-[#1e1e1e]">
+          <h3 className="text-[clamp(18px,1.8vw,26px)] font-medium text-[#1e1e1e]">
             {group.title}
           </h3>
           <div className="flex flex-col gap-3">

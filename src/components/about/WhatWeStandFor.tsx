@@ -35,7 +35,7 @@ export default function WhatWeStandFor() {
                 className="select-none object-contain"
               />
             </div>
-            <h3 className="font-cy capitalize leading-[1.3] text-black text-[22px]">
+            <h3 className="capitalize leading-[1.3] text-black text-[22px]">
               {value.title}
             </h3>
             <p className="font-cy leading-[1.45] text-[rgba(0,0,0,0.7)] text-[15px]">

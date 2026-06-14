@@ -104,12 +104,22 @@ export default function Navbar({ activeHref }: NavbarProps) {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // Reveal the bar whenever the pointer approaches the top edge of the screen,
+  // even if it was hidden by scrolling down.
+  useEffect(() => {
+    const onMove = (e: PointerEvent) => {
+      if (e.clientY <= 80) setHidden(false);
+    };
+    window.addEventListener("pointermove", onMove, { passive: true });
+    return () => window.removeEventListener("pointermove", onMove);
+  }, []);
+
   // Slide the bar out of view (up) and back in (down) with GSAP easing — a
   // quicker ease-in on the way up, a softer ease-out as it returns.
   useEffect(() => {
     const nav = navRef.current;
     if (!nav) return;
-    const shouldHide = hidden && !menuOpen;
+    const shouldHide = hidden && !menuOpen && !openHref;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       gsap.set(nav, { yPercent: shouldHide ? -100 : 0 });
       return;
@@ -120,17 +130,18 @@ export default function Navbar({ activeHref }: NavbarProps) {
       ease: shouldHide ? "power2.in" : "power3.out",
       overwrite: true,
     });
-  }, [hidden, menuOpen]);
+  }, [hidden, menuOpen, openHref]);
 
   return (
     <nav
       ref={navRef}
       aria-label="Primary"
-      className={`fixed inset-x-0 top-0 z-50 flex h-[77px] w-full items-center justify-between border-b border-[#1e1e1e]/85 px-[clamp(16px,5vw,80px)] py-4 pb-2 transition-colors duration-300 will-change-transform ${
+      className={`fixed inset-x-0 top-0 z-50 h-[77px] w-full border-b border-[#1e1e1e]/85 transition-colors duration-300 will-change-transform ${
         scrolled || menuOpen
           ? "bg-linear-to-r from-white/[0.18] to-[#eee]/20 backdrop-blur-md"
           : "bg-transparent"
       }`}>
+      <div className="mx-auto flex h-full w-full max-w-[1601px] items-center justify-between px-[clamp(24px,5vw,80px)] py-4 pb-2">
       <div className="flex items-center gap-[clamp(24px,5vw,64px)]">
         <Link
           href="/"
@@ -231,6 +242,7 @@ export default function Navbar({ activeHref }: NavbarProps) {
             )}
           </svg>
         </button>
+      </div>
       </div>
 
       {menuRender ? (

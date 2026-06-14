@@ -188,7 +188,7 @@ export default function JungleLocations() {
                 <LocationIcon />
               </div>
               <div className="flex flex-col gap-1 text-white">
-                <h3 className="font-[family-name:var(--font-cy-grotesk)] font-semibold capitalize leading-tight text-[17px]">
+                <h3 className="font-semibold capitalize leading-tight text-[17px]">
                   {loc.city}
                 </h3>
                 <p className="font-cy capitalize leading-snug text-[12px]">
@@ -282,7 +282,7 @@ export default function JungleLocations() {
             <LocationIcon />
           </div>
           <div className="flex flex-col gap-2 text-white">
-            <h3 className="font-[family-name:var(--font-cy-grotesk)] font-medium capitalize leading-tight text-[clamp(20px,2.25vw,26px)]">
+            <h3 className="font-medium capitalize leading-tight text-[clamp(20px,2.25vw,26px)]">
               {loc.city}
             </h3>
             <p className="font-cy capitalize leading-snug text-[clamp(14px,1.5vw,18px)]">

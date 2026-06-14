@@ -3,7 +3,6 @@
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { BLOG_CATEGORIES } from "@/data/blogs";
-import SearchBar from "@/components/ui/SearchBar";
 import CategoryIcon from "./CategoryIcon";
 
 function SearchGlyph({ className }: { className?: string }) {
@@ -41,7 +40,7 @@ export default function BlogFilterBar({
   const panelRef = useRef<HTMLUListElement>(null);
   const searchInputRef = useRef<HTMLInputElement>(null);
 
-  // Focus the inline (desktop) search field once it has expanded open.
+  // Focus the inline search field once it has expanded open.
   useEffect(() => {
     if (searchOpen) searchInputRef.current?.focus();
   }, [searchOpen]);
@@ -147,7 +146,7 @@ export default function BlogFilterBar({
 
   return (
     <div className="flex flex-col gap-3">
-      <div className="flex items-center gap-4">
+      <div className="flex items-start gap-4">
         {/* Mobile: category dropdown */}
         <div ref={menuRef} className="relative lg:hidden">
           <button
@@ -264,11 +263,11 @@ export default function BlogFilterBar({
         {/* Mobile spacer (on desktop the chip row above is flex-1 instead). */}
         <div className="flex-1 lg:hidden" />
 
-        {/* Desktop: search icon that expands into an input on click. */}
+        {/* Search icon that expands into an input on click (all breakpoints). */}
         <div
-          className={`hidden h-10 shrink-0 items-center overflow-hidden rounded-full border border-[#1e1e1e] text-[#1e1e1e] transition-[width,background-color] duration-300 ease-out lg:flex ${
+          className={`flex h-10 shrink-0 items-center overflow-hidden rounded-full border border-[#1e1e1e] text-[#1e1e1e] transition-[width,background-color] duration-300 ease-out ${
             searchOpen
-              ? "w-[clamp(220px,26vw,320px)] bg-white"
+              ? "w-[clamp(180px,55vw,320px)] bg-white lg:w-[clamp(220px,26vw,320px)]"
               : "w-10 bg-[rgba(234,233,228,0.2)] hover:bg-[rgba(234,233,228,0.6)]"
           }`}
         >
@@ -296,42 +295,7 @@ export default function BlogFilterBar({
           />
         </div>
 
-        {/* Mobile: search toggle button (reveals the bar below). */}
-        <button
-          type="button"
-          aria-label={searchOpen ? "Close search" : "Search blogs"}
-          aria-expanded={searchOpen}
-          onClick={() => (searchOpen ? closeSearch() : setSearchOpen(true))}
-          className="flex shrink-0 items-center justify-center rounded-full border border-[#1e1e1e] bg-[rgba(234,233,228,0.2)] px-5 py-2.5 text-[#1e1e1e] transition-colors hover:bg-[rgba(234,233,228,0.6)] lg:hidden"
-        >
-          {searchOpen ? (
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="size-6">
-              <path
-                d="M6 6l12 12M18 6L6 18"
-                stroke="currentColor"
-                strokeWidth="1.75"
-                strokeLinecap="round"
-              />
-            </svg>
-          ) : (
-            <SearchGlyph className="size-6" />
-          )}
-        </button>
       </div>
-
-      {/* Mobile: the search field drops in below the row. */}
-      {searchOpen && (
-        <div className="lg:hidden">
-          <SearchBar
-            value={query}
-            onChange={onQueryChange}
-            onClose={closeSearch}
-            autoFocus
-            placeholder="Search articles…"
-            ariaLabel="Search articles"
-          />
-        </div>
-      )}
     </div>
   );
 }

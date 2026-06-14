@@ -73,9 +73,8 @@ export default function TestimonialsSection() {
   return (
     <section
       aria-label="From Our Community"
-      className="bg-[#fffef8] py-[clamp(56px,7vw,100px)]"
-      style={{ paddingInline: "clamp(24px,4vw,80px)" }}>
-      <div className="mx-auto flex w-full max-w-[1601px] flex-col gap-[clamp(32px,6vw,124px)] lg:flex-row lg:items-start">
+      className="bg-[#fffef8] py-[clamp(56px,7vw,100px)]">
+      <div className="mx-auto flex w-full max-w-[1601px] flex-col gap-[clamp(32px,6vw,124px)] px-[clamp(24px,5vw,80px)] lg:flex-row lg:items-start">
         <header className="flex w-full max-w-[483px] shrink-0 flex-col gap-4 text-[#1e1e1e]">
           <h2 className="font-serif text-[clamp(24px,2.6vw,32px)] leading-[1.5] tracking-[0.2px]">
             From Our Community
@@ -103,7 +102,7 @@ export default function TestimonialsSection() {
                     className="h-[clamp(56px,7vw,103px)]  w-fit select-none"
                   />{" "}
                 </div>
-                <p className="font-serif font-light text-black text-[clamp(28px,3.5vw,48px)] leading-[1.18]">
+                <p className="font-light text-black text-[clamp(28px,3.5vw,48px)] leading-[1.18]">
                   {t.quote}
                 </p>
                 <span className="h-px w-full bg-black/15" aria-hidden />

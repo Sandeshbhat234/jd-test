@@ -130,7 +130,7 @@ export default function GetStartedCards({
 /** Collapsible body block: open on mobile, revealed on hover/focus on desktop. */
 function Collapsible({ children }: { children: ReactNode }) {
   return (
-    <div className="grid grid-rows-[1fr] opacity-100 transition-[grid-template-rows,opacity] duration-700 ease-out lg:grid-rows-[0fr] lg:opacity-0 lg:group-hover:grid-rows-[1fr] lg:group-hover:opacity-100 lg:group-focus-visible:grid-rows-[1fr] lg:group-focus-visible:opacity-100">
+    <div className="grid grid-rows-[1fr] opacity-100 transition-[grid-template-rows,opacity] duration-500 ease-out lg:grid-rows-[0fr] lg:opacity-0 lg:group-hover:grid-rows-[1fr] lg:group-hover:opacity-100 lg:group-focus-visible:grid-rows-[1fr] lg:group-focus-visible:opacity-100">
       <div className="min-h-0 overflow-hidden">{children}</div>
     </div>
   );
@@ -166,7 +166,7 @@ function ExpandingCard({
       onMouseLeave={() => onActivate?.(null)}
       onFocusCapture={() => onActivate?.(bgImage)}
       onBlurCapture={() => onActivate?.(null)}
-      className="group relative z-0 flex h-[clamp(480px,122vw,560px)] w-full flex-col gap-3 overflow-hidden rounded-2xl border border-black/10 bg-white/90 p-4 text-black backdrop-blur-[14px] transition-[background-color,border-color,color,transform] duration-700 ease-out lg:h-[clamp(440px,40vw,500px)] lg:origin-center lg:transform-gpu lg:will-change-transform lg:backface-hidden lg:border-white/20 lg:bg-white/20 lg:text-white lg:backdrop-blur-[50px] lg:hover:z-20 lg:hover:scale-x-[1.1] lg:hover:scale-y-[1.2] lg:hover:border-black/10 lg:hover:bg-white/90 lg:hover:text-black lg:hover:shadow-[0_18px_40px_rgba(0,0,0,0.22)] lg:focus-visible:z-20 lg:focus-visible:scale-x-[1.1] lg:focus-visible:scale-y-[1.2] lg:focus-visible:border-black/10 lg:focus-visible:bg-white/90 lg:focus-visible:text-black">
+      className="group relative z-0 flex h-[clamp(440px,112vw,520px)] w-full flex-col gap-3 overflow-hidden rounded-2xl border border-black/10 bg-white/90 p-4 text-black backdrop-blur-[14px] transition-[background-color,border-color,color,transform] duration-500 ease-out lg:h-[60vh] lg:origin-center lg:transform-gpu lg:will-change-transform lg:backface-hidden lg:border-white/20 lg:bg-white/20 lg:text-white lg:backdrop-blur-[50px] lg:hover:z-20 lg:hover:scale-[1.12] lg:hover:border-black/10 lg:hover:bg-white/90 lg:hover:text-black lg:hover:shadow-[0_18px_40px_rgba(0,0,0,0.22)] lg:focus-visible:z-20 lg:focus-visible:scale-[1.12] lg:focus-visible:border-black/10 lg:focus-visible:bg-white/90 lg:focus-visible:text-black">
       <h3 className="font-serif text-[clamp(22px,2.4vw,32px)] capitalize leading-[1.25]">
         {title}
       </h3>

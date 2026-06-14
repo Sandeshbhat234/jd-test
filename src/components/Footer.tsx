@@ -40,7 +40,7 @@ export default function Footer() {
                 className="h-[26.164px] w-[159.051px] select-none md:h-[47.154px] md:w-[286.654px] lg:h-[26.164px] lg:w-[159.051px]"
               />
             </Link>
-            <p className="font-serif text-[clamp(22px,3.5vw,32px)] leading-[1.5] tracking-[0.2px]">
+            <p className="text-[clamp(22px,3.5vw,32px)] leading-[1.5] tracking-[0.2px]">
               Join the list for early drops, private tastings and the occasional
               dispatch from our cultivators.
             </p>
@@ -49,7 +49,7 @@ export default function Footer() {
 
           <div className="flex flex-col gap-12 md:flex-row md:justify-between md:gap-16 lg:contents">
             <nav aria-label="Quick links" className="flex flex-col gap-4">
-              <h3 className="font-cy text-[clamp(15px,1.5vw,18px)] font-medium uppercase leading-[27px] text-black">
+              <h3 className="text-[clamp(15px,1.5vw,18px)] font-medium uppercase leading-[27px] text-black">
                 Quick Links
               </h3>
               <ul className="grid grid-cols-2 gap-x-6 gap-y-2 opacity-75 md:flex md:flex-col">
@@ -67,7 +67,7 @@ export default function Footer() {
 
             <div className="flex flex-col gap-[clamp(20px,2.5vw,40px)] text-black">
               <div className="flex flex-col gap-2">
-                <h3 className="font-cy text-[clamp(15px,1.5vw,18px)] font-medium uppercase leading-[27px]">
+                <h3 className="text-[clamp(15px,1.5vw,18px)] font-medium uppercase leading-[27px]">
                   Reach Us
                 </h3>
                 <a
@@ -86,7 +86,7 @@ export default function Footer() {
                 </address>
               </div>
               <div className="flex flex-col gap-2">
-                <h3 className="font-cy text-[clamp(15px,1.5vw,18px)] font-medium uppercase leading-[27px]">
+                <h3 className="text-[clamp(15px,1.5vw,18px)] font-medium uppercase leading-[27px]">
                   Open Hours
                 </h3>
                 <p className="font-cy text-[clamp(15px,1.4vw,18px)] leading-[27px] opacity-75">

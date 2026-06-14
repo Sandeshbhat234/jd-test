@@ -401,7 +401,7 @@ export default function WhatMakesUsDifferent() {
                 />
               </div>
               <div className="text-center">
-                <h3 className="font-cy leading-[1.2] text-[#1e1e1e] text-[24px] [text-shadow:0px_0px_50px_rgba(0,0,0,0.05)]">
+                <h3 className="leading-[1.2] text-[#1e1e1e] text-[24px] [text-shadow:0px_0px_50px_rgba(0,0,0,0.05)]">
                   {card.title}
                 </h3>
                 <p className="mt-3 font-cy font-light leading-[1.5] text-[#1e1e1e] text-[15px]">
@@ -436,7 +436,7 @@ export default function WhatMakesUsDifferent() {
               textRefs.current[i] = el;
             }}
             className="absolute left-[clamp(24px,8vw,132px)] top-1/2 w-[clamp(300px,42vw,620px)] will-change-transform">
-            <h3 className="font-cy leading-[1.2] text-[#1e1e1e] text-[clamp(24px,3vw,36px)] [text-shadow:0px_0px_50px_rgba(0,0,0,0.05)]">
+            <h3 className="leading-[1.2] text-[#1e1e1e] text-[clamp(24px,3vw,36px)] [text-shadow:0px_0px_50px_rgba(0,0,0,0.05)]">
               {card.title}
             </h3>
             <p className="mt-4 font-cy font-light leading-[1.5] text-[#1e1e1e] text-[clamp(15px,1.6vw,26px)]">
@@ -507,9 +507,11 @@ export default function WhatMakesUsDifferent() {
           </div>
 
           {/* timeline line + milestone dot */}
+          {/* Centred on the dot/cards (57vh): top = 57vh − height/2 so the
+              dot sits at the line's midpoint. */}
           <div
             ref={sfLineRef}
-            className="absolute left-1/2 top-[38vh] z-10 h-[46vh] w-px bg-[rgba(30,30,30,0.3)]"
+            className="absolute left-1/2 top-[34vh] z-10 h-[46vh] w-px bg-[rgba(30,30,30,0.3)]"
           />
           <div
             ref={sfDotRef}
@@ -529,19 +531,19 @@ export default function WhatMakesUsDifferent() {
                   : "right-[calc(50%+clamp(16px,2vw,40px))]"
               }`}>
               <div className="flex flex-1 flex-col gap-2">
-                <h3 className="font-cy capitalize leading-[1.3] text-black text-[clamp(19px,2vw,27px)]">
+                <h3 className="capitalize leading-[1.3] text-black text-[clamp(19px,2vw,27px)]">
                   {value.title}
                 </h3>
                 <p className="font-cy leading-[1.45] text-[rgba(0,0,0,0.7)] text-[clamp(13px,1.3vw,20px)]">
                   {value.sub}
                 </p>
               </div>
-              <div className="relative size-[clamp(88px,9vw,148px)] shrink-0">
+              <div className="relative size-[clamp(56px,5.5vw,96px)] shrink-0">
                 <Image
                   src={value.icon}
                   alt=""
                   fill
-                  sizes="148px"
+                  sizes="96px"
                   className="select-none object-contain"
                 />
               </div>

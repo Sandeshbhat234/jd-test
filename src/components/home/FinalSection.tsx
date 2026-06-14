@@ -18,7 +18,9 @@ export default function FinalSection() {
   const [activeBg, setActiveBg] = useState<string | null>(null);
 
   return (
-    <section aria-label="Get started" className="relative w-full overflow-hidden">
+    <section
+      aria-label="Get started"
+      className="relative flex min-h-screen w-full items-center overflow-hidden">
       {/* Base layer: shown when no card is hovered. */}
       <Image
         src={DEFAULT_BG}
@@ -52,7 +54,7 @@ export default function FinalSection() {
 
       <div
         className="relative mx-auto flex w-full max-w-[1601px] items-center justify-center py-[clamp(56px,8vw,100px)]"
-        style={{ paddingInline: "clamp(24px,4vw,80px)" }}>
+        style={{ paddingInline: "clamp(24px,5vw,80px)" }}>
         <GetStartedCards onActiveBgChange={setActiveBg} />
       </div>
     </section>

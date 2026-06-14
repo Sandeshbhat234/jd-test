@@ -38,7 +38,10 @@ export default function NewsletterForm() {
   }
 
   return (
-    <form onSubmit={onSubmit} className="flex flex-col gap-4 sm:flex-row sm:items-end" noValidate>
+    <form
+      onSubmit={onSubmit}
+      className="flex flex-col gap-4 sm:flex-row sm:items-end"
+      noValidate>
       <label className="flex flex-1 flex-col gap-2">
         <span className="sr-only">Email address</span>
         <input
@@ -60,7 +63,11 @@ export default function NewsletterForm() {
           </span>
         ) : null}
       </label>
-      <Button type="submit" variant="primary" className="w-full sm:w-auto">
+      <Button
+        type="submit"
+        variant="primary"
+        className="w-full sm:max-w-fit py-2 text-[clamp(15px,1.4vw,20px)]"
+        size="md">
         Subscribe
       </Button>
     </form>

@@ -117,7 +117,7 @@ export default async function BlogArticlePage({ params }: Params) {
             {/* References */}
             {article.references.length > 0 && (
               <div className="flex flex-col gap-3 border-t border-black/15 pt-[clamp(20px,2vw,28px)]">
-                <h2 className="font-cy text-[clamp(15px,1.1vw,18px)] font-medium uppercase tracking-[1px] text-[#1e1e1e]">
+                <h2 className="text-[clamp(15px,1.1vw,18px)] font-medium uppercase tracking-[1px] text-[#1e1e1e]">
                   References
                 </h2>
                 <ol className="flex flex-col gap-2">
